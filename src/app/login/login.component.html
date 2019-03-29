@@ -1,0 +1,81 @@
+<div class="authentication">
+    <div class="sign-in">
+      <div class="row no-mrg-horizon">
+        <div class="col-md-8 no-pdd-horizon d-none d-md-block">
+          <div class="full-height bg" style="background-image: url('assets/images/login.jpg')">
+            <div class="img-caption">
+                <h1 class="caption-title">Residential Life</h1>
+                <p class="caption-text">Login to use all of the features.</p>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-4 no-pdd-horizon">
+          <div class="full-height bg-white height-100">
+            <div class="vertical-align full-height pdd-horizon-70">
+              <div class="table-cell">
+                  <div class="pdd-horizon-15">
+                      <h2>Login</h2>
+                      <p class="mrg-btm-15 font-size-13">Enter your username and password to continue</p>
+                      <form id="login" role="form" data-parsley-validate="" novalidate="" method='POST' action='processorLogin' class="js-login-form">
+                          <label>Username </label>
+                          <div class="form-group">
+                              <input type="Username" name="Username" class="form-control required" placeholder="Username">
+                          </div>
+                          <label>Password </label>
+                          <div class="form-group">
+                              <input type="Password" name="Password" class="form-control required" placeholder="Password">
+                          </div>
+                          <label>Hall </label>
+                          <select id="Hall-Dropdown" name="Hall" class="form-control m-b" required>
+
+                          </select>
+                            <br/>
+                          <button class="btn btn-info" type="submit" name="SubmitLogin">Login</button>
+                          <div class="ajax-result">
+                            <div class="success"></div>
+                            <div class="error"></div>
+                          </div>
+                           <div class="ajax-loader"></div>
+                    </form>
+                  </div>
+              </div>
+            </div>
+            <div class="login-footer">
+              <img class="img-responsive inline-block" src="assets/images/logo/logo.png" width="100" alt="">
+              <span class="font-size-13 pull-right pdd-top-10">Forgot your password?  <a href="#" role="button" data-toggle="modal" data-target="#modal-forgot">Reset</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="modal-forgot">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content scrollable">
+              <div class="side-modal-wrapper">
+                  <div class="vertical-align">
+                      <div class="table-cell">
+                          <div class="pdd-horizon-15">
+                              <div class="modal-header">
+                                 <h1>Reset Password</h1>
+                                 <button type="button" class="close" data-dismiss="modal" style="margin-bottom:-10px;">&times;</button>
+                              </div>
+                              <form autocomplete="off" method='POST' type="processorForms" class="js-forgot-form">
+                                  <br/>
+                                  <b>Email</b>
+                                  <input type="text" class="form-control" name="email">
+                                  <br/>
+                                    <button class="btn btn-success btn-sm" name="submitForogt">Submit</button>
+                                    <div class="ajax-loader"></div>
+                                    <div class="ajax-result">
+                                        <div class="success"></div>
+                                        <div class="error"></div>
+                                    </div>
+                                </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>

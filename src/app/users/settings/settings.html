@@ -1,0 +1,36 @@
+<div class="container-fluid">
+	<div class="page-title">
+        <div class="page-title"><h4>Profile</h4></div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+                <div class="card-body">
+                    <form method="POST" action="processorForms" name="update-form" class="formClass js-update-form" _lpchecked="1" autocomplete="false">
+                        <label for="psw"><b>Current Password</b></label>
+                        <input type="password" class="form-control" placeholder="Enter Password" name="Password" required="" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
+                        *Required to update account settings<br/><br/>
+                        <label for="psw"><b>Name</b></label>
+                        <input type="text" disabled="disabled" class="form-control" placeholder="{Name}" value="{Name}" name="Name" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
+                        <br/><label for="psw"><b>Username</b></label>
+                        <input type="text" disabled="disabled" class="form-control" placeholder="{UsernameField}" value="{UsernameField}" name="Name" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
+                        <br/><label for="psw"><b>Email</b></label>
+                        <input type="email" placeholder="New Email" class="form-control" name="Email" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
+                        <br/><label for="psw"><b>Verify Email</b></label>
+                        <input type="email" placeholder="Verify new Email" class="form-control" name="vEmail" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
+                        <br/><label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter new Password" class="form-control" name="nPassword" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
+                        <br/><label for="psw"><b>Verify Password</b></label>
+                        <input type="password" placeholder="Verify new Password" class="form-control" name="vnPassword" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;"><br>
+                        <button type="submit" name="SubmitReset" class="btn btn-info">Update Account</button>
+                        <div class="ajax-loader"></div>
+                        <div class="ajax-result">
+                            <div class="success"></div>
+                            <div class="error"></div>
+                        </div>
+                    </form>   
+                </div>            
+            </div>
+        </div>
+    </div>
+</div>    
