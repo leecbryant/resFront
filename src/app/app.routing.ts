@@ -3,14 +3,14 @@ import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 // Layouts
 import { CommonLayoutComponent } from './common/common-layout.component';
-import { AuthenticationLayoutComponent } from './common/authentication-layout.component';
+import { AuthGuard } from './_guards';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 export const AppRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'dashboard',
         pathMatch: 'full',
     },
     {
@@ -19,21 +19,27 @@ export const AppRoutes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                loadChildren: './dashboard/dashboard.module#DashboardModule'
+                loadChildren: './dashboard/dashboard.module#DashboardModule',
+                canActivate: [AuthGuard]
             },
             {
                 path: 'currency',
-                loadChildren: './currency/currency.module#CurrencyModule'
+                loadChildren: './currency/currency.module#CurrencyModule',
+                canActivate: [AuthGuard]
             }, 
             {
                 path: 'users',
-                loadChildren: './users/users.module#UsersModule'
+                loadChildren: './users/users.module#UsersModule',
+                canActivate: [AuthGuard]
             }, 
         ],
     },
     { 
         path: 'login', 
-        component: LoginComponent
+        component: LoginComponent,
+        data : {
+            title : 'Reslife Management Login'
+        }
     },
     { 
         path: 'logout', 
@@ -42,13 +48,6 @@ export const AppRoutes: Routes = [
     { 
         path: '**', 
         component: PageNotFoundComponent 
-    },
-    { 
-        path: 'admin', 
-        component: PageNotFoundComponent, 
-        data: { 
-          expectedRole: 'admin'
-        } 
-      },
+    }
 ];
 

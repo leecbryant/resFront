@@ -7,6 +7,10 @@ import { CurrencyComponent } from './balances/currency.component';
 export const CurrencyRoutes: Routes = [
     {
         path: '',
+        redirectTo : '/currency/balances' 
+    },
+    {
+        path: '',
         children: [
             {
                 path: 'balances',

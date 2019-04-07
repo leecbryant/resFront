@@ -15,28 +15,29 @@
               <div class="table-cell">
                   <div class="pdd-horizon-15">
                       <h2>Login</h2>
-                      <p class="mrg-btm-15 font-size-13">Enter your username and password to continue</p>
-                      <form id="login" role="form" data-parsley-validate="" novalidate="" method='POST' action='processorLogin' class="js-login-form">
-                          <label>Username </label>
-                          <div class="form-group">
-                              <input type="Username" name="Username" class="form-control required" placeholder="Username">
-                          </div>
-                          <label>Password </label>
-                          <div class="form-group">
-                              <input type="Password" name="Password" class="form-control required" placeholder="Password">
-                          </div>
-                          <label>Hall </label>
-                          <select id="Hall-Dropdown" name="Hall" class="form-control m-b" required>
-
-                          </select>
-                            <br/>
-                          <button class="btn btn-info" type="submit" name="SubmitLogin">Login</button>
-                          <div class="ajax-result">
-                            <div class="success"></div>
-                            <div class="error"></div>
-                          </div>
-                           <div class="ajax-loader"></div>
+                      <form [formGroup]="signinForm" method="post" action="" (ngSubmit)="login(signinForm.value)">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="index_signin">Username</label>
+                                    <input type="text" class="form-control" id="index_signin" placeholder="Username" name="index_signin" formControlName="index_signin"> 
+                                    <div *ngIf="!signinForm.controls['index_signin'].valid && signinForm.controls['index_signin'].touched">Username is required</div>                                     
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="password_signin">Password</label>
+                                    <input type="password" class="form-control" id="password_signin" placeholder="Password" name="password_signin" formControlName="password_signin">
+                                    <div *ngIf="!signinForm.controls['password_signin'].valid && signinForm.controls['password_signin'].touched">Password is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn tf-btn btn-success" name="submit_signin" [disabled]="!signinForm.valid">Login</button>
+                        <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                     </form>
+                  <div *ngIf="error" class="alert alert-danger">{{error_message}}</div>
                   </div>
               </div>
             </div>
@@ -49,6 +50,14 @@
       </div>
     </div>
   </div>
+  <ng-template #forminfo>
+    <div class="form-container">
+      <div class="row columns">
+          <p>{{index_signin }}</p>
+          <p>{{ password_signin }}</p>
+      </div>
+    </div>
+  </ng-template>
   <div class="modal" id="modal-forgot">
       <div class="modal-dialog" role="document">
           <div class="modal-content scrollable">
