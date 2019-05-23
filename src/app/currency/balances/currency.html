@@ -19,7 +19,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <!-- Display records -->
+                                <tr ng-repeat="user in users">
+                                    <td>
+                                        <div class="list-info mrg-top-10">
+                                            <span class="title">{{user.fname}}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="list-info mrg-top-10">
+                                            <span class="title">{{user.fname}}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
                                     <td>
                                         <div class="list-info mrg-top-10">
                                             <span class="title">Lee Bryant</span>
@@ -28,7 +41,7 @@
                                     <td>
                                         <span class="pdd-left-20">1</span>
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody> 
                             <tfoot>
                                 <tr>

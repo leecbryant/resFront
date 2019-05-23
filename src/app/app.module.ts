@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 // Services
 import { LoginService } from './_services/login.service';
@@ -35,6 +36,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } 
         BrowserModule,
         RouterModule.forRoot(AppRoutes, { useHash: false }),
         NgbModule.forRoot(),
+        OAuthModule.forRoot(),
         FormsModule,
         PerfectScrollbarModule,
         NgSelectizeModule,

@@ -16,10 +16,10 @@ export class LoginService {
     console.log("connected to authentication");
 }
 
-  login(index_signin,password_signin){
+  login(Username,Password){
     var headers= new Headers();
     headers.append('Content-Type','application/X-www-form=urlencoded');
-    return this.http.post("http://localhost/res_api/login.php",{"index_signin":index_signin,"password_signin":password_signin}).map(res=>res.json());
+    return this.http.post("http://localhost/res_api/login.php",{"index_signin":Username,"password_signin":Password}).map(res=>res.json());
   }
   
   updateDetails(indexNo,firstname,lastname,password){

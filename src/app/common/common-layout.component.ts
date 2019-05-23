@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+const helper = new JwtHelperService();
 
 @Component({
     selector: 'app-dashboard',
     templateUrl: './common-layout.component.html'
 })
+
 
 export class CommonLayoutComponent implements OnInit {
 
@@ -12,11 +16,14 @@ export class CommonLayoutComponent implements OnInit {
     public changeHeader: any;
     public sidenavThemes: any;
     public changeSidenav: any;
+    public changeRTL: any;
     public headerSelected: any;
     public sidenavSelected : any;
     public searchActived : any;
     public searchModel: any;
 
+    decodedToken:string = helper.decodeToken(localStorage.getItem('token'));
+    Accessibility:string = this.decodedToken['Accessibility'];
     constructor() {
         this.app = {
             layout: {
@@ -34,6 +41,7 @@ export class CommonLayoutComponent implements OnInit {
     
         function changeHeader(headerTheme) {
             this.headerSelected = headerTheme;
+
         }
     
         this.sidenavThemes = ['sidenav-default', 'side-nav-dark'];
@@ -42,9 +50,21 @@ export class CommonLayoutComponent implements OnInit {
         function changeSidenav(sidenavTheme) {
             this.sidenavSelected = sidenavTheme;
         }
+
+        this.changeRTL = changeRTL;
+        function changeRTL() {
+            this.app.layout.rtlActived = !this.app.layout.rtlActived;
+        }
+        
     }
 
-
     ngOnInit(){
+        this.changeHeader(this.Accessibility.split(':')[0]);
+        this.changeSidenav(this.Accessibility.split(':')[1]);
+        if(this.Accessibility.split(':')[2] == "true") {
+            this.app.layout.rtlActived = true;
+        } else {
+            this.app.layout.rtlActived = false;
+        }
     }
 }
