@@ -15,9 +15,10 @@ export class SettingsComponent implements OnInit {
     decodedToken:string = helper.decodeToken(localStorage.getItem('token'));
     Name:string = this.decodedToken['Name'];
     UsernameField:string = this.decodedToken['Username'];
+    Email:string = 'tester@test.com';
 
     //Form Handling
-    
+
 
     ngOnInit(): void {
         this.dtOptions = {

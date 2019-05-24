@@ -24,6 +24,7 @@ export class CommonLayoutComponent implements OnInit {
 
     decodedToken:string = helper.decodeToken(localStorage.getItem('token'));
     Accessibility:string = this.decodedToken['Accessibility'];
+    Name:string = this.decodedToken['Name'];
     constructor() {
         this.app = {
             layout: {
@@ -55,7 +56,7 @@ export class CommonLayoutComponent implements OnInit {
         function changeRTL() {
             this.app.layout.rtlActived = !this.app.layout.rtlActived;
         }
-        
+
     }
 
     ngOnInit(){

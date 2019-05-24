@@ -8,7 +8,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
 // Services
-import { LoginService } from './_services/login.service';
+import { LoginService } from './_services/user.service';
 
 //Layout Modules
 import { CommonLayoutComponent } from './common/common-layout.component';

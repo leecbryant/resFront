@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
 
-
 @Injectable({ providedIn: 'root' })
 export class LoginService {
   indexNo:string="";
@@ -34,4 +33,8 @@ export class LoginService {
     console.error("Error Occured:"+error);
     return Observable.throw(error||"Some error occured in Server");
   }
+}
+
+export class UserService {
+
 }

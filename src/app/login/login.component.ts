@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from "../_services/login.service";
+import { LoginService } from "../_services/user.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
 import { resolve } from 'q';
