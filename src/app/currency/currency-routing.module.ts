@@ -16,7 +16,7 @@ export const CurrencyRoutes: Routes = [
                 path: 'balances',
                 component: CurrencyComponent,
                 data: {
-                    title: 'Basic Table'
+                    title: 'Hall Balances'
                 }
             }
         ]

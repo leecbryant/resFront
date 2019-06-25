@@ -15,26 +15,26 @@
               <div class="table-cell">
                   <div class="pdd-horizon-15">
                       <h2>Login</h2>
-                      <form [formGroup]="signinForm" method="post" action="" (ngSubmit)="login(signinForm.value)">
+                      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="index_signin">Username</label>
-                                    <input type="text" class="form-control" id="index_signin" placeholder="Username" name="index_signin" formControlName="index_signin"> 
-                                    <div *ngIf="!signinForm.controls['index_signin'].valid && signinForm.controls['index_signin'].touched">Username is required</div>                                     
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="password_signin">Password</label>
-                                    <input type="password" class="form-control" id="password_signin" placeholder="Password" name="password_signin" formControlName="password_signin">
-                                    <div *ngIf="!signinForm.controls['password_signin'].valid && signinForm.controls['password_signin'].touched">Password is required</div>
+                                    <label for="Username">Username</label>
+                                    <input [(ngModel)]="Username" #name="ngModel" type="text" class="form-control" placeholder="Username" name="name" id="name" required>
+                                    <div class="alert alert-danger" *ngIf="!name.valid && (name.dirty || name.touched)">Username is required</div>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn tf-btn btn-success" name="submit_signin" [disabled]="!signinForm.valid">Login</button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="Password">Password</label>
+                                    <input type="password" [(ngModel)]="Password" #pword="ngModel" class="form-control" id="pword" placeholder="Password" name="pword" required>
+                                    <div *ngIf="!pword.valid && (pword.dirty || pword.touched)">Password is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn tf-btn btn-success" name="submit_signin" [disabled]="!loginForm.valid">Login</button>
                         <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                     </form>
                   <div *ngIf="error" class="alert alert-danger">{{error_message}}</div>
@@ -50,14 +50,14 @@
       </div>
     </div>
   </div>
-  <ng-template #forminfo>
+  <!-- <ng-template #forminfo>
     <div class="form-container">
       <div class="row columns">
           <p>{{index_signin }}</p>
           <p>{{ password_signin }}</p>
       </div>
     </div>
-  </ng-template>
+  </ng-template> -->
   <div class="modal" id="modal-forgot">
       <div class="modal-dialog" role="document">
           <div class="modal-content scrollable">

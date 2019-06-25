@@ -10,11 +10,11 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 // Services
 import { LoginService } from './_services/user.service';
 
-//Layout Modules
+// Layout Modules
 import { CommonLayoutComponent } from './common/common-layout.component';
 import { AuthenticationLayoutComponent } from './common/authentication-layout.component';
 
-//Directives
+// Directives
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Sidebar_Directives } from './shared/directives/side-nav.directive';
 import { Cards_Directives } from './shared/directives/cards.directive';
@@ -35,7 +35,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } 
     imports: [
         BrowserModule,
         RouterModule.forRoot(AppRoutes, { useHash: false }),
-        NgbModule.forRoot(),
+        NgbModule,
         OAuthModule.forRoot(),
         FormsModule,
         PerfectScrollbarModule,
@@ -52,7 +52,7 @@ import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } 
         LoginComponent,
         PageNotFoundComponent
     ],
-    providers: [ 
+    providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
