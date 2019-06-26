@@ -27,4 +27,8 @@ export class UserService {
   getRegistration(data: string): Observable<RegisterArray> {
     return this.http.get<RegisterArray>(environment.serverName + 'api/users/register/' + data, httpOptions);
   }
+
+  getUser(data: string): Observable<any> {
+    return this.http.get<any>(environment.serverName + 'api/users/getuser/username/:username', httpOptions);
+  }
 }

@@ -6,66 +6,116 @@
               <div class="card-heading border bottom">
                   <h4 class="card-title">Registration</h4>
               </div>
-              <div class="card-block">
-                      <div class="row">
-                          <div class="col-md-12 ml-auto mr-auto">
-                              <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
-                                  <div class="row">
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="Username">Hall</label>
-                                              <input [(ngModel)]="Hall" #hall="ngModel" readonly type="text" class="form-control" placeholder="Username" name="hall" required [ngClass]="{'error': !hall.valid && (hall.dirty || hall.touched)}">
-                                              <label class="error" *ngIf="!hall.valid && (hall.dirty || hall.touched)">Hall is required</label>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="Username">Position</label>
-                                              <input [(ngModel)]="Position" #position="ngModel" readonly type="text" class="form-control" placeholder="Position" name="position" required [ngClass]="{'error': !position.valid && (position.dirty || position.touched)}">
-                                              <label class="error" *ngIf="!position.valid && (position.dirty || position.touched)">Position is required</label>
-                                          </div>
+              <mat-spinner *ngIf="!loaded" style="margin-top:18px;margin-left:5px;"></mat-spinner>
+              <div class="card-block" *ngIf="loaded">
+                  <div class="row">
+                      <div class="col-md-12 ml-auto mr-auto">
+                          <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="Hall">Hall</label>
+                                          <input [(ngModel)]="Hall" #hall="ngModel" readonly type="text" class="form-control" placeholder="Username" name="hall" required [ngClass]="{'error': !hall.valid && (hall.dirty || hall.touched)}">
+                                          <label class="error" *ngIf="!hall.valid && (hall.dirty || hall.touched)">Hall is required</label>
                                       </div>
                                   </div>
-                                  <div class="row">
-                                      <div class="col-md-12">
-                                          <div class="form-group">
-                                              <label>Name <small class="text-normal">*Minimum 8 characters</small></label>
-                                              <input class="form-control" [ngClass]="{'error' : minlength?.errors?.minlength}" placeholder="Enter your name" type="text" ngModel name="minlength" #minlength="ngModel" minlength="8"/>
-                                              <label class="error" *ngIf="minlength?.errors?.minlength">Please enter at least 8 characters.</label>
-                                          </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="Position">Position</label>
+                                          <input [(ngModel)]="Position" #position="ngModel" readonly type="text" class="form-control" placeholder="Position" name="position" required [ngClass]="{'error': !position.valid && (position.dirty || position.touched)}">
+                                          <label class="error" *ngIf="!position.valid && (position.dirty || position.touched)">Position is required</label>
                                       </div>
                                   </div>
-                                  <div class="row">
-                                      <div class="col-md-12">
-                                          <div class="form-group">
-                                              <label>Email</label>
-                                              <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
-                                              <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="form-group">
+                                          <label for="Name">Name</label>
+                                          <input [(ngModel)]="Name" #name="ngModel" minlength="4" type="text" class="form-control" placeholder="Name" name="name" required [ngClass]="{'error': !name.valid && (name.dirty || name.touched)}">
+                                          <label *ngIf="name.invalid && (name.dirty || name.touched)"
+                                            class="error">
+                                          <div *ngIf="name?.errors.required">
+                                            Name is required.
                                           </div>
+                                          <div *ngIf="name?.errors.minlength">
+                                            Name name must be at least 3 characters long.
+                                          </div>
+                                        </label>
                                       </div>
                                   </div>
-                                  <div class="row">
-                                      <div class="col-md-12">
-                                          <div class="form-group">
-                                              <label>Password</label>
-                                              <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
-                                              <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="form-group">
+                                          <label for="Username" style="display: flex">
+                                            Username
+                                            <div *ngIf="username.valid">
+                                              <mat-spinner style="margin-left:7px;" *ngIf="loadUser" [diameter]="20"></mat-spinner>
+                                            </div>
+                                          </label>
+                                          <input [(ngModel)]="Username" #username="ngModel" (keyup)="checkUser(username.value)" minlength="4" type="text" class="form-control" placeholder="Username" name="username" required [ngClass]="{'error': !username.valid && (username.dirty || username.touched)}">
+                                          <label *ngIf="username.invalid && (username.dirty || username.touched)"
+                                            class="error">
+                                          <div *ngIf="username?.errors.required">
+                                            Username is required.
                                           </div>
+                                          <div *ngIf="username?.errors.minlength">
+                                            Username name must be at least 4 characters long.
+                                          </div>
+                                        </label>
+                                        <div *ngIf="username.valid">
+                                          <label *ngIf="uniqueErrorUser" class="danger">
+                                            Invalid Username, name already taken.
+                                          </label>
+                                        </div>
                                       </div>
                                   </div>
-                                  <div class="row">
-                                      <div class="col-md-12">
-                                          <div class="form-group">
-                                              <label>Lockout Pin</label>
-                                              <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
-                                              <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
-                                          </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label>Email</label>
+                                          <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
+                                          <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
                                       </div>
                                   </div>
-                                  <button class="btn btn-primary" type="submit">Register</button>
-                              </form>
-                          </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label>Verify Email</label>
+                                          <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
+                                          <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label>Password</label>
+                                          <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
+                                          <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label>Verify Password</label>
+                                          <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
+                                          <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="form-group">
+                                          <label>Lockout PIN</label>
+                                          <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
+                                          <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
+                                      </div>
+                                  </div>
+                              </div>
+                              <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid || !uniqueErrorUser">Register</button>
+                          </form>
                       </div>
+                  </div>
               </div>
           </div>
       </div>
