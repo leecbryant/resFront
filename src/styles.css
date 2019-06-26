@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+.mat-toolbar.mat-primary {
+  background: #000080;
+  color: #fff;
+}
+
+/* Snackbar Styling */
+.alert-success {
+  padding: 20px;
+  background-color: #4CAF50; /* Red */
+  border-color:#006400;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.alert-success .mat-simple-snackbar-action {
+  color: white;
+}
+.alert-warning {
+  padding: 20px;
+  background-color: #f8d123; /* Red */
+  border-color:#ffae42;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.alert-warning .mat-simple-snackbar-action {
+  color: white;
+}
+
+.alert-error {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  border-color:#8B0000;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.alert-error .mat-simple-snackbar-action {
+  color: white;
+}

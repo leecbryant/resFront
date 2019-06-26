@@ -15,7 +15,7 @@ $default-dark:            #515365;
 $default-white:           #ffffff;
 $default-gray:            #f6f7fb;
 $default-text-color:      #888da8;
-$default-primary:         #7774e7;
+$default-primary:         #002d62;
 $default-success:         #37c936;
 $default-info :           #0f9aee;
 $default-warning:         #ffcc00;
@@ -25,10 +25,10 @@ $default-danger:          #ff3c7e;
 // 	Inverse color
 //==================================
 $inverse-primary :        lighten($default-primary, 30%);
-$inverse-success :        lighten($default-success, 45%); 	   
-$inverse-info :           lighten($default-info, 45%);         
-$inverse-warning :        lighten($default-warning, 45%);	   
-$inverse-danger :         lighten($default-danger, 35%);	   
+$inverse-success :        lighten($default-success, 45%);
+$inverse-info :           lighten($default-info, 45%);
+$inverse-warning :        lighten($default-warning, 45%);
+$inverse-danger :         lighten($default-danger, 35%);
 
 //==================================
 // 	Misc

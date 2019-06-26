@@ -20,8 +20,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="Username">Username</label>
-                                    <input [(ngModel)]="Username" #name="ngModel" type="text" class="form-control" placeholder="Username" name="name" id="name" required>
-                                    <div class="alert alert-danger" *ngIf="!name.valid && (name.dirty || name.touched)">Username is required</div>
+                                    <input [(ngModel)]="Username" #name="ngModel" type="text" class="form-control" placeholder="Username" name="name" id="name" required [ngClass]="{'error': !name.valid && (name.dirty || name.touched)}">
+                                    <label class="error" *ngIf="!name.valid && (name.dirty || name.touched)">Username is required</label>
                                 </div>
                             </div>
                         </div>
@@ -29,8 +29,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="Password">Password</label>
-                                    <input type="password" [(ngModel)]="Password" #pword="ngModel" class="form-control" id="pword" placeholder="Password" name="pword" required>
-                                    <div *ngIf="!pword.valid && (pword.dirty || pword.touched)">Password is required</div>
+                                    <input type="password" [(ngModel)]="Password" #pword="ngModel" class="form-control" id="pword" placeholder="Password" name="pword" required [ngClass]="{'error': !pword.valid && (pword.dirty || pword.touched)}">
+                                    <label *ngIf="!pword.valid && (pword.dirty || pword.touched)" class="error" >Password is required</label>
                                 </div>
                             </div>
                         </div>

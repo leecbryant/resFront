@@ -15,23 +15,23 @@ textarea {
 	height: 42px;
 	font-size: 14px;
 	color: $default-text-color;
-	@include transition(all 0.2s ease-in); 
+	@include transition(all 0.2s ease-in);
 	@include placeholder {
-		color: lighten($default-text-color, 30%);
+		color: lighten($default-text-color, 10%);
 	}
 
 	&:focus {
 		outline: 0 none;
 		box-shadow: none;
-		border-color: lighten($default-info, 10%);		
-	}	
+		border-color: lighten($default-info, 10%);
+	}
 
 	&.input-sm {
-		height: 30px;	
+		height: 30px;
 	}
 
 	&.input-lg {
-		height: 50px;	
+		height: 50px;
 	}
 
 	&.error {
@@ -126,8 +126,8 @@ textarea {
 
 textarea {
 	&.form-control {
-		min-height: 175px;				
-	}	
+		min-height: 175px;
+	}
 }
 
 .input-icon {
@@ -143,14 +143,14 @@ textarea {
 	.form-control {
 		padding-left: 40px;
 	}
-	
+
 }
 
 .input-group-addon {
 	background-color: transparent;
 	border: 1px solid $border-color;
 	color: lighten($default-text-color, 30%);
-	
+
 	.btn {
 		margin: 0px;
 		padding: 0px;
@@ -167,15 +167,15 @@ textarea {
 .checkbox {
 	padding: 7px 0;
     min-height: auto;
-	
+
 	input[type=checkbox] {
 		margin: 0;
 		display: none;
 		width: 22px;
-		
+
 		+label {
 			padding-left: 0;
-			
+
 			&:before {
 				content: "";
 				width: 22px;
@@ -194,9 +194,9 @@ textarea {
 				cursor: pointer;
 			}
 		}
-		
+
 		&:checked {
-			
+
 			+label {
 				&:before {
 					content: "\e64c";
@@ -209,7 +209,7 @@ textarea {
 	&.checkbox-primary {
 		input[type=checkbox] {
 			&:checked {
-			
+
 				+label {
 					&:before {
 						content: "\e64c";
@@ -217,13 +217,13 @@ textarea {
 					}
 				}
 			}
-		}	
+		}
 	}
 
 	&.checkbox-success {
 		input[type=checkbox] {
 			&:checked {
-			
+
 				+label {
 					&:before {
 						content: "\e64c";
@@ -231,13 +231,13 @@ textarea {
 					}
 				}
 			}
-		}	
+		}
 	}
 
 	&.checkbox-warning {
 		input[type=checkbox] {
 			&:checked {
-			
+
 				+label {
 					&:before {
 						content: "\e64c";
@@ -245,13 +245,13 @@ textarea {
 					}
 				}
 			}
-		}	
+		}
 	}
 
 	&.checkbox-danger {
 		input[type=checkbox] {
 			&:checked {
-			
+
 				+label {
 					&:before {
 						content: "\e64c";
@@ -259,22 +259,22 @@ textarea {
 					}
 				}
 			}
-		}	
+		}
 	}
 }
 
 .radio {
 	padding: 7px 0;
     min-height: auto;
-	
+
 	input[type=radio] {
 		margin: 0;
 		display: none;
 		width: 22px;
-		
+
 		+label {
 			padding-left: 0;
-			
+
 			&:before {
 				content: "";
 				width: 22px;
@@ -293,9 +293,9 @@ textarea {
 				cursor: pointer;
 			}
 		}
-		
+
 		&:checked {
-			
+
 			+label {
 				&:before {
 					content: "\f111";
@@ -308,7 +308,7 @@ textarea {
 	&.radio-primary {
 		input[type=radio] {
 			&:checked {
-			
+
 				+label {
 					&:before {
 						content: "\f111";
@@ -316,13 +316,13 @@ textarea {
 					}
 				}
 			}
-		}	
+		}
 	}
 
 	&.radio-success {
 		input[type=radio] {
 			&:checked {
-			
+
 				+label {
 					&:before {
 						content: "\f111";
@@ -330,13 +330,13 @@ textarea {
 					}
 				}
 			}
-		}	
+		}
 	}
 
 	&.radio-warning {
 		input[type=radio] {
 			&:checked {
-			
+
 				+label {
 					&:before {
 						content: "\f111";
@@ -344,13 +344,13 @@ textarea {
 					}
 				}
 			}
-		}	
+		}
 	}
 
 	&.radio-danger {
 		input[type=radio] {
 			&:checked {
-			
+
 				+label {
 					&:before {
 						content: "\f111";
@@ -358,16 +358,16 @@ textarea {
 					}
 				}
 			}
-		}	
+		}
 	}
 }
 
-.radio,  
+.radio,
 .checkbox {
 	label{
 		cursor: pointer;
 	}
-}	
+}
 
 .checkbox-inline,
 .radio-inline {
@@ -378,7 +378,7 @@ textarea {
 
 .radio-inline + .radio-inline,
 .checkbox-inline + .checkbox-inline {
-	 margin-top: 0px; 
+	 margin-top: 0px;
      margin-left: 0px;
 }
 
@@ -467,7 +467,7 @@ textarea {
 						left: 16px;
 					}
 				}
-			}	
+			}
 		}
 	}
 
@@ -483,7 +483,7 @@ textarea {
   					}
   				}
   			}
-		}	
+		}
 	}
 
 	&.toggle-success {
@@ -498,7 +498,7 @@ textarea {
   					}
   				}
   			}
-		}	
+		}
 	}
 
 	&.toggle-warning {
@@ -513,7 +513,7 @@ textarea {
   					}
   				}
   			}
-		}	
+		}
 	}
 
 	&.toggle-danger {
@@ -528,7 +528,7 @@ textarea {
   					}
   				}
   			}
-		}	
+		}
 	}
 }
 

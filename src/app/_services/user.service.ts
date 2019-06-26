@@ -1,40 +1,30 @@
+// Core angular
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from "@angular/http";
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
-import "rxjs/add/operator/catch";
-import "rxjs/add/observable/throw";
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+// Interfaces
+import { RegisterArray } from '../_interfaces/registration.interface'
+// Custom
+import { environment } from '../../environments/environment';
 
-@Injectable({ providedIn: 'root' })
-export class LoginService {
-  indexNo:string="";
-  isloggedin:boolean=false;
+const httpOptions = {
+  headers: new HttpHeaders({
+    Accept: 'application/json; odata=verbose',
+    'Content-Type': 'application/json; odata=verbose'
+  })
+};
 
-  constructor(private http: Http) {
-    console.log("connected to authentication");
-}
-
-  login(Username,Password){
-    var headers= new Headers();
-    headers.append('Content-Type','application/X-www-form=urlencoded');
-    return this.http.post("http://localhost/res_api/login.php",{"index_signin":Username,"password_signin":Password}).map(res=>res.json());
-  }
-  
-  updateDetails(indexNo,firstname,lastname,password){
-    //return this.http.post("http://localhost/Hall-Management-System/api/update.php",{"indexno":indexNo,"firstname":firstname,"lastname":lastname,"password":password}).map(res=>res.json());
-  }
-  
-  logout() {
-    localStorage.removeItem('token');
-  }
-
-  private _errorHandler(error:Response){
-    console.error("Error Occured:"+error);
-    return Observable.throw(error||"Some error occured in Server");
-  }
-}
+@Injectable({
+  providedIn: 'root'
+})
 
 export class UserService {
+  constructor(private http: HttpClient) { }
+  login(): Observable<any> {
+    return this.http.get<any>(environment.serverName + 'api/users/login', httpOptions);
+  }
 
+  getRegistration(data: string): Observable<RegisterArray> {
+    return this.http.get<RegisterArray>(environment.serverName + 'api/users/register/' + data, httpOptions);
+  }
 }

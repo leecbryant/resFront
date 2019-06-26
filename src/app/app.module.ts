@@ -1,35 +1,42 @@
+// Base Angular
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatIconModule, MatToolbarModule , MatMenuModule, MatTooltipModule,
+  MatSortModule, MatCheckboxModule, MatSelectModule, MatProgressBarModule,
+  MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule,
+  MatRadioModule, MatButtonModule, MatTabsModule, MatDialogModule,
+  MatProgressBar, MatSnackBarModule, MatProgressSpinnerModule,
+  MatAutocompleteModule, MatStepperModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { NgSelectizeModule } from 'ng-selectize';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Services
-import { LoginService } from './_services/user.service';
+import { UserService } from './_services/user.service';
 
 // Layout Modules
 import { CommonLayoutComponent } from './common/common-layout.component';
 import { AuthenticationLayoutComponent } from './common/authentication-layout.component';
 
+// Custom
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { AppRoutes } from './app.routing';
+import { AppComponent } from './app.component';
+
+// Components
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 // Directives
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Sidebar_Directives } from './shared/directives/side-nav.directive';
 import { Cards_Directives } from './shared/directives/cards.directive';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-
-// Routing Module
-import { AppRoutes } from './app.routing';
-
-// App Component
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { NgSelectizeModule } from 'ng-selectize';
-import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -40,23 +47,26 @@ import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } 
         FormsModule,
         PerfectScrollbarModule,
         NgSelectizeModule,
-        HttpModule,
-        ReactiveFormsModule
+        HttpClientModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
     ],
     declarations: [
         AppComponent,
         CommonLayoutComponent,
         AuthenticationLayoutComponent,
+        // Directives
         Sidebar_Directives,
         Cards_Directives,
+        // Components
         LoginComponent,
-        PageNotFoundComponent
+        RegisterComponent,
+        PageNotFoundComponent,
+        // Removes Animations
+        // NoopAnimationsModule,
     ],
     providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-        LoginService
+        UserService
     ],
     bootstrap: [AppComponent]
 })

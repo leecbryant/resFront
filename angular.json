@@ -31,7 +31,8 @@
               "./node_modules/selectize/dist/css/selectize.default.css",
               "./node_modules/fullcalendar/dist/fullcalendar.min.css",
               "./node_modules/nvd3/build/nv.d3.css",
-              "src/assets/scss/app.scss"
+              "src/assets/scss/app.scss",
+              "src/styles.css"
             ],
             "scripts": [
               "./node_modules/pace-js/pace.min.js",

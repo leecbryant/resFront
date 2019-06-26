@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../_services/user.service';
+import { UserService } from '../_services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { resolve } from 'q';
@@ -9,6 +9,7 @@ import { resolve } from 'q';
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
+
 export class LoginComponent implements OnInit {
   Username = '';
   Password = '';
@@ -23,14 +24,14 @@ export class LoginComponent implements OnInit {
   loading = false;
   returnUrl: string;
 
-  constructor(private loginService: LoginService,
+  constructor(private loginService: UserService,
               private router: Router,
               private formBuilder:
               FormBuilder,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loginService.logout();
+    // this.loginService.logout();
 
     // get return url from route parameters or default to '/'
     this.route.queryParams
