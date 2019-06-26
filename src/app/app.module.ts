@@ -50,6 +50,13 @@ import { Cards_Directives } from './shared/directives/cards.directive';
         HttpClientModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        // Material Angular Themeing Imports
+        MatTableModule, MatFormFieldModule, MatInputModule, MatPaginatorModule,
+        MatRadioModule, MatSelectModule, MatCheckboxModule, MatSortModule,
+        MatTooltipModule, MatMenuModule, MatToolbarModule, MatIconModule,
+        MatButtonModule, MatTabsModule, MatDialogModule, MatSnackBarModule,
+        MatProgressSpinnerModule, MatProgressBarModule,
+        MatAutocompleteModule, MatStepperModule
     ],
     declarations: [
         AppComponent,
