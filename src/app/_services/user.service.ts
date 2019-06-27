@@ -24,11 +24,22 @@ export class UserService {
     return this.http.get<any>(environment.serverName + 'api/users/login', httpOptions);
   }
 
+  register(data): Observable<any> {
+    return this.http.post<any>(environment.serverName + 'api/users/register', data, {
+      reportProgress: true,
+      observe: 'response'
+    });
+  }
+
   getRegistration(data: string): Observable<RegisterArray> {
     return this.http.get<RegisterArray>(environment.serverName + 'api/users/register/' + data, httpOptions);
   }
 
   getUser(data: string): Observable<any> {
-    return this.http.get<any>(environment.serverName + 'api/users/getuser/username/:username', httpOptions);
+    return this.http.get<any>(environment.serverName + 'api/users/getuser/username/' + data, httpOptions);
+  }
+
+  getEmail(data: string): Observable<any> {
+    return this.http.get<any>(environment.serverName + 'api/users/getuser/email/' + data, httpOptions);
   }
 }

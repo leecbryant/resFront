@@ -31,10 +31,13 @@
                                   <div class="col-md-12">
                                       <div class="form-group">
                                           <label for="Name">Name</label>
-                                          <input [(ngModel)]="Name" #name="ngModel" minlength="4" type="text" class="form-control" placeholder="Name" name="name" required [ngClass]="{'error': !name.valid && (name.dirty || name.touched)}">
+                                          <input [(ngModel)]="Name" #name="ngModel"
+                                                  minlength="4" type="text" class="form-control"
+                                                  placeholder="Name" name="name" required
+                                                  [ngClass]="(!name.valid && (name.dirty || name.touched)) ? 'error' : name.valid  && (name.dirty || name.touched) ? 'valid' : ''">
                                           <label *ngIf="name.invalid && (name.dirty || name.touched)"
                                             class="error">
-                                          <div *ngIf="name?.errors.required">
+                                          <div *ngIf="name?.errors?.required">
                                             Name is required.
                                           </div>
                                           <div *ngIf="name?.errors.minlength">
@@ -53,10 +56,14 @@
                                               <mat-spinner style="margin-left:7px;" *ngIf="loadUser" [diameter]="20"></mat-spinner>
                                             </div>
                                           </label>
-                                          <input [(ngModel)]="Username" #username="ngModel" (keyup)="checkUser(username.value)" minlength="4" type="text" class="form-control" placeholder="Username" name="username" required [ngClass]="{'error': !username.valid && (username.dirty || username.touched)}">
+                                          <input [(ngModel)]="Username" #username="ngModel"
+                                                 (keyup)="checkUser(username.value)" minlength="4"
+                                                 type="text" class="form-control"
+                                                 placeholder="Username" name="username" required
+                                                 [ngClass]="(!username.valid && (username.dirty || username.touched)) || uniqueErrorUser ? 'error' : username.valid  && (username.dirty || username.touched) ? 'valid' : ''">
                                           <label *ngIf="username.invalid && (username.dirty || username.touched)"
                                             class="error">
-                                          <div *ngIf="username?.errors.required">
+                                          <div *ngIf="username?.errors?.required">
                                             Username is required.
                                           </div>
                                           <div *ngIf="username?.errors.minlength">
@@ -64,7 +71,7 @@
                                           </div>
                                         </label>
                                         <div *ngIf="username.valid">
-                                          <label *ngIf="uniqueErrorUser" class="danger">
+                                          <label *ngIf="uniqueErrorUser" class="error">
                                             Invalid Username, name already taken.
                                           </label>
                                         </div>
@@ -74,45 +81,156 @@
                               <div class="row">
                                   <div class="col-md-6">
                                       <div class="form-group">
-                                          <label>Email</label>
-                                          <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
-                                          <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
+                                          <label for="Email" style="display: flex">
+                                              Email
+                                            <div *ngIf="email.valid">
+                                              <mat-spinner style="margin-left:7px;" *ngIf="loadEmail" [diameter]="20"></mat-spinner>
+                                            </div>
+                                          </label>
+                                          <input [(ngModel)]="Email" #email="ngModel"
+                                                (keyup)="checkEmail(email.value)" minlength="4" type="text"
+                                                class="form-control" placeholder="Email" name="email" required email
+                                                [ngClass]="(!email.valid && (email.dirty || email.touched)) || uniqueErrorEmail ? 'error' : Email != VerifyEmail && email.valid && vemail.touched ? 'error' : email.valid  && (email.dirty || email.touched) ? 'valid' : ''">
+                                          <label *ngIf="email.invalid && (email.dirty || email.touched)"
+                                              class="error">
+                                            <div *ngIf="email?.errors?.required">
+                                              Email is required.
+                                            </div>
+                                            <div *ngIf="email?.errors.email">
+                                              Please provide a valid email.
+                                            </div>
+                                            <div *ngIf="email?.errors.minlength">
+                                              Email must be atleast 4 characters.
+                                            </div>
+                                          </label>
+                                        <div *ngIf="email.valid">
+                                            <label *ngIf="Email != VerifyEmail && vemail.touched" class="error">
+                                                Emails must match.
+                                            </label>
+                                          <label *ngIf="uniqueErrorEmail" class="error">
+                                            Invalid email, already in use.
+                                          </label>
+                                        </div>
                                       </div>
                                   </div>
                                   <div class="col-md-6">
                                       <div class="form-group">
-                                          <label>Verify Email</label>
-                                          <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
-                                          <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
+                                          <label for="vEmail" style="display: flex">
+                                              Verify Email
+                                            <div *ngIf="vemail.valid">
+                                              <mat-spinner style="margin-left:7px;" *ngIf="loadEmail" [diameter]="20"></mat-spinner>
+                                            </div>
+                                          </label>
+                                          <input [(ngModel)]="VerifyEmail" #vemail="ngModel"
+                                                minlength="4" type="text"
+                                                class="form-control" placeholder="Verify Email" name="vemail" required email
+                                                [ngClass]="(!vemail.valid && (vemail.dirty || vemail.touched)) || uniqueErrorEmail ? 'error' : Email != VerifyEmail && vemail.valid  ? 'error' : vemail.valid  && (vemail.dirty || vemail.touched) ? 'valid' : ''">
+                                          <label *ngIf="vemail.invalid && (vemail.dirty || vemail.touched)"
+                                              class="error">
+                                            <div *ngIf="vemail?.errors?.required">
+                                              Email verification is required.
+                                            </div>
+                                            <div *ngIf="vemail?.errors.email">
+                                              Please provide a valid email.
+                                            </div>
+                                            <div *ngIf="email?.errors.minlength">
+                                                Email must be atleast 4 characters.
+                                            </div>
+                                          </label>
+                                        <div *ngIf="vemail.valid">
+                                          <label *ngIf="Email != VerifyEmail && email.touched" class="error">
+                                            <div>Emails must match.</div>
+                                          </label>
+                                          <label *ngIf="uniqueErrorEmail" class="error">
+                                            Invalid email, already in use.
+                                          </label>
+                                        </div>
                                       </div>
                                   </div>
                               </div>
                               <div class="row">
                                   <div class="col-md-6">
                                       <div class="form-group">
-                                          <label>Password</label>
-                                          <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
-                                          <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
+                                          <label for="Password" style="display: flex">
+                                              Password
+                                          </label>
+                                          <input [(ngModel)]="Password" #password="ngModel"
+                                                minlength="6" type="password"
+                                                class="form-control" placeholder="Password" name="password" required password
+                                                [ngClass]="(!password.valid && (password.dirty || password.touched)) ? 'error' : Password != VerifyPassword && password.valid && vpassword.touched ? 'error' : password.valid  && (password.dirty || password.touched) ? 'valid' : ''">
+                                          <label *ngIf="password.invalid && (password.dirty || password.touched)"
+                                              class="error">
+                                            <div *ngIf="password?.errors?.required">
+                                                Password is required.
+                                            </div>
+                                            <div *ngIf="password?.errors.password">
+                                              Please provide a valid email.
+                                            </div>
+                                            <div *ngIf="password?.errors.minlength">
+                                              Password must be atleast 6 characters.
+                                            </div>
+                                          </label>
+                                        <div *ngIf="password.valid">
+                                            <label *ngIf="Password != VerifyPassword && vpassword.touched" class="error">
+                                                Passwords must match.
+                                            </label>
+                                        </div>
                                       </div>
                                   </div>
                                   <div class="col-md-6">
-                                      <div class="form-group">
-                                          <label>Verify Password</label>
-                                          <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
-                                          <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
+                                    <div class="form-group">
+                                        <label for="VerifyPassword" style="display: flex">
+                                            Password
+                                        </label>
+                                        <input [(ngModel)]="VerifyPassword" #vpassword="ngModel"
+                                              minlength="6" type="password"
+                                              class="form-control" placeholder="Verify Password" name="vpassword" required password
+                                              [ngClass]="(!vpassword.valid && (vpassword.dirty || vpassword.touched)) ? 'error' : Password != VerifyPassword && vpassword.valid && password.touched ? 'error' : vpassword.valid  && (vpassword.dirty || vpassword.touched) ? 'valid' : ''">
+                                        <label *ngIf="vpassword.invalid && (vpassword.dirty || vpassword.touched)"
+                                            class="error">
+                                          <div *ngIf="vpassword?.errors.required">
+                                              Password verification is required.
+                                          </div>
+                                          <div *ngIf="vpassword?.errors.minlength">
+                                            Password must be atleast 6 characters.
+                                          </div>
+                                        </label>
+                                      <div *ngIf="vpassword.valid">
+                                          <label *ngIf="Password != VerifyPassword && vpassword.touched" class="error">
+                                              Passwords must match.
+                                          </label>
                                       </div>
-                                  </div>
+                                    </div>
+                                </div>
                               </div>
                               <div class="row">
                                   <div class="col-md-12">
                                       <div class="form-group">
-                                          <label>Lockout PIN</label>
-                                          <input type="url" class="form-control" name="url" placeholder="Insert a valid URL format" ngModel name="url" #url="ngModel" url [ngClass]="{'error': url?.errors?.url}">
-                                          <label class="error" *ngIf="url?.errors?.url">Please enter a valid URL.</label>
+                                          <label for="Lockout" style="display: flex">
+                                            Lockout PIN
+                                          </label>
+                                          <input [(ngModel)]="Lockout" #lockout="ngModel"
+
+                                                 minlength="4" maxlength="4"
+                                                 type="password" class="form-control"
+                                                 placeholder="Lockout PIN" name="lockout" required
+                                                 [ngClass]="(!lockout.valid && (lockout.dirty || lockout.touched)) ? 'error' : username.valid  && (lockout.dirty || lockout.touched) ? 'valid' : ''">
+                                          <label *ngIf="lockout.invalid && (lockout.dirty || lockout.touched)"
+                                            class="error">
+                                          <div *ngIf="lockout?.errors?.required">
+                                            Lockout PIN is required.
+                                          </div>
+                                          <div *ngIf="lockout?.errors.minlength">
+                                            Lockout PIN must be at least 4 characters long.
+                                          </div>
+                                          <div *ngIf="lockout?.errors.maxlength">
+                                              Lockout PIN may only be 4 characters long.
+                                            </div>
+                                        </label>
                                       </div>
                                   </div>
                               </div>
-                              <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid || !uniqueErrorUser">Register</button>
+                              <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid || uniqueErrorUser || uniqueErrorEmail || Email != VerifyEmail">Register</button>
                           </form>
                       </div>
                   </div>
