@@ -206,7 +206,9 @@
                               <div class="row">
                                   <div class="col-md-12">
                                       <div class="form-group">
-                                          <label for="Lockout" style="display: flex">
+                                          <label for="Lockout" #tooltip="matTooltip"
+                                          matTooltip="Lockout PIN used to lock screen while away from computer without logging out."
+                                          matTooltipPosition="above">
                                             Lockout PIN
                                           </label>
                                           <input [(ngModel)]="Lockout" #lockout="ngModel"
