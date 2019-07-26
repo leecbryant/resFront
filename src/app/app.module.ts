@@ -30,9 +30,9 @@ import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 
 // Components
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginComponent } from './users/login/login.component';
+import { RegisterComponent } from './users/register/register.component';
+import { PageNotFoundComponent } from './_helpers/page-not-found/page-not-found.component';
 
 // Directives
 import { Sidebar_Directives } from './shared/directives/side-nav.directive';

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
+import { UserService } from '../../_services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { resolve } from 'q';
+import { SnackBar } from '../../_services/notification.service';
 
 
 @Component({
@@ -26,9 +27,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: UserService,
               private router: Router,
-              private formBuilder:
-              FormBuilder,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private _snackbar: SnackBar) { }
 
   ngOnInit() {
     // this.loginService.logout();
@@ -39,7 +39,15 @@ export class LoginComponent implements OnInit {
   }
 
   login(form) {
-    console.log(form.value);
+    this.loginService.login(form.value).subscribe(res => {
+      this._snackbar.sendSuccess('Logged in.');
+    },
+    err => {
+      this._snackbar.sendError('Invalid username or password');
+      this.error = true;
+      this.error_message = 'Invalid username or password';
+      form.reset();
+    });
   }
 }
 

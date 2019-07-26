@@ -2,11 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 
 // Interfaces
-import { Registration } from '../_interfaces/registration.interface';
+import { Registration } from '../../_interfaces/registration.interface';
 
 // Services
-import { UserService } from '../_services/user.service';
-import { SnackBar } from '../_services/notification.service';
+import { UserService } from '../../_services/user.service';
+import { SnackBar } from '../../_services/notification.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 

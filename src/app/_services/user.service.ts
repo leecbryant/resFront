@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 // Interfaces
-import { RegisterArray } from '../_interfaces/registration.interface'
+import { RegisterArray } from '../_interfaces/registration.interface';
+import { User } from '../_interfaces/user.interface';
 // Custom
 import { environment } from '../../environments/environment';
 
@@ -20,8 +21,9 @@ const httpOptions = {
 
 export class UserService {
   constructor(private http: HttpClient) { }
-  login(): Observable<any> {
-    return this.http.get<any>(environment.serverName + 'api/users/login', httpOptions);
+
+  login(data): Observable<User> {
+    return this.http.post<User>(environment.serverName + 'api/users/login', data);
   }
 
   register(data): Observable<any> {

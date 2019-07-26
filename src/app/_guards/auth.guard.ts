@@ -7,8 +7,8 @@ const helper = new JwtHelperService();
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-    token:string=localStorage.getItem('token');
-    decodedToken:string = helper.decodeToken(localStorage.getItem('token'));
+    token: string = localStorage.getItem('token');
+    decodedToken: string = helper.decodeToken(localStorage.getItem('token'));
 
     constructor(
         private router: Router,

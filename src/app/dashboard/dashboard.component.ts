@@ -6,7 +6,7 @@ import { ThemeConstants } from '../shared/config/theme-constant';
 })
 
 export class DashboardComponent implements OnInit {
-  
+
     constructor() { }
 
     public navigation: any;
@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
             return {
                 label: input,
                 value: input
-            }
+            };
         }
     };
 

@@ -4,9 +4,9 @@ import { Routes, RouterModule, CanActivate } from '@angular/router';
 // Layouts
 import { CommonLayoutComponent } from './common/common-layout.component';
 import { AuthGuard } from './_guards';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginComponent } from './users/login/login.component';
+import { RegisterComponent } from './users/register/register.component';
+import { PageNotFoundComponent } from './_helpers/page-not-found/page-not-found.component';
 
 export const AppRoutes: Routes = [
     {
