@@ -10,11 +10,7 @@ import { DashboardComponent } from './dashboard.component';
 //Imports
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { ArchwizardModule } from 'angular-archwizard';
 import { NgSelectizeModule } from 'ng-selectize';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CustomFormsModule } from 'ng2-validation';
 
 @NgModule({
     imports: [
