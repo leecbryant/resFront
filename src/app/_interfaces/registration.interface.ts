@@ -5,12 +5,18 @@ export interface Registration {
 }
 
 export interface Data {
-  base:   Base[];
+  base:  Base[];
+  users: User[];
 }
 
 export interface Base {
-  HallName: string;
-  AccessName: string;
+  AccessName:  string;
   AccessLevel: number;
-  HallId: number;
+  HallName:    string;
+  HallId:      number;
+}
+
+export interface User {
+  Username: string;
+  Email:    string;
 }
