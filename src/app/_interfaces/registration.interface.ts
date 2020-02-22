@@ -10,6 +10,7 @@ export interface Data {
 }
 
 export interface Base {
+  Active:      number;
   AccessName:  string;
   AccessLevel: number;
   HallName:    string;
