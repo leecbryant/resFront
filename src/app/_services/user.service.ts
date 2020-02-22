@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 // Interfaces
-import { RegisterArray } from '../_interfaces/registration.interface';
+import { Registration } from '../_interfaces/registration.interface';
 import { User } from '../_interfaces/user.interface';
 // Custom
 import { environment } from '../../environments/environment';
@@ -33,8 +33,8 @@ export class UserService {
     });
   }
 
-  getRegistration(data: string): Observable<RegisterArray> {
-    return this.http.get<RegisterArray>(environment.serverName + 'api/users/register/' + data, httpOptions);
+  getRegistration(data: string): Observable<Registration> {
+    return this.http.get<Registration>(environment.serverName + 'api/users/register/' + data, httpOptions);
   }
 
   getUser(data: string): Observable<any> {
