@@ -6,18 +6,11 @@ export interface Registration {
 
 export interface Data {
   base:   Base[];
-  access: Access[];
-}
-
-export interface Access {
-  id:   number;
-  Name: string;
 }
 
 export interface Base {
-  id:     number;
-  Access: number;
-  Hash:   string;
-  Hall:   string;
-  Active: number;
+  HallName: string;
+  AccessName: string;
+  AccessLevel: number;
+  HallId: number;
 }
