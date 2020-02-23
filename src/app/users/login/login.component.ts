@@ -32,22 +32,31 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     // this.loginService.logout();
-
+    
     // get return url from route parameters or default to '/'
     this.route.queryParams
       .subscribe(params => this.returnUrl = params['returnUrl'] || '/dashboard');
   }
 
-  login(form) {
-    this.loginService.login(form.value).subscribe(res => {
-      this._snackbar.sendSuccess('Logged in.');
-    },
-    err => {
-      this._snackbar.sendError('Invalid username or password');
-      this.error = true;
-      this.error_message = 'Invalid username or password';
-      form.reset();
-    });
+  async login(form) {
+    new Promise((resolve, reject) => {
+      this.loginService.login(form.value).subscribe(res => {
+        localStorage.setItem('token', res.token);
+        resolve(res);
+      },
+      err => {
+        this.error = true;
+        this.error_message = 'Invalid username or password';
+        reject(err);
+      });
+    }).then(result => {
+        this._snackbar.sendSuccess('Logged in.');
+        this.router.navigateByUrl('/dashboard');
+    }).catch(err => {
+        this._snackbar.sendError('Invalid username or password');
+        form.reset();
+        console.log("Error logging in: " + err)
+    });;
   }
 }
 
