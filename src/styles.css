@@ -1,4 +1,5 @@
 @import 'assets/css/material-custom.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
 /* You can add global styles to this file, and also import other style files */
 .mat-toolbar.mat-primary {
   background: #000080;

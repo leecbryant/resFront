@@ -7,6 +7,9 @@ import { DashboardRoutes } from './dashboard-routing.module';
 // Dashboard Component
 import { DashboardComponent } from './dashboard.component';
 
+// Multi Select
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 //Imports
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -17,7 +20,8 @@ import { NgSelectizeModule } from 'ng-selectize';
         RouterModule.forChild(DashboardRoutes),
         CommonModule,
         FormsModule,
-        NgSelectizeModule
+        NgSelectizeModule,
+        NgMultiSelectDropDownModule.forRoot()
     ],
     declarations: [
         DashboardComponent

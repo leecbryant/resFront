@@ -10,6 +10,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { NgSelectizeModule } from 'ng-selectize';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 // Material Imports
 import { MatButtonModule } from '@angular/material/button';
@@ -32,6 +33,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
+
+// Multi Select
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 // Services
 import { UserService } from './_services/user.service';
@@ -72,7 +76,9 @@ import { Cards_Directives } from './shared/directives/cards.directive';
         MatTooltipModule, MatMenuModule, MatToolbarModule, MatIconModule,
         MatButtonModule, MatTabsModule, MatDialogModule, MatSnackBarModule,
         MatProgressSpinnerModule, MatProgressBarModule,
-        MatAutocompleteModule, MatStepperModule
+        MatAutocompleteModule, MatStepperModule,
+        NgMultiSelectDropDownModule.forRoot(),
+        NgSelectModule
     ],
     declarations: [
         AppComponent,
