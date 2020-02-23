@@ -58,5 +58,11 @@ export class LoginComponent implements OnInit {
         console.log("Error logging in: " + err)
     });
   }
+
+  keyDownFunction(event, form) {
+    if(event.keyCode == 13) {
+      if(form.valid) this.login(form);
+    }
+  }
 }
 

@@ -15,7 +15,7 @@
               <div class="table-cell">
                   <div class="pdd-horizon-15">
                       <h2>Login</h2>
-                      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" (keydown)="keyDownFunction($event, loginForm)">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
