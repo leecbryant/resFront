@@ -1,6 +1,6 @@
 // Core angular
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 // Interfaces
 import { Registration } from '../_interfaces/registration.interface';
@@ -27,7 +27,7 @@ export class UserService {
   }
 
   validate(data): Observable<any> {
-    return this.http.get<User>(environment.serverName + 'api/users/validate', data);
+    return this.http.get<User>(environment.serverName + 'api/users/validate/' + data, httpOptions);
   }
 
   register(data): Observable<any> {
@@ -35,6 +35,10 @@ export class UserService {
       reportProgress: true,
       observe: 'response'
     });
+  }
+
+  updateAccessibility(data):Observable<any> {
+    return this.http.put<any>(environment.serverName + 'api/users/accessibility', data);
   }
 
   getRegistration(data: string): Observable<Registration> {
