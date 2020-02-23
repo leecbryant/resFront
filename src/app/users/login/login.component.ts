@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     // this.loginService.logout();
-    
+    localStorage.clear();
     // get return url from route parameters or default to '/'
     this.route.queryParams
       .subscribe(params => this.returnUrl = params['returnUrl'] || '/dashboard');

@@ -26,6 +26,10 @@ export class UserService {
     return this.http.post<User>(environment.serverName + 'api/users/login', data);
   }
 
+  validate(data): Observable<any> {
+    return this.http.get<User>(environment.serverName + 'api/users/validate', data);
+  }
+
   register(data): Observable<any> {
     return this.http.post<any>(environment.serverName + 'api/users/register', data, {
       reportProgress: true,
