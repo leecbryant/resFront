@@ -72,11 +72,8 @@ export class CommonLayoutComponent implements OnInit {
         this.Name = this.decodedToken['Name']
         this.headerSelected = this.decodedToken['Header'];
         this.sidenavSelected =this.decodedToken['SideNav'];
-        if(this.decodedToken['RTL']) {
-            this.app.layout.rtlActived = true;
-        } else {
-            this.app.layout.rtlActived = false;
-        }
+        this.app.layout.rtlActived = this.decodedToken['RTL'];
+
     }
 
     updateDB() {
