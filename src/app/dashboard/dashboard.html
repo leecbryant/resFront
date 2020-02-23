@@ -27,41 +27,22 @@
 </div>
 <!-- Begin Modals-->
 <!-- New Hall Currency Log -->
-<!-- <div class="modal" id="modal_add_currency">
+<div class="modal" id="modal_add_currency">
     <div class="modal-dialog" role="document">
         <div class="modal-content scrollable">
             <div class="side-modal-wrapper">
                 <div class="vertical-align">
                     <div class="table-cell">
-                        <div class="pdd-horizon-15">
-                            <div class="modal-header">
-                                <h2>Add Currency</h2>
-                                <button type="button" class="close" data-dismiss="modal" style="margin-bottom:-10px;">&times;</button>
-                            </div>
-                            <form autocomplete="off" method='POST' type="processorForms" class="js-currency-form-add">
-                                <b>Residence Hall</b>
-                                <input type="text" class="form-control" name="RHall" value="{Hall}" disabled>
-                                <br/>
-                                <b>Resident(s)</b><br/>
-                                <ng-selectize [config]="multiSelectConfig" [options]="multiSelectOptions" 
-								[(ngModel)]="multiSelectValue" ngDefaultControl></ng-selectize>
-                                <br/>
-                                <b>Reason</b>
-                                <select name="Reason" id="earnableReason" class="form-control m-b" required>
-                                    <option value="1|Rounds">Studying while on Rounds</option>
-                                </select>
-                                <br/><br/>
-                                <button class="btn btn-success btn-sm" name="SubmitComLog">Submit</button>
-                                <div class="ajax-loader"></div>
-                                <div class="ajax-result">
-                                    <div class="success"></div>
-                                    <div class="error"></div>
-                                </div>
-                            </form>
+                        <div class="modal-header">
+                            <h3>Add Currency</h3>
+                            <button type="button" class="close" data-dismiss="modal" style="margin-bottom:-10px;">&times;</button>
                         </div>
+                        <form #addCurrencyForm="ngForm" (ngSubmit)="addCurrency(addCurrencyForm)" name="currencyForm"> 
+                            
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div> -->
+</div>
