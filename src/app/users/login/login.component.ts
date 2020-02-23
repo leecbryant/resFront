@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { resolve } from 'q';
 import { SnackBar } from '../../_services/notification.service';
+import { APIService } from 'src/app/_services/api.service';
 
 
 @Component({
@@ -28,14 +29,19 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: UserService,
               private router: Router,
               private route: ActivatedRoute,
-              private _snackbar: SnackBar) { }
+              private _snackbar: SnackBar,
+              private api: APIService) { }
 
   ngOnInit() {
-    // this.loginService.logout();
     localStorage.clear();
-    // get return url from route parameters or default to '/'
     this.route.queryParams
       .subscribe(params => this.returnUrl = params['returnUrl'] || '/dashboard');
+
+    this.api.getHalls().subscribe(res => {
+      console.log(res)
+    }, err => {
+      console.log(err)
+    });
   }
 
   async login(form) {
