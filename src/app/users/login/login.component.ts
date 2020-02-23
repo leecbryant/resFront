@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
     // get return url from route parameters or default to '/'
     this.route.queryParams
       .subscribe(params => this.returnUrl = params['returnUrl'] || '/dashboard');
-    console.log(this.returnUrl)
   }
 
   async login(form) {
