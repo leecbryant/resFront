@@ -15,7 +15,7 @@
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label for="Hall">Hall</label>
-                                          <input [(ngModel)]="Hall" #hall="ngModel" readonly type="text" class="form-control" placeholder="Username" name="hall" required [ngClass]="{'error': !hall.valid && (hall.dirty || hall.touched)}">
+                                          <input [(ngModel)]="Hall" #hall="ngModel" readonly type="text" class="form-control" placeholder="Hall" name="hall" required [ngClass]="{'error': !hall.valid && (hall.dirty || hall.touched)}">
                                           <label class="error" *ngIf="!hall.valid && (hall.dirty || hall.touched)">Hall is required</label>
                                       </div>
                                   </div>
@@ -32,7 +32,7 @@
                                       <div class="form-group">
                                           <label for="Name">Name</label>
                                           <input [(ngModel)]="Name" #name="ngModel"
-                                                  minlength="4" type="text" class="form-control"
+                                                  minlength="2" type="text" class="form-control"
                                                   placeholder="Name" name="name" required
                                                   [ngClass]="(!name.valid && (name.dirty || name.touched)) ? 'error' : name.valid  && (name.dirty || name.touched) ? 'valid' : ''">
                                           <label *ngIf="name.invalid && (name.dirty || name.touched)"
@@ -41,7 +41,7 @@
                                             Name is required.
                                           </div>
                                           <div *ngIf="name?.errors.minlength">
-                                            Name name must be at least 3 characters long.
+                                            Name name must be at least 2 characters long.
                                           </div>
                                         </label>
                                       </div>
@@ -52,9 +52,6 @@
                                       <div class="form-group">
                                           <label for="Username" style="display: flex">
                                             Username
-                                            <div *ngIf="username.valid">
-                                              <mat-spinner style="margin-left:7px;" *ngIf="loadUser" [diameter]="20"></mat-spinner>
-                                            </div>
                                           </label>
                                           <input [(ngModel)]="Username" #username="ngModel"
                                                  (keyup)="checkUser(username.value)" minlength="4"
@@ -83,9 +80,6 @@
                                       <div class="form-group">
                                           <label for="Email" style="display: flex">
                                               Email
-                                            <div *ngIf="email.valid">
-                                              <mat-spinner style="margin-left:7px;" *ngIf="loadEmail" [diameter]="20"></mat-spinner>
-                                            </div>
                                           </label>
                                           <input [(ngModel)]="Email" #email="ngModel"
                                                 (keyup)="checkEmail(email.value)" minlength="4" type="text"
@@ -122,7 +116,7 @@
                                             </div>
                                           </label>
                                           <input [(ngModel)]="VerifyEmail" #vemail="ngModel"
-                                                minlength="4" type="text"
+                                                type="text"
                                                 class="form-control" placeholder="Verify Email" name="vemail" required email
                                                 [ngClass]="(!vemail.valid && (vemail.dirty || vemail.touched)) || uniqueErrorEmail ? 'error' : Email != VerifyEmail && vemail.valid  ? 'error' : vemail.valid  && (vemail.dirty || vemail.touched) ? 'valid' : ''">
                                           <label *ngIf="vemail.invalid && (vemail.dirty || vemail.touched)"
@@ -132,9 +126,6 @@
                                             </div>
                                             <div *ngIf="vemail?.errors.email">
                                               Please provide a valid email.
-                                            </div>
-                                            <div *ngIf="email?.errors.minlength">
-                                                Email must be atleast 4 characters.
                                             </div>
                                           </label>
                                         <div *ngIf="vemail.valid">

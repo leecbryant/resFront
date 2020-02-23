@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 
 export class RegisterComponent implements OnInit {
-  Data: Registration;
+  FormData: Registration;
   // Form Information
   Hall = '';
   Position = '';
@@ -30,8 +30,6 @@ export class RegisterComponent implements OnInit {
 
   // Loaders
   loaded = false;
-  loadUser = true;
-  loadEmail = true;
 
   // Errors
   uniqueErrorUser = false;
@@ -43,19 +41,36 @@ export class RegisterComponent implements OnInit {
               private _snackbar: SnackBar) { }
 
   ngOnInit() {
-    this.userService.getRegistration(this._route.snapshot.paramMap.get('hash')).subscribe(res => {
-      this.Data = res.data[0];
-      this.Hall = this.Data.HallName;
-      this.Position = this.Data.AccessName;
-      this.loaded = true;
+    this.loadRegistration().then(result => {
+        console.log(result)
+        this.loaded = true
+    }).catch(err => {
+        console.log("Error in loading page: " + err)
+    });
+    console.log(this.Hall)
+  }
+
+  async loadRegistration() {
+    return new Promise((resolve, reject) => {
+      this.userService.getRegistration(this._route.snapshot.paramMap.get('hash')).subscribe(res => {
+        this.FormData = res;
+        this.Hall = res.data.base[0].HallName;
+        this.Position = res.data.base[0].AccessName; 
+        resolve();
+      },
+      err => {
+        this._router.navigateByUrl('/404');
+        console.log(err);
+        reject();
+      });
     });
   }
 
   register(form) {
     const PostData = {
       form: form.value,
-      hallId: this.Data.Hall,
-      accessId: this.Data.Access
+      HallId: this.FormData.data.base[0].HallId,
+      AccessLevel: this.FormData.data.base[0].HallId
     };
     this.userService.register(PostData).subscribe(res => {
       this._snackbar.sendSuccess('Registration successful!');
@@ -69,34 +84,26 @@ export class RegisterComponent implements OnInit {
   checkUser(user: string) {
     this.uniqueErrorUser = false;
     if (user.length >= 3) {
-      this.loadUser = true;
-      this.userService.getUser(user).subscribe(res => {
-        this.loadUser = false;
-        if (res.data.length) {
+        if (this.FormData.data.users.filter(e => {
+          return user.toLocaleLowerCase() == e.Username.toLocaleLowerCase()
+        }).length > 0) {
           this.uniqueErrorUser = true;
         } else {
           this.uniqueErrorUser = false;
         }
-      });
-    } else {
-      this.loadUser = false;
     }
   }
 
   checkEmail(email: string) {
     this.uniqueErrorEmail = false;
     if (email.length >= 3) {
-      this.loadEmail = true;
-      this.userService.getEmail(email).subscribe(res => {
-        this.loadEmail = false;
-        if (res.data.length) {
-          this.uniqueErrorEmail = true;
-        } else {
-          this.uniqueErrorEmail = false;
-        }
-      });
-    } else {
-      this.loadEmail = false;
+      if (this.FormData.data.users.filter(e => {
+        return email.toLocaleLowerCase() == e.Email.toLocaleLowerCase()
+      }).length > 0) {
+        this.uniqueErrorEmail = true;
+      } else {
+        this.uniqueErrorEmail = false;
+      }
     }
   }
 }
