@@ -7,6 +7,7 @@ import { Registration } from '../_interfaces/registration.interface';
 import { User } from '../_interfaces/user.interface';
 // Custom
 import { environment } from '../../environments/environment';
+import { Profile } from '../_interfaces/profile.interface';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -45,7 +46,11 @@ export class UserService {
     return this.http.get<Registration>(environment.serverName + 'api/users/register/' + data, httpOptions);
   }
 
-  getAccountInfo(data: string): Observable<any> {
-    return this.http.get<any>(environment.serverName + 'api/users/userinfo/' + data, httpOptions);
+  getAccountInfo(data: string): Observable<Profile> {
+    return this.http.get<Profile>(environment.serverName + 'api/users/userinfo/' + data, httpOptions);
+  }
+
+  updateAccountInfo(data): Observable<any> {
+    return this.http.put<any>(environment.serverName + 'api/users/userinfo', data);
   }
 }

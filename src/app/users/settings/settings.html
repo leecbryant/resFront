@@ -1,38 +1,152 @@
-<div class="container-fluid">
-	<div class="page-title">
-        <div class="page-title"><h4>Profile</h4></div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="card">
-                <div class="card-body">
-                    <form method="POST" action="processorForms" name="update-form" class="formClass js-update-form" _lpchecked="1" autocomplete="false">
-                        <label for="psw"><b>Current Password</b></label>
-                        <input type="password" class="form-control" placeholder="Enter Password" name="Password" required="" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
-                        *Required to update account settings<br/><br/>
-                        <label for="psw"><b>Name</b></label>
-                        <input type="text" disabled="disabled" class="form-control" placeholder="{{Name}}" value="{{Name}}" name="Name" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
-                        <br/><label for="psw"><b>Username</b></label>
-                        <input type="text" disabled="disabled" class="form-control" placeholder="{{UsernameField}}" value="{{UsernameField}}" name="Name" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
-                        <br/><label for="psw"><b>Email</b></label>
-                        <input type="text" disabled="disabled" class="form-control" placeholder="{{Email}}" value="{{Email}}" name="Name" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
-                        <br/><label for="psw"><b>Change Email</b></label>
-                        <input type="email" placeholder="Change Email" class="form-control" name="Email" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
-                        <br/><label for="psw"><b>Verify New Email</b></label>
-                        <input type="email" placeholder="Verify new Email" class="form-control" name="vEmail" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
-                        <br/><label for="psw"><b>Change Password</b></label>
-                        <input type="password" placeholder="Change Password" class="form-control" name="nPassword" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
-                        <br/><label for="psw"><b>Verify New Password</b></label>
-                        <input type="password" placeholder="Verify new Password" class="form-control" name="vnPassword" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;"><br>
-                        <button type="submit" name="SubmitReset" class="btn btn-info">Update Account</button>
-                        <div class="ajax-loader"></div>
-                        <div class="ajax-result">
-                            <div class="success"></div>
-                            <div class="error"></div>
-                        </div>
-                    </form>   
-                </div>            
-            </div>
-        </div>
+<div class="container-fluid" >
+    <div class="row">
+      <div class="col-lg-12">
+          <div class="card">
+              <div class="card-heading border bottom">
+                  <h4 class="card-title">Update Account</h4>
+              </div>
+              <!-- <mat-spinner *ngIf="!loaded" style="margin: auto;padding:5px;"></mat-spinner> -->
+              <div class="card-block">
+                  <div class="row">
+                      <div class="col-md-12 ml-auto mr-auto">
+                          <form #updateForm="ngForm" (ngSubmit)="updateUser(updateForm)">
+                            <h5 style="margin-left:-10px;margin-top: -15px;"> Current Information </h5>
+                            <label for="psw"><b>Name</b></label>
+                            <input type="text" disabled="disabled" class="form-control" placeholder="{{Name}}" value="{{Name}}" name="Name" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
+                            <br/><label for="psw"><b>Username</b></label>
+                            <input type="text" disabled="disabled" class="form-control" placeholder="{{UsernameField}}" value="{{UsernameField}}" name="Name" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
+                            <br/><label for="psw"><b>Email</b></label>
+                            <input type="text" disabled="disabled" class="form-control" placeholder="{{OldEmail}}" value="{{Email}}" name="Name" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;">
+                            <br/>
+                            <h5 style="margin-left:-10px"> Update Information </h5>  
+                            <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="Email" style="display: flex">
+                                              Email
+                                          </label>
+                                          <input [(ngModel)]="NewEmail" #email="ngModel"
+                                                (keyup)="checkEmail(email.value)" minlength="4" type="text"
+                                                class="form-control" placeholder="Email" name="email" email
+                                                [ngClass]="(!email.valid && (email.dirty || email.touched)) || uniqueErrorEmail ? 'error' : NewEmail != VerifyEmail && email.valid && vemail.touched ? 'error' : email.valid  && (email.dirty || email.touched) ? VerifyEmail.length > 0 ? 'valid' : '' : ''">
+                                          <label *ngIf="email.invalid && (email.dirty || email.touched)"
+                                              class="error">
+                                            <div *ngIf="email?.errors.email">
+                                              Please provide a valid email.
+                                            </div>
+                                            <div *ngIf="email?.errors.minlength">
+                                              Email must be atleast 4 characters.
+                                            </div>
+                                          </label>
+                                        <div *ngIf="email.valid">
+                                            <label *ngIf="NewEmail != VerifyEmail && vemail.touched" class="error">
+                                                Emails must match.
+                                            </label>
+                                          <label *ngIf="uniqueErrorEmail" class="error">
+                                            Invalid email, already in use.
+                                          </label>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="vEmail" style="display: flex">
+                                              Verify Email
+                                            <div *ngIf="vemail.valid">
+                                              <mat-spinner style="margin-left:7px;" *ngIf="loadEmail" [diameter]="20"></mat-spinner>
+                                            </div>
+                                          </label>
+                                          <input [(ngModel)]="VerifyEmail" #vemail="ngModel"
+                                                type="text"
+                                                class="form-control" placeholder="Verify Email" name="vemail" email
+                                                [ngClass]="(!vemail.valid && (vemail.dirty || vemail.touched)) || uniqueErrorEmail ? 'error' : NewEmail != VerifyEmail && vemail.valid  ? 'error' : vemail.valid  && (vemail.dirty || vemail.touched) ? NewEmail.length > 0 ? 'valid' : '' : ''">
+                                          <label *ngIf="vemail.invalid && (vemail.dirty || vemail.touched)"
+                                              class="error">
+                                            <div *ngIf="vemail?.errors.email">
+                                              Please provide a valid email.
+                                            </div>
+                                          </label>
+                                        <div *ngIf="vemail.valid">
+                                          <label *ngIf="NewEmail != VerifyEmail && email.touched" class="error">
+                                            <div>Emails must match.</div>
+                                          </label>
+                                          <label *ngIf="uniqueErrorEmail" class="error">
+                                            Invalid email, already in use.
+                                          </label>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="Password" style="display: flex">
+                                              Password
+                                          </label>
+                                          <input [(ngModel)]="Password" #password="ngModel"
+                                                minlength="6" type="password"
+                                                class="form-control" placeholder="Password" name="password" password
+                                                [ngClass]="(!password.valid && (password.dirty || password.touched)) ? 'error' : Password != VerifyPassword && password.valid && vpassword.touched ? 'error' : password.valid  && (password.dirty || password.touched) ? VerifyPassword.length > 0 ? 'valid': '' : ''">
+                                          <label *ngIf="password.invalid && (password.dirty || password.touched)"
+                                              class="error">
+                                            <div *ngIf="password?.errors.password">
+                                              Please provide a valid email.
+                                            </div>
+                                            <div *ngIf="password?.errors.minlength">
+                                              Password must be atleast 6 characters.
+                                            </div>
+                                          </label>
+                                        <div *ngIf="password.valid">
+                                            <label *ngIf="Password != VerifyPassword && vpassword.touched" class="error">
+                                                Passwords must match.
+                                            </label>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="VerifyPassword" style="display: flex">
+                                            Password
+                                        </label>
+                                        <input [(ngModel)]="VerifyPassword" #vpassword="ngModel"
+                                              minlength="6" type="password"
+                                              class="form-control" placeholder="Verify Password" name="vpassword" password
+                                              [ngClass]="(!vpassword.valid && (vpassword.dirty || vpassword.touched)) ? 'error' : Password != VerifyPassword && vpassword.valid && password.touched ? 'error' : vpassword.valid  && (vpassword.dirty || vpassword.touched) ? Password.length > 0 ? 'valid':  '' : ''">
+                                        <label *ngIf="vpassword.invalid && (vpassword.dirty || vpassword.touched)"
+                                            class="error">
+                                          <div *ngIf="vpassword?.errors.minlength">
+                                            Password must be atleast 6 characters.
+                                          </div>
+                                        </label>
+                                      <div *ngIf="vpassword.valid">
+                                          <label *ngIf="Password != VerifyPassword && vpassword.touched" class="error">
+                                              Passwords must match.
+                                          </label>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="VerifyPassword" style="display: flex">
+                                    Old Password <span style="color:red">*</span>
+                                </label>
+                                <input [(ngModel)]="OldPassword" #opassword="ngModel"
+                                    type="password"
+                                    class="form-control" placeholder="Verify Password" name="opassword" required password
+                                    [ngClass]="(!opassword.valid && (opassword.dirty || opassword.touched)) ? 'error' : (opassword.dirty || opassword.touched) ? 'valid' : ''">
+                                <label *ngIf="opassword.invalid && (opassword.dirty || opassword.touched)"
+                                    class="error">
+                                    <div *ngIf="opassword?.errors.required">
+                                        Old Password is required.
+                                    </div>
+                                </label>
+                              </div>
+                              <button class="btn btn-primary" type="submit" [disabled]="!updateForm.valid || (NewEmail.length > 0 && (NewEmail != VerifyEmail)) || (Password.length > 0 && (Password != VerifyPassword)) || uniqueErrorEmail">Update</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
-</div>    
+  </div>
