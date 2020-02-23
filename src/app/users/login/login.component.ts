@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     // get return url from route parameters or default to '/'
     this.route.queryParams
       .subscribe(params => this.returnUrl = params['returnUrl'] || '/dashboard');
+    console.log(this.returnUrl)
   }
 
   async login(form) {
@@ -51,7 +52,7 @@ export class LoginComponent implements OnInit {
       });
     }).then(result => {
         this._snackbar.sendSuccess('Logged in.');
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigate([this.returnUrl]);
     }).catch(err => {
         this._snackbar.sendError('Invalid username or password');
         form.reset();
