@@ -4,6 +4,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from '../_services/user.service';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { SnackBar } from '../_services/notification.service';
 
 const helper = new JwtHelperService();
 
@@ -14,20 +15,23 @@ export class AuthGuard implements CanActivate {
 
     constructor(
         private router: Router,
-        private userService: UserService
+        private userService: UserService,
+        private snackbar: SnackBar
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean | Promise<boolean>{
         if(localStorage.getItem('token')) {
             return new Promise((resolve, reject) => {
                 this.userService.validate(localStorage.getItem('token')).subscribe(res => {
-                    resolve(true);
+                    resolve(res);
                 }, err => {
-                    reject(false);
+                    reject(err);
                 });
             }).then(result => {
                 return true;
             }).catch(err => {
+                console.log(err);
+                this.snackbar.sendError("Session error. Please login to continue");
                 this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
                 return false;
             });
