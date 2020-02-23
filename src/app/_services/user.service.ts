@@ -45,11 +45,7 @@ export class UserService {
     return this.http.get<Registration>(environment.serverName + 'api/users/register/' + data, httpOptions);
   }
 
-  getUser(data: string): Observable<any> {
-    return this.http.get<any>(environment.serverName + 'api/users/getuser/username/' + data, httpOptions);
-  }
-
-  getEmail(data: string): Observable<any> {
-    return this.http.get<any>(environment.serverName + 'api/users/getuser/email/' + data, httpOptions);
+  getAccountInfo(data: string): Observable<any> {
+    return this.http.get<any>(environment.serverName + 'api/users/userinfo/' + data, httpOptions);
   }
 }

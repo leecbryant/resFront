@@ -73,7 +73,6 @@ export class CommonLayoutComponent implements OnInit {
         this.headerSelected = this.decodedToken['Header'];
         this.sidenavSelected =this.decodedToken['SideNav'];
         this.app.layout.rtlActived = this.decodedToken['RTL'];
-
     }
 
     updateDB() {

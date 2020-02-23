@@ -84,8 +84,8 @@ import { Cards_Directives } from './shared/directives/cards.directive';
         // Components
         LoginComponent,
         RegisterComponent,
-        PageNotFoundComponent,
-        // Removes Animations
+        PageNotFoundComponent
+        // Remgoves Animations
         // NoopAnimationsModule,
     ],
     providers: [

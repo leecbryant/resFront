@@ -19,24 +19,22 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean | Promise<boolean>{
         if(localStorage.getItem('token')) {
-            return this.checkUser();
+            return new Promise((resolve, reject) => {
+                this.userService.validate(localStorage.getItem('token')).subscribe(res => {
+                    resolve(true);
+                }, err => {
+                    reject(false);
+                });
+            }).then(result => {
+                return true;
+            }).catch(err => {
+                this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+                return false;
+            });
         } else {
             this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
             return false;
         }
     }
 
-    checkUser(): Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            this.userService.validate(localStorage.getItem('token')).subscribe(res => {
-                resolve(true);
-            }, err => {
-                reject(false);
-            });
-        }).then(result => {
-            return true;
-        }).catch(err => {
-            return false;
-        });
-    }
 }

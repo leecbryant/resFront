@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
         this._snackbar.sendError('Invalid username or password');
         form.reset();
         console.log("Error logging in: " + err)
-    });;
+    });
   }
 }
 

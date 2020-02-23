@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 
 //Dashboard Components
 import { SettingsComponent } from './settings/settings.component';
+import { AuthGuard } from '../_guards/auth.guard';
 
 export const UserRoutes: Routes = [
     {
@@ -13,7 +14,8 @@ export const UserRoutes: Routes = [
                 component: SettingsComponent,
                 data: {
                     title: 'User Profile'
-                }
+                },
+                canActivate: [AuthGuard]
             }
         ]
     }
