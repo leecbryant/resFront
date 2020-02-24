@@ -35,4 +35,11 @@ export class APIService {
       observe: 'response'
     });
   }
+
+  newStudy(data): Observable<any> {
+    return this.http.post<any>(environment.serverName + 'api/base/study', data, {
+      reportProgress: true,
+      observe: 'response'
+    });
+  }
 }
