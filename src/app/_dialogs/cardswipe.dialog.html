@@ -1,7 +1,7 @@
 <mat-dialog-content style="margin-bottom:-10px;" *ngIf="!submit || !loading">
     {{message}}
 </mat-dialog-content>
-<form #swipeCardForm="ngForm" name="currencyForm" (keydown)="keyDownFunction($event, swipeCardForm)" *ngIf="!submit || !loading" style="margin-bottom:-23px"> 
+<form #swipeCardForm="ngForm" name="swipeCardForm" (keydown)="keyDownFunction($event, swipeCardForm)" *ngIf="!submit || !loading" style="margin-bottom:-23px"> 
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
