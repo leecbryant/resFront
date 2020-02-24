@@ -4,16 +4,26 @@ import { MatDialog } from '@angular/material/dialog';
 import { CardSwipeDialog } from '../_dialogs/cardswipe.dialog';
 import { StudyCheckinDialog } from '../_dialogs/trackers/study-checkin.dialog';
 import { StudyCheckoutDialog } from '../_dialogs/trackers/study-checkout-dialog';
+import { APIService } from '../_services/api.service';
+import { Cards } from '../_interfaces/card.interface';
 
 @Component({
     templateUrl: 'dashboard.html'
 })
 
 export class DashboardComponent implements OnInit {
-    constructor(private snackbar: SnackBar, public dialog: MatDialog) {
+    constructor(private snackbar: SnackBar, public dialog: MatDialog, private api: APIService) {
     }
-
+    Cards: Cards;
+    loaded = false;
     ngOnInit() {
+        this.api.getCards().subscribe(res => {
+            this.Cards = res;
+            this.loaded = true;
+        }, err => {
+            this.loaded = false;
+            this.snackbar.sendError("Unable to load dashboard at this time")
+        });
     }
 
     StudyCheckin() {

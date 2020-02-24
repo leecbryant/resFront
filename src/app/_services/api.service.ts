@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 import { Hall } from '../_interfaces/hall.interface';
 import { Student } from '../_interfaces/student.interface';
 import { Study } from '../_interfaces/study.interface';
+import { Cards } from '../_interfaces/card.interface';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,6 +22,9 @@ const httpOptions = {
 
 export class APIService {
   constructor(private http: HttpClient) { }
+  getCards(): Observable<Cards> {
+    return this.http.get<Cards>(environment.serverName + 'api/base/cards', );
+  }  
 
   getHalls(): Observable<Hall> {
     return this.http.get<Hall>(environment.serverName + 'api/base/halls', );
