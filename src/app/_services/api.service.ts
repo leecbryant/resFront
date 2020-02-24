@@ -43,6 +43,11 @@ export class APIService {
     return this.http.get<Study>(environment.serverName + 'api/base/study', );
   }
 
+  getStudyUnique(): Observable<Study> {
+    return this.http.get<Study>(environment.serverName + 'api/base/studyunique', );
+  }
+
+
   newStudy(data): Observable<any> {
     return this.http.post<any>(environment.serverName + 'api/base/study', data, {
       reportProgress: true,

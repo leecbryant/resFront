@@ -5,12 +5,14 @@ export interface Study {
 }
 
 export interface StudyArray {
+    StaffName: string;
+    Reason:    string;
     StudyID:   number;
     StaffID:   number;
     StudentID: number;
     FirstName: string;
     LastName:  string;
     StartDate: string;
-    EndDate:   null;
+    EndDate:   string;
     HallID:    number;
 }

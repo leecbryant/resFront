@@ -1,1 +1,41 @@
-TEST
+
+<mat-progress-bar mode="buffer" *ngIf="!userLoaded"></mat-progress-bar>
+
+<div class="card" *ngIf="!userSelected">
+    <div class="card-block">   
+            <h2>Student Search</h2>
+            <form #form="ngForm" (ngSubmit)="submit(form)">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Student">Student Name</label>
+                        <input [(ngModel)]="Student" [matAutocomplete]="auto" #name="ngModel" type="text" class="form-control" placeholder="Student Name" name="name" id="name" required [ngClass]="{'error': !name.valid && (name.dirty || name.touched)}" (keydown)="_filter()">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of UniqueStudyArray" [value]="option.StudentID" (onSelectionChange)="submit(option.StudentID)">
+                                {{option.FirstName | titlecase}} {{option.LastName | titlecase}}
+                            </mat-option>
+                            </mat-autocomplete>
+                        <label class="error" *ngIf="!name.valid && (name.dirty || name.touched)">Student Name is required</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="displayData">
+    <div *ngFor="let option of StudyArray">
+        <div class="card">
+            <div class="card-block">   
+                <h4>Study session with AM <strong>{{option.StaffName}}</strong></h4>
+                <span>
+                    <strong>Reason: </strong> {{option.Reason}}
+                </span>
+                <br/>
+                <span>
+                    <strong>Length: </strong> {{option.Reason}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
