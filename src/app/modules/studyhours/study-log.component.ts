@@ -40,7 +40,7 @@ export class StudyHoursLogComponent implements OnInit {
 
         this.api.getStudy().subscribe(res => {
             this.StudyArray = res.data.filter(e => {
-                return e.StudentID === form
+                return e.StudentID === form && e.EndDate != null
             });
             this.userLoaded = true;
             this.displayData = true;

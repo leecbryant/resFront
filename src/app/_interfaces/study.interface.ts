@@ -5,14 +5,22 @@ export interface Study {
 }
 
 export interface StudyArray {
-    StaffName: string;
-    Reason:    string;
-    StudyID:   number;
-    StaffID:   number;
-    StudentID: number;
-    FirstName: string;
-    LastName:  string;
-    StartDate: string;
-    EndDate:   string;
-    HallID:    number;
+    StaffName:      string;
+    Reason:         string;
+    StudyID:        number;
+    StaffID:        number;
+    StudentID:      number;
+    FirstName:      string;
+    LastName:       string;
+    StartDate:      string;
+    EndDate:        string;
+    HallID:         number;
+    dateDifference: DateDifference;
+}
+
+export interface DateDifference {
+    days:    number;
+    hours:   number;
+    minutes: number;
+    seconds: number;
 }
