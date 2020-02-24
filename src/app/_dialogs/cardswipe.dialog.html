@@ -1,6 +1,23 @@
-<mat-dialog-content>
+<mat-dialog-content style="margin-bottom:-10px;">
     {{message}}
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-<button mat-raised-button color="primary" mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
-</mat-dialog-actions>
+<form #swipeCardForm="ngForm" name="currencyForm" (keydown)="keyDownFunction($event, swipeCardForm)"> 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input [(ngModel)]="CardGrabber" #carddata="ngModel" class="form-control" id="carddata" name="carddata" autofocus style="border-top-style: hidden;
+                border-right-style: hidden;
+                border-left-style: hidden;
+                border-bottom-style: hidden;
+                background: transparent;
+                color:transparent;
+                margin-bottom:-20;
+                margin-top:-20px;
+                "
+                spellcheck="false">
+            </div>
+        </div>
+    </div>
+</form>
+test
+<!-- <button mat-raised-button color="primary" mat-dialog-close tabindex="-1">{{cancelButtonText}}</button> -->
