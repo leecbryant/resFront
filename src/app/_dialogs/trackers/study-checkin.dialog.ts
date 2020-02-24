@@ -12,7 +12,8 @@ export class StudyCheckinDialog implements OnInit {
   swipeObj: any;
   Name = '';
   message: string = "";
-  cancelButtonText = "Cancel"
+  cancelButtonText = "Cancel";
+  Reason = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<StudyCheckinDialog>,
