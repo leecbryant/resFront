@@ -7,6 +7,7 @@ import { AuthGuard } from './_guards';
 import { LoginComponent } from './users/login/login.component';
 import { RegisterComponent } from './users/register/register.component';
 import { PageNotFoundComponent } from './_helpers/page-not-found/page-not-found.component';
+import { StudyHoursLogComponent } from './modules/studyhours/study-log.component';
 
 export const AppRoutes: Routes = [
     {
@@ -31,6 +32,11 @@ export const AppRoutes: Routes = [
             {
                 path: 'users',
                 loadChildren: './users/users.module#UsersModule',
+                canActivate: [AuthGuard]
+            },
+            {
+                path: 'studyhours',
+                component: StudyHoursLogComponent,
                 canActivate: [AuthGuard]
             },
         ],
