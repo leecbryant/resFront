@@ -1,8 +1,15 @@
-<div class="modal-header">
-    <h5>Add Study Visit</h5>
-</div>
-Name: 
-<form #addCurrencyForm="ngForm" (ngSubmit)="addCurrency(addCurrencyForm)" name="currencyForm"> 
-    <label for="Reason">Reason</label>
-    <input [(ngModel)]="CardGrabber" #carddata="ngModel" class="form-control" id="carddata" name="carddata" autofocus>
+<h4>Add Study Visit</h4>
+Name: {{Name}}
+<form #addStudyForm="ngForm" (ngSubmit)="onSubmit(addStudyForm)" name="addStudyForm"> 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="Reason">Reason</label>
+                <input [(ngModel)]="Reason" #reason="ngModel" class="form-control" id="reason" placeholder="Reason" name="reason" required [ngClass]="{'error': !reason.valid && (reason.dirty || reason.touched)}">
+                <label *ngIf="!reason.valid && (reason.dirty || reason.touched)" class="error" >Reason is required</label>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn tf-btn btn-success" name="submit_signin" [disabled]="!addStudyForm.valid">Submit</button>
 </form>
