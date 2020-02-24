@@ -57,6 +57,8 @@ import { PageNotFoundComponent } from './_helpers/page-not-found/page-not-found.
 // Directives
 import { Sidebar_Directives } from './shared/directives/side-nav.directive';
 import { Cards_Directives } from './shared/directives/cards.directive';
+import { CardSwipeDialog } from './_dialogs/cardswipe.dialog';
+import { TrackStudyDialog } from './_dialogs/trackers/trackstudy.dialog';
 
 @NgModule({
     imports: [
@@ -90,13 +92,16 @@ import { Cards_Directives } from './shared/directives/cards.directive';
         // Components
         LoginComponent,
         RegisterComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
         // Remgoves Animations
         // NoopAnimationsModule,
+        CardSwipeDialog,
+        TrackStudyDialog
     ],
     providers: [
         UserService
     ],
+    entryComponents: [CardSwipeDialog, TrackStudyDialog],
     bootstrap: [AppComponent]
 })
 
