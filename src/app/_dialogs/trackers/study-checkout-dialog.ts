@@ -9,22 +9,6 @@ import {MatTableDataSource} from '@angular/material/table';
 import { StudyArray } from 'src/app/_interfaces/study.interface';
 import { ConfirmDialog } from '../confirm.dialog';
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
 @Component({
   selector: 'app-study-checkout-dialog',
   templateUrl: './study-checkout.dialog.html'
@@ -41,6 +25,7 @@ export class StudyCheckoutDialog implements OnInit {
   // Data Table
   displayedColumns: string[] = ['name', 'StartDate', 'checkout'];
   dataSource: MatTableDataSource<StudyArray>;
+  StudyArray: StudyArray[] = [];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -64,12 +49,13 @@ export class StudyCheckoutDialog implements OnInit {
       this.dataSource = new MatTableDataSource(res.data.filter(e => {
         return e.EndDate == null
       }));
-
+      this.StudyArray = res.data;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;    
     }, err => {
       console.log(err); 
     })
+    console.log(this.StudyArray.length)
   }
 
   applyFilter(event: Event) {
@@ -99,7 +85,7 @@ export class StudyCheckoutDialog implements OnInit {
             token: localStorage.getItem('token')
           }
           this.api.updateStudy(submitObj).subscribe(studyres => {
-            this.dataSource.data = this.dataSource.data.filter(e => {
+            this.dataSource.data = this.StudyArray = this.dataSource.data.filter(e => {
               return e.StudyID != row.StudyID
             })
             this.snack.sendSuccess("Student checked out");

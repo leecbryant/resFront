@@ -1,35 +1,38 @@
-<h3>Current Study</h3>
-<mat-dialog-content>
-    <br/>
-    <div class="mat-elevation-z2">
-        <table mat-table [dataSource]="dataSource" matSort style="width:100%">
-          <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let row"> {{row.FirstName | titlecase}} {{row.LastName | titlecase}} </td>
-          </ng-container>
-      
-          <!-- Checkin Column -->
-          <ng-container matColumnDef="StartDate">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Checkin Date </th>
-            <td mat-cell *matCellDef="let row"> {{row.StartDate | date}} </td>
-          </ng-container>
-      
-          <!-- Checkout Column -->
-          <ng-container matColumnDef="checkout">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Checkout </th>
-            <td mat-cell *matCellDef="let row">
-                <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="checkout(row)">
-                    <mat-icon>clear</mat-icon>
-                </button></td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-          </tr>
-        </table>
-      
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-      </div> 
+  <h3>Current Study</h3>
+  <mat-dialog-content>
       <br/>
-</mat-dialog-content>
+      <div class="mat-elevation-z2">
+          <table mat-table [dataSource]="dataSource" matSort style="width:100%">
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let row"> {{row.FirstName | titlecase}} {{row.LastName | titlecase}} </td>
+            </ng-container>
+        
+            <!-- Checkin Column -->
+            <ng-container matColumnDef="StartDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Checkin Date </th>
+              <td mat-cell *matCellDef="let row"> {{row.StartDate | date}} </td>
+            </ng-container>
+        
+            <!-- Checkout Column -->
+            <ng-container matColumnDef="checkout">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Checkout </th>
+              <td mat-cell *matCellDef="let row">
+                  <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="checkout(row)">
+                      <mat-icon>clear</mat-icon>
+                  </button></td>
+            </ng-container>
+
+            <ng-container matColumnDef="noRecord">
+                  <td mat-footer-cell *matFooterCellDef>No records found.</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+          </table>
+        
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div> 
+        <br/>
+  </mat-dialog-content>
