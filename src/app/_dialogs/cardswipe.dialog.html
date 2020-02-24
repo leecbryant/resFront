@@ -1,7 +1,7 @@
-<mat-dialog-content style="margin-bottom:-10px;">
+<mat-dialog-content style="margin-bottom:-10px;" *ngIf="!submit || !loading">
     {{message}}
 </mat-dialog-content>
-<form #swipeCardForm="ngForm" name="currencyForm" (keydown)="keyDownFunction($event, swipeCardForm)"> 
+<form #swipeCardForm="ngForm" name="currencyForm" (keydown)="keyDownFunction($event, swipeCardForm)" *ngIf="!submit || !loading" style="margin-bottom:-23px"> 
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
@@ -19,4 +19,6 @@
         </div>
     </div>
 </form>
+<mat-spinner style="margin-left:7px;margin-top:-15px;" [diameter]="20" *ngIf="submit || loading"></mat-spinner>
+
 <!-- <button mat-raised-button color="primary" mat-dialog-close tabindex="-1">{{cancelButtonText}}</button> -->
