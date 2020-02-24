@@ -6,6 +6,7 @@ import { Observable,  } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Hall } from '../_interfaces/hall.interface';
 import { Student } from '../_interfaces/student.interface';
+import { Study } from '../_interfaces/study.interface';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -25,6 +26,7 @@ export class APIService {
     return this.http.get<Hall>(environment.serverName + 'api/base/halls', );
   }  
 
+  // Student Calls
   getStudents(): Observable<Student> {
     return this.http.get<Student>(environment.serverName + 'api/base/students', );
   }
@@ -36,10 +38,19 @@ export class APIService {
     });
   }
 
+  // Study Hours Calls
+  getStudy(): Observable<Study> {
+    return this.http.get<Study>(environment.serverName + 'api/base/study', );
+  }
+
   newStudy(data): Observable<any> {
     return this.http.post<any>(environment.serverName + 'api/base/study', data, {
       reportProgress: true,
       observe: 'response'
     });
+  }
+
+  updateStudy(data): Observable<any> {
+    return this.http.put<any>(environment.serverName + 'api/base/study', data);
   }
 }

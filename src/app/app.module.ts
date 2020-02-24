@@ -59,6 +59,8 @@ import { Sidebar_Directives } from './shared/directives/side-nav.directive';
 import { Cards_Directives } from './shared/directives/cards.directive';
 import { CardSwipeDialog } from './_dialogs/cardswipe.dialog';
 import { StudyCheckinDialog } from './_dialogs/trackers/study-checkin.dialog';
+import { StudyCheckoutDialog } from './_dialogs/trackers/study-checkout-dialog';
+import { ConfirmDialog } from './_dialogs/confirm.dialog';
 
 @NgModule({
     imports: [
@@ -96,12 +98,14 @@ import { StudyCheckinDialog } from './_dialogs/trackers/study-checkin.dialog';
         // Remgoves Animations
         // NoopAnimationsModule,
         CardSwipeDialog,
-        StudyCheckinDialog
+        StudyCheckinDialog,
+        StudyCheckoutDialog,
+        ConfirmDialog
     ],
     providers: [
         UserService
     ],
-    entryComponents: [CardSwipeDialog, StudyCheckinDialog],
+    entryComponents: [CardSwipeDialog, StudyCheckinDialog, StudyCheckoutDialog, ConfirmDialog],
     bootstrap: [AppComponent]
 })
 
