@@ -1,18 +1,8 @@
-<div class="modal-dialog" role="document">
-    <div class="modal-content scrollable">
-        <div class="side-modal-wrapper">
-            <div class="vertical-align">
-                <div class="table-cell">
-                    <div class="modal-header">
-                        <h3>Add Study Visit</h3>
-                        <button type="button" class="close" data-dismiss="modal" style="margin-bottom:-10px;">&times;</button>
-                    </div>
-                    Please swipe card
-                    <form #addCurrencyForm="ngForm" (ngSubmit)="addCurrency(addCurrencyForm)" name="currencyForm"> 
-                        
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="modal-header">
+    <h5>Add Study Visit</h5>
 </div>
+Name: 
+<form #addCurrencyForm="ngForm" (ngSubmit)="addCurrency(addCurrencyForm)" name="currencyForm"> 
+    <label for="Reason">Reason</label>
+    <input [(ngModel)]="CardGrabber" #carddata="ngModel" class="form-control" id="carddata" name="carddata" autofocus>
+</form>

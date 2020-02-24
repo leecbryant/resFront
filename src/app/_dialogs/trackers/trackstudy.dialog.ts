@@ -17,7 +17,7 @@ export class TrackStudyDialog {
         this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
       }
     }
-    this.dialogRef.updateSize('300vw','300vw')
+    
   }
 
   onConfirmClick(): void {
