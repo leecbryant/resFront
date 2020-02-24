@@ -27,13 +27,17 @@
     <div *ngFor="let option of StudyArray">
         <div class="card">
             <div class="card-block">   
-                <h4>Study session with AM <strong>{{option.StaffName}}</strong></h4>
+                <h4>Study session with AM <strong>{{option.StaffName}}</strong> on {{option.StartDate | date}}</h4>
                 <span>
-                    <strong>Reason: </strong> {{option.Reason}}
+                    <strong>Student: </strong> {{option.FirstName | titlecase}} {{option.LastName | titlecase}} 
                 </span>
                 <br/>
                 <span>
                     <strong>Length: </strong> {{option.dateDifference.hours}} hours, {{option.dateDifference.minutes}} minutes, {{option.dateDifference.seconds}} seconds,
+                </span>
+                <br/>
+                <span>
+                    <strong>Reason: </strong> {{option.Reason}}
                 </span>
             </div>
         </div>
