@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { resolve } from 'q';
 import { SnackBar } from '../../_services/notification.service';
 import { APIService } from 'src/app/_services/api.service';
+import { Datum } from 'src/app/_interfaces/hall.interface';
 
 
 @Component({
@@ -13,6 +14,9 @@ import { APIService } from 'src/app/_services/api.service';
 })
 
 export class LoginComponent implements OnInit {
+  Halls: Datum[];
+  SelectedHall: '';
+// Other
   Username = '';
   Password = '';
   post: any;
@@ -24,27 +28,30 @@ export class LoginComponent implements OnInit {
   };
   error_message = '';
   loading = false;
-  returnUrl: string;
+  returnUrl: string;  
 
   constructor(private loginService: UserService,
               private router: Router,
               private route: ActivatedRoute,
               private _snackbar: SnackBar,
               private api: APIService) { }
-
+              
   ngOnInit() {
     localStorage.clear();
     this.route.queryParams
       .subscribe(params => this.returnUrl = params['returnUrl'] || '/dashboard');
 
     this.api.getHalls().subscribe(res => {
-      console.log(res)
+      this.Halls = res.data.filter(e => {
+        return e.id > 0;
+      });
     }, err => {
       console.log(err)
     });
   }
 
   async login(form) {
+    console.log(form.value)
     new Promise((resolve, reject) => {
       this.loginService.login(form.value).subscribe(res => {
         localStorage.setItem('token', res.token);
