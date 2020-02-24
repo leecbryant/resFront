@@ -5,17 +5,17 @@ import { APIService } from 'src/app/_services/api.service';
 import { SnackBar } from 'src/app/_services/notification.service';
 
 @Component({
-  selector: 'app-studytracker-dialog',
-  templateUrl: './trackstudy.dialog.html'
+  selector: 'app-study-checkin-dialog',
+  templateUrl: './study-checkin.dialog.html'
 })
-export class TrackStudyDialog implements OnInit {
+export class StudyCheckinDialog implements OnInit {
   swipeObj: any;
   Name = '';
   message: string = "";
   cancelButtonText = "Cancel"
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
-    private dialogRef: MatDialogRef<TrackStudyDialog>,
+    private dialogRef: MatDialogRef<StudyCheckinDialog>,
     private ds: DialogService,
     private api: APIService,
     private snack: SnackBar) {

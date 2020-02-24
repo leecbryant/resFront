@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SnackBar } from '../_services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CardSwipeDialog } from '../_dialogs/cardswipe.dialog';
-import { TrackStudyDialog } from '../_dialogs/trackers/trackstudy.dialog';
+import { StudyCheckinDialog } from '../_dialogs/trackers/study-checkin.dialog';
 
 @Component({
     templateUrl: 'dashboard.html'
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
     }
 
     StudyTracker() {
-        const dialogRef = this.dialog.open(TrackStudyDialog, {
+        const dialogRef = this.dialog.open(StudyCheckinDialog, {
             width: '600px',
             autoFocus: false,
             data: {

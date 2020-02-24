@@ -58,7 +58,7 @@ import { PageNotFoundComponent } from './_helpers/page-not-found/page-not-found.
 import { Sidebar_Directives } from './shared/directives/side-nav.directive';
 import { Cards_Directives } from './shared/directives/cards.directive';
 import { CardSwipeDialog } from './_dialogs/cardswipe.dialog';
-import { TrackStudyDialog } from './_dialogs/trackers/trackstudy.dialog';
+import { StudyCheckinDialog } from './_dialogs/trackers/study-checkin.dialog';
 
 @NgModule({
     imports: [
@@ -96,12 +96,12 @@ import { TrackStudyDialog } from './_dialogs/trackers/trackstudy.dialog';
         // Remgoves Animations
         // NoopAnimationsModule,
         CardSwipeDialog,
-        TrackStudyDialog
+        StudyCheckinDialog
     ],
     providers: [
         UserService
     ],
-    entryComponents: [CardSwipeDialog, TrackStudyDialog],
+    entryComponents: [CardSwipeDialog, StudyCheckinDialog],
     bootstrap: [AppComponent]
 })
 
