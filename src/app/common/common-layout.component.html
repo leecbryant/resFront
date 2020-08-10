@@ -66,7 +66,7 @@
             <div class="theme-configurator" [ngClass]="{'theme-config-open' : app.layout.themeConfigOpen}">
                     <div class="configurator-wrapper">
                         <div class="config-header">
-                            <h4 class="config-title">Accessibility Panel</h4>
+                            <h4 class="config-title">Customization Panel</h4>
                             <button class="config-close" (click)="app.layout.themeConfigOpen = !app.layout.themeConfigOpen">
                                 <i class="ti-close"></i>
                             </button>
@@ -134,15 +134,15 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a data-toggle="modal" href="" (click)="app.layout.themeConfigOpen = !app.layout.themeConfigOpen">
-                                            <i class="ti-palette pdd-right-10"></i>
-                                            <span>Accessibility</span>
+                                        <a href="" [routerLink]="['/users/settings']">
+                                            <i class="ti-settings pdd-right-10"></i>
+                                            <span>Account</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="" [routerLink]="['/users/settings']">
-                                            <i class="ti-settings pdd-right-10"></i>
-                                            <span>Profile</span>
+                                        <a data-toggle="modal" href="" (click)="app.layout.themeConfigOpen = !app.layout.themeConfigOpen">
+                                            <i class="ti-palette pdd-right-10"></i>
+                                            <span>Customize</span>
                                         </a>
                                     </li>
                                     <!-- <li>
