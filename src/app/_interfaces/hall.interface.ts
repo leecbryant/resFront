@@ -10,5 +10,4 @@ export interface Datum {
     Shortened:   string;
     Currency:    string;
     Mascot:      string;
-    ActiveCards: string;
 }
