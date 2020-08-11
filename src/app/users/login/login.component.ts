@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
     this.api.getHalls().subscribe(res => {
       this.Halls = res.data.filter(e => {
-        return e.id > 0;
+        return e.id > 1;
       });
     }, err => {
       console.log(err)
@@ -63,11 +63,11 @@ export class LoginComponent implements OnInit {
         reject(err);
       });
     }).then(result => {
-        this._snackbar.sendSuccess('Logged in.');
+        // this._snackbar.sendSuccess('Logged in.');
         this.router.navigate([this.returnUrl]);
     }).catch(err => {
         this._snackbar.sendError('Invalid username or password');
-        form.reset();
+        // form.reset();
         console.log("Error logging in: " + err)
     });
   }
