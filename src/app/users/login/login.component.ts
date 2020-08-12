@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
   }
 
   async login(form) {
-    console.log(form.value)
     new Promise((resolve, reject) => {
       this.loginService.login(form.value).subscribe(res => {
         localStorage.setItem('token', res.token);
