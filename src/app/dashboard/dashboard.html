@@ -1,31 +1,38 @@
 <div class="page-title"><h4>Dashboard</h4></div>
 <div *ngIf="loaded">
-    <div class="col-md-4" *ngFor="let card of Cards.data">
-        <div class="card">
-            <div class="overlay-dark" style="background-color:#00a2ed">
-                <div class="card-heading">
-                    <div class="mrg-top-50">
-                        <div class="{{card.TagType}}">
-                            {{card.Tag}}
+    <div  class="row">
+        <div class="col-md-4"  *ngFor="let card of Cards.data">
+            <div class="card">
+                <div class="overlay-dark" [style.background-color]="card.BGColor" style="cursor:pointer;" href="" routerLink="/{{card.PrimaryLink}}">
+                    <div class="card-heading">
+                        <div class="mrg-top-50">
+                            <!-- <div class="{{card.TagType}}" style="pointer-events: none;">
+                                {{card.Tag}}
+                            </div> -->
+                            <h2 style="pointer-events: none;">
+                                {{card.Title}}
+                            </h2>
                         </div>
-                        <h2>
-                            {{card.Title}}
-                        </h2>
                     </div>
                 </div>
-            </div>
-            <div class="card-body">
-                <ul class="list-unstyled list-inline text-right pdd-vertical-5">
-                    <li class="list-inline-item">
-                        <a class="btn btn-info" href="" [routerLink]="['/studyhours']">Logs</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <button (click)="StudyCheckout()" class="btn btn-danger">Checkout</button>
-                    </li>
-                    <li class="list-inline-item">
-                        <button (click)="StudyCheckin()" class="btn btn-success">Checkin</button>
-                    </li>
-                </ul>
+                <div class="card-body" *ngIf="card.Button1 != null && card.Button2 != null  && card.Button3 != null">
+                    <ul class="list-unstyled list-inline text-right pdd-vertical-5">
+                        <li class="list-inline-item" *ngIf="card.Button1 != null">
+                            <a *ngIf="card.Button1.Type == 'Link'" [ngClass]="card.Button1.Class" routerLink="/{{card.Button1.TypeAction}}">{{card.Button1.Title}}</a>
+                            <button *ngIf="card.Button1.Type == 'Button'" (click)="card.Button1.TypeAction" [ngClass]="card.Button1.Class">{{card.Button1.Title}}</button>
+                        </li>
+
+                        <li class="list-inline-item" *ngIf="card.Button2 != null">
+                            <a *ngIf="card.Button2.Type == 'Link'" [ngClass]="card.Button2.Class" routerLink="/{{card.Button2.TypeAction}}">{{card.Button2.Title}}</a>
+                            <button *ngIf="card.Button2.Type == 'Button'" (click)="callFunction(card.Button2.TypeAction)" [ngClass]="card.Button2.Class">{{card.Button2.Title}}</button>
+                        </li>
+
+                        <li class="list-inline-item" *ngIf="card.Button3 != null">
+                            <a *ngIf="card.Button3.Type == 'Link'" [ngClass]="card.Button3.Class" routerLink="/{{card.Button3.TypeAction}}">{{card.Button3.Title}}</a>
+                            <button *ngIf="card.Button3.Type == 'Button'" (click)="callFunction(card.Button3.TypeAction)" [ngClass]="card.Button3.Class">{{card.Button3.Title}}</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

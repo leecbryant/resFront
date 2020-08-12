@@ -12,9 +12,9 @@ import { Cards } from '../_interfaces/card.interface';
 })
 
 export class DashboardComponent implements OnInit {
-    constructor(private snackbar: SnackBar, public dialog: MatDialog, private api: APIService) {
-    }
+    constructor(private snackbar: SnackBar, public dialog: MatDialog, private api: APIService) {} 
     Cards: Cards;
+    
     loaded = false;
     ngOnInit() {
         this.api.getCards().subscribe(res => {
@@ -54,5 +54,14 @@ export class DashboardComponent implements OnInit {
         }).afterClosed().subscribe(res => {
             // console.log(res)
         });
+    }
+
+    callFunction(name: string) {
+        if(name == "StudyCheckout") {
+            this.StudyCheckout();
+        }
+        if(name == "StudyCheckin") {
+            this.StudyCheckin();
+        }
     }
 }
