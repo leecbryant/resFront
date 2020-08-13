@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body" *ngIf="card.Button1 != null && card.Button2 != null  && card.Button3 != null">
+                <div class="card-body" *ngIf="card.Button1 != null || card.Button2 != null  || card.Button3 != null">
                     <ul class="list-unstyled list-inline text-right pdd-vertical-5">
                         <li class="list-inline-item" *ngIf="card.Button1 != null">
                             <a *ngIf="card.Button1.Type == 'Link'" [ngClass]="card.Button1.Class" routerLink="/{{card.Button1.TypeAction}}">{{card.Button1.Title}}</a>
