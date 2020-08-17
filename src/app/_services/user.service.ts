@@ -8,6 +8,10 @@ import { User } from '../_interfaces/user.interface';
 // Custom
 import { environment } from '../../environments/environment';
 import { Profile } from '../_interfaces/profile.interface';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+
+const helper = new JwtHelperService();
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -52,5 +56,9 @@ export class UserService {
 
   updateAccountInfo(data): Observable<any> {
     return this.http.put<any>(environment.serverName + 'api/users/userinfo', data);
+  }
+
+  getTokenData(): Observable<any> {
+      return helper.decodeToken(localStorage.getItem('token'));
   }
 }
