@@ -6,8 +6,8 @@ import { StudyCheckinDialog } from '../_dialogs/trackers/study-checkin.dialog';
 import { StudyCheckoutDialog } from '../_dialogs/trackers/study-checkout-dialog';
 import { APIService } from '../_services/api.service';
 import { Cards } from '../_interfaces/card.interface';
-import { AddCurrencyDialog } from '../_dialogs/currency/AddCurrency.dialog';
-import { EarnableCurrencyData } from '../_interfaces/currency-earnable.interface';
+import { AddCurrencyDialog } from '../_dialogs/currency/LogCurrency.dialog';
+import { LoggableCurrencyData } from '../_interfaces/loggable.interface';
 import { UserService } from '../_services/user.service';
 import { ResidentData } from '../_interfaces/resident.interface';
 
@@ -18,16 +18,17 @@ import { ResidentData } from '../_interfaces/resident.interface';
 export class DashboardComponent implements OnInit {
     constructor(private snackbar: SnackBar, public dialog: MatDialog, private api: APIService, private user: UserService) {} 
     Cards: Cards;
-    EarnableCurrency: EarnableCurrencyData[];
+    LoggableCurrency: LoggableCurrencyData[];
     Residents: ResidentData[];
     loaded = false;
     ngOnInit() {
         this.api.getCards().subscribe(res => {
             this.Cards = res;
-            this.api.getCurrencyEarnables().subscribe(cur => {
-                this.EarnableCurrency = cur.data.filter(key => {
+            this.api.getCurrencyLoggable().subscribe(cur => {
+                this.LoggableCurrency = cur.data.filter(key => {
                     return key.Hall == this.user.getTokenData()['SessionHall'];
                 });
+                console.log(this.LoggableCurrency);
                 this.api.getResidents().subscribe(resi => {
                     this.Residents = resi.data.filter(key => {
                         return key.HallID == this.user.getTokenData()['SessionHall'];
@@ -78,7 +79,31 @@ export class DashboardComponent implements OnInit {
             autoFocus: false,
             data: {
             message: 'HelloWorld',
-            Earnable: this.EarnableCurrency,
+            Loggable: this.LoggableCurrency.filter(key => {
+                return key.Type == "E"
+            }),
+            Type: "E",
+            Residents: this.Residents,
+            buttonText: {
+                cancel: 'Done'
+                }
+            },
+        }).afterClosed().subscribe(res => {
+            // console.log(res)
+        });
+    }
+
+    SellCurrency() {
+        const dialogRef = this.dialog.open(AddCurrencyDialog, {
+            panelClass: 'custom-dialog-container',
+            width: '800px',
+            autoFocus: false,
+            data: {
+            message: 'HelloWorld',
+            Loggable: this.LoggableCurrency.filter(key => {
+                return key.Type == "S"
+            }),
+            Type: "S",
             Residents: this.Residents,
             buttonText: {
                 cancel: 'Done'
@@ -98,6 +123,9 @@ export class DashboardComponent implements OnInit {
         }
         if(name == "AddCurrency") {
             this.AddCurrency(); 
-        }       
+        }  
+        if(name == "SellCurrency") {
+            this.SellCurrency();
+        }     
     }
 }

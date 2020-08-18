@@ -25,6 +25,9 @@ export class CurrencyComponent implements OnInit {
             this.BalanceArray = res.data.filter(key => {
                 return key.HallID == this.user.getTokenData()['SessionHall'];
             });
+
+            this.BalanceArray = this.BalanceArray.filter((v, i, a) => a.indexOf(v) === i); 
+
         }, 
         err => {
             this.snack.sendError("Error grabbing balances");
@@ -55,7 +58,10 @@ export class CurrencyComponent implements OnInit {
     getBalance() {
         var total = 0;
         for(var i = 0; i < this.BalanceArray.length; i++){
-            total += this.BalanceArray[i].Amount;
+            if(this.BalanceArray[i].LogType == "E")
+                total += this.BalanceArray[i].Amount;
+            else 
+                total -= this.BalanceArray[i].Amount;
         }
         return total;
     }

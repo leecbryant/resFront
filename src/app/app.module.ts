@@ -62,7 +62,7 @@ import { StudyCheckinDialog } from './_dialogs/trackers/study-checkin.dialog';
 import { StudyCheckoutDialog } from './_dialogs/trackers/study-checkout-dialog';
 import { ConfirmDialog } from './_dialogs/confirm.dialog';
 import { StudyHoursLogComponent } from './modules/studyhours/study-log.component';
-import { AddCurrencyDialog } from './_dialogs/currency/AddCurrency.dialog';
+import { AddCurrencyDialog } from './_dialogs/currency/LogCurrency.dialog';
 import { AddResidentDialog } from './_dialogs/addresident.dialog';
 
 @NgModule({

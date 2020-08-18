@@ -8,7 +8,7 @@ import { Hall } from '../_interfaces/hall.interface';
 import { Student } from '../_interfaces/student.interface';
 import { Study } from '../_interfaces/study.interface';
 import { Cards } from '../_interfaces/card.interface';
-import { EarnableCurrency } from '../_interfaces/currency-earnable.interface';
+import { LoggableCurrency } from '../_interfaces/loggable.interface';
 import { Resident } from '../_interfaces/resident.interface';
 import { BalanceData, Balance } from '../_interfaces/balances.interface';
 import { AllBalances } from '../_interfaces/balances-all.interface';
@@ -67,11 +67,11 @@ export class APIService {
     return this.http.put<any>(environment.serverName + 'api/base/study', data);
   }
 
-  getCurrencyEarnables(): Observable<EarnableCurrency> {
-    return this.http.get<EarnableCurrency>(environment.serverName + 'api/currency/earn', );
+  getCurrencyLoggable(): Observable<LoggableCurrency> {
+    return this.http.get<LoggableCurrency>(environment.serverName + 'api/currency/loggable', );
   }
 
-  newCurrencyEarnable(data): Observable<any> {
+  newCurrencyLoggable(data): Observable<any> {
     return this.http.post<any>(environment.serverName + 'api/currency/balances', data, {
       reportProgress: true,
       observe: 'response'

@@ -3,30 +3,31 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dial
 import { SnackBar } from '../../_services/notification.service';
 import { APIService } from '../../_services/api.service';
 import { Student } from '../../_interfaces/student.interface';
-import { EarnableCurrency, EarnableCurrencyData } from 'src/app/_interfaces/currency-earnable.interface';
+import { LoggableCurrencyData } from 'src/app/_interfaces/loggable.interface';
 import { ResidentData } from 'src/app/_interfaces/resident.interface';
 import { AddResidentDialog } from '../addresident.dialog';
 
 @Component({
   selector: 'app-alert-dialog',
-  templateUrl: './AddCurrency.dialog.html'
+  templateUrl: './LogCurrency.dialog.html'
 })
 export class AddCurrencyDialog {
   Data: Student;
 
 
   SelectedReason: Number;
-  SelectedResidents: Number[] = [];
-
+  SelectedResidents: Number[];
+  SelectedResident: Number;
   CardGrabber: string;
   CardReady = true;
   message: string = ""
   cancelButtonText = "Cancel"
   loading = true;
   submit = false;
-
-  Earnable: EarnableCurrencyData[];
+  Type: string;
+  Loggable: LoggableCurrencyData[];
   Residents: ResidentData[];
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<AddCurrencyDialog>,
@@ -34,9 +35,10 @@ export class AddCurrencyDialog {
     private api: APIService,
     public dialog: MatDialog) {
     if (data) {
-      this.Earnable = data.Earnable;
+      this.Loggable = data.Loggable;
       this.Residents = data.Residents;
-      console.log(this.Earnable)
+      this.Type = data.Type;
+      console.log(this.Loggable);
       this.message = data.message || this.message;
       if (data.buttonText) {
         this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
@@ -45,26 +47,70 @@ export class AddCurrencyDialog {
   }
 
   async onSubmit(form) {
-    await this.SelectedResidents.forEach(resi => {
+    if(this.Type == "S") {
       let submitObj = {
         token: localStorage.getItem('token'),
-        StudentID: resi,
+        StudentID: this.SelectedResident,
         Type: 'E',
         TypeID: this.SelectedReason
       }
-
-      console.log(submitObj)
+      let Balance = 0;
+      console.log(this.SelectedResident)
       new Promise((resolve, reject) => {
-        this.api.newCurrencyEarnable(submitObj).subscribe(res => {
+        this.api.getAllBalanceS().subscribe(res => {
+          res.data.filter(key => {
+            return key.StudentID == this.SelectedResident
+          }).forEach(key => {
+            if(key.LogType == "E")
+              Balance += key.Amount
+            else  
+              Balance -= key.Amount
+          });
           resolve();
-        }, err => {
+        },
+        err => {
           reject();
-          console.log(err);
-        })
+        });
+      }).then(obj => {
+        console.log(Balance)
+        if(this.Loggable.find(key => {
+          return key.id == this.SelectedReason
+        }).Amount > Balance) {
+          this.snackbar.sendError("Balance must be greater than item purchase price")
+        } else {
+          new Promise((resolve, reject) => {
+            this.api.newCurrencyLoggable(submitObj).subscribe(res => {
+              resolve();
+            }, err => {
+              reject();
+              console.log(err);
+            })
+          });
+          this.snackbar.sendSuccess("Item sold to student");
+          this.dialogRef.close();
+        }
       });
-    });
-    this.dialogRef.close();
-    this.snackbar.sendSuccess("Currency added to student(s)");
+    } else {
+      await this.SelectedResidents.forEach(resi => {
+        let submitObj = {
+          token: localStorage.getItem('token'),
+          StudentID: resi,
+          Type: 'E',
+          TypeID: this.SelectedReason
+        }
+        
+        new Promise((resolve, reject) => {
+            this.api.newCurrencyLoggable(submitObj).subscribe(res => {
+              resolve();
+            }, err => {
+              reject();
+              console.log(err);
+            })
+          });
+        this.snackbar.sendSuccess("Currency added to student(s)");
+        this.dialogRef.close();
+      });
+    }
   }
 
   AddResi() {
