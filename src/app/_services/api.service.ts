@@ -11,6 +11,7 @@ import { Cards } from '../_interfaces/card.interface';
 import { EarnableCurrency } from '../_interfaces/currency-earnable.interface';
 import { Resident } from '../_interfaces/resident.interface';
 import { BalanceData, Balance } from '../_interfaces/balances.interface';
+import { AllBalances } from '../_interfaces/balances-all.interface';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -79,5 +80,9 @@ export class APIService {
 
   getResidents(): Observable<Resident> {
     return this.http.get<Resident>(environment.serverName + 'api/base/students', );
+  }
+
+  getAllBalanceS(): Observable<AllBalances> {
+    return this.http.get<AllBalances>(environment.serverName + 'api/currency/balances/all');
   }
 }

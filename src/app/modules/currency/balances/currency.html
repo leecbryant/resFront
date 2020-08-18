@@ -1,1 +1,48 @@
-Currency page
+
+<mat-progress-bar mode="buffer" *ngIf="!userSelected"></mat-progress-bar>
+
+<div class="card" *ngIf="!userSelected">
+    <div class="card-block">   
+            <h2>Resident Balance Search</h2>
+            <form #form="ngForm" (ngSubmit)="submit(form)">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Student">Resident Name</label>
+                        <input [(ngModel)]="Student" [matAutocomplete]="auto" #name="ngModel" type="text" class="form-control" placeholder="Resident Name" name="name" id="name" required [ngClass]="{'error': !name.valid && (name.dirty || name.touched)}" (keydown)="_filter()">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of BalanceArray" [value]="option.StudentID" (onSelectionChange)="submit(option.StudentID)">
+                                {{option.FirstName | titlecase}} {{option.LastName | titlecase}}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <label class="error" *ngIf="!name.valid && (name.dirty || name.touched)">Resident Name is required</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="displayData">
+    <h4>Overview</h4>
+    <div class="card">
+        <div class="card-block">   
+            <h2>{{getName()}} has {{getBalance()}} {{getHallCurrency()}} from {{getTransactTotal()}} transactions</h2>
+        </div>
+    </div>  
+    <h4>Transactions</h4>
+    <div *ngFor="let option of BalanceArray">
+        <div class="card">
+            <div class="card-block">   
+                <h4>Transaction on {{option.Time | date}}</h4>
+                <span>
+                    <strong>{{option.LogType == 'E' ? 'Earned Reason' : 'Item Purchased'}}: </strong> {{option.Name}}
+                </span>
+                <br/>
+                <span>
+                    <strong>{{option.LogType == 'E' ? 'Earned Amount' : 'Item Cost'}}: </strong> {{option.Amount}} {{option.Currency}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

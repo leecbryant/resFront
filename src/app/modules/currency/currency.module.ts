@@ -14,6 +14,7 @@ import { HttpModule } from '@angular/http';
 import { ArchwizardModule } from 'angular-archwizard';
 import { NgSelectizeModule } from 'ng-selectize';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatAutocomplete, MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         DataTablesModule,
         CommonModule,
         NgSelectizeModule,
-        FormsModule
+        FormsModule,
+        MatAutocompleteModule
     ],
     declarations: [
         CurrencyComponent
