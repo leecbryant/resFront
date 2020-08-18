@@ -62,6 +62,8 @@ import { StudyCheckinDialog } from './_dialogs/trackers/study-checkin.dialog';
 import { StudyCheckoutDialog } from './_dialogs/trackers/study-checkout-dialog';
 import { ConfirmDialog } from './_dialogs/confirm.dialog';
 import { StudyHoursLogComponent } from './modules/studyhours/study-log.component';
+import { AddCurrencyDialog } from './_dialogs/currency/AddCurrency.dialog';
+import { AddResidentDialog } from './_dialogs/addresident.dialog';
 
 @NgModule({
     imports: [
@@ -102,12 +104,14 @@ import { StudyHoursLogComponent } from './modules/studyhours/study-log.component
         StudyCheckinDialog,
         StudyCheckoutDialog,
         ConfirmDialog,
-        StudyHoursLogComponent
+        StudyHoursLogComponent,
+        AddCurrencyDialog,
+        AddResidentDialog
     ],
     providers: [
         UserService
     ],
-    entryComponents: [CardSwipeDialog, StudyCheckinDialog, StudyCheckoutDialog, ConfirmDialog],
+    entryComponents: [CardSwipeDialog, StudyCheckinDialog, StudyCheckoutDialog, ConfirmDialog, AddCurrencyDialog, AddResidentDialog],
     bootstrap: [AppComponent]
 })
 

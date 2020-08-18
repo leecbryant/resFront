@@ -8,6 +8,9 @@ import { Hall } from '../_interfaces/hall.interface';
 import { Student } from '../_interfaces/student.interface';
 import { Study } from '../_interfaces/study.interface';
 import { Cards } from '../_interfaces/card.interface';
+import { EarnableCurrency } from '../_interfaces/currency-earnable.interface';
+import { Resident } from '../_interfaces/resident.interface';
+import { BalanceData, Balance } from '../_interfaces/balances.interface';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -61,5 +64,20 @@ export class APIService {
 
   updateStudy(data): Observable<any> {
     return this.http.put<any>(environment.serverName + 'api/base/study', data);
+  }
+
+  getCurrencyEarnables(): Observable<EarnableCurrency> {
+    return this.http.get<EarnableCurrency>(environment.serverName + 'api/currency/earn', );
+  }
+
+  newCurrencyEarnable(data): Observable<any> {
+    return this.http.post<any>(environment.serverName + 'api/currency/balances', data, {
+      reportProgress: true,
+      observe: 'response'
+    });
+  }
+
+  getResidents(): Observable<Resident> {
+    return this.http.get<Resident>(environment.serverName + 'api/base/students', );
   }
 }

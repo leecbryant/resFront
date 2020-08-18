@@ -26,7 +26,7 @@ export const AppRoutes: Routes = [
             },
             {
                 path: 'currency',
-                loadChildren: './currency/currency.module#CurrencyModule',
+                loadChildren: './modules/currency/currency.module#CurrencyModule',
                 canActivate: [AuthGuard]
             },
             {
