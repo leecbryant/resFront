@@ -7,7 +7,7 @@ import { StudyArray } from 'src/app/_interfaces/study.interface';
 })
 
 export class StudyHoursLogComponent implements OnInit {
-    StudyArray: StudyArray[];''
+    StudyArray: StudyArray[];
     UniqueStudyArray: StudyArray[];
     UniqueBackupArray: StudyArray[];
     Student = '';
