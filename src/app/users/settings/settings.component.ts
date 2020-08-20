@@ -60,8 +60,7 @@ export class SettingsComponent implements OnInit {
             form.reset();
         } else {
             let obj = {
-                form: form.value,
-                token: localStorage.getItem('token')
+                form: form.value
             }
             new Promise((resolve, reject) => {
               this.api.updateAccountInfo(obj).subscribe(res => {

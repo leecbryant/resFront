@@ -28,7 +28,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(data): Observable<User> {
-    return this.http.post<User>(environment.serverName + 'api/users/login', data);
+    return this.http.post<User>(environment.serverName + 'api/users/login', data, httpOptions);
   }
 
   validate(data): Observable<any> {
@@ -43,7 +43,7 @@ export class UserService {
   }
 
   updateAccessibility(data):Observable<any> {
-    return this.http.put<any>(environment.serverName + 'api/users/accessibility', data);
+    return this.http.put<any>(environment.serverName + 'api/users/accessibility', data, httpOptions);
   }
 
   getRegistration(data: string): Observable<Registration> {
@@ -55,7 +55,7 @@ export class UserService {
   }
 
   updateAccountInfo(data): Observable<any> {
-    return this.http.put<any>(environment.serverName + 'api/users/userinfo', data);
+    return this.http.put<any>(environment.serverName + 'api/users/userinfo', data, httpOptions);
   }
 
   getTokenData(): Observable<any> {
