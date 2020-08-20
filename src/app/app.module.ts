@@ -68,6 +68,8 @@ import { Page500Component } from './_helpers/500/500.component';
 import { Page404Component } from './_helpers/404/404.component';
 import { TokenInterceptor } from './_interceptors/http-token.interceptor';
 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -124,7 +126,12 @@ import { TokenInterceptor } from './_interceptors/http-token.interceptor';
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true,
+          },
+          { // Fix for 404 error out on refresh
+              provide: LocationStrategy, 
+              useClass: HashLocationStrategy
           }
+
     ],
     entryComponents: [CardSwipeDialog, StudyCheckinDialog, StudyCheckoutDialog, ConfirmDialog, AddCurrencyDialog, AddResidentDialog],
     bootstrap: [AppComponent]
