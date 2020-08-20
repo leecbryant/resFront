@@ -15,6 +15,7 @@ import { ArchwizardModule } from 'angular-archwizard';
 import { NgSelectizeModule } from 'ng-selectize';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatAutocomplete, MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MatAutocomplete, MatAutocompleteModule } from '@angular/material/autoco
         CommonModule,
         NgSelectizeModule,
         FormsModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatProgressBarModule
     ],
     declarations: [
         CurrencyComponent
