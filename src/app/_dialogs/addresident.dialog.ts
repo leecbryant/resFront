@@ -37,7 +37,7 @@ export class AddResidentDialog {
 
   async onSubmit(form) {
     await new Promise((resolve, reject) => {
-      this.api.newStudent({ form: form.value, token: localStorage.getItem('token')}).subscribe(res => {
+      this.api.newStudent({ form: form.value }).subscribe(res => {
         resolve();
         this.dialogRef.close({id: res.body.data.insertId, firstname: this.FirstName, lastname: this.LastName, hall: this.user.getTokenData()['SessionHall'], room: this.RoomNumber});
       },

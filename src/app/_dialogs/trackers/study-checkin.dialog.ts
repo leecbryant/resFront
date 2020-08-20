@@ -42,8 +42,7 @@ export class StudyCheckinDialog implements OnInit {
   onSubmit(form): void {
     let submitObj = {
       reason: form.value.reason,
-      swipeData: this.swipeObj,
-      token: localStorage.getItem('token')
+      swipeData: this.swipeObj
     }
     this.api.newStudy(submitObj).subscribe(res => {
       this.snack.sendSuccess("Study visit initiated");

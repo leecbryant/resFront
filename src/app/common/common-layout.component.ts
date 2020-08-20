@@ -79,8 +79,7 @@ export class CommonLayoutComponent implements OnInit {
         let obj = {
             Header: this.headerSelected,
             SideNav: this.sidenavSelected,
-            RTL: this.app.layout.rtlActived,
-            token: localStorage.getItem('token')
+            RTL: this.app.layout.rtlActived
         }
 
         this.userService.updateAccessibility(obj).subscribe(res => {

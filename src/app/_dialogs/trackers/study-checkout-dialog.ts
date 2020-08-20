@@ -81,8 +81,7 @@ export class StudyCheckoutDialog implements OnInit {
     }).afterClosed().subscribe(res => {
         if(res) {
           let submitObj = {
-            row,
-            token: localStorage.getItem('token')
+            row
           }
           this.api.updateStudy(submitObj).subscribe(studyres => {
             this.dataSource.data = this.StudyArray = this.dataSource.data.filter(e => {

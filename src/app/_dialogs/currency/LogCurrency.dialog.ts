@@ -49,7 +49,6 @@ export class AddCurrencyDialog {
   async onSubmit(form) {
     if(this.Type == "S") {
       let submitObj = {
-        token: localStorage.getItem('token'),
         StudentID: this.SelectedResident,
         Type: 'E',
         TypeID: this.SelectedReason
@@ -93,7 +92,6 @@ export class AddCurrencyDialog {
     } else {
       await this.SelectedResidents.forEach(resi => {
         let submitObj = {
-          token: localStorage.getItem('token'),
           StudentID: resi,
           Type: 'E',
           TypeID: this.SelectedReason
