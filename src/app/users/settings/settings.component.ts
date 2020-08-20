@@ -28,13 +28,15 @@ export class SettingsComponent implements OnInit {
     // Errors
     uniqueErrorEmail = false;
     invalidCounter = 0;
+
+    loaded = false;
     constructor(private api: UserService,
         private _snackbar: SnackBar,
         private router: Router
         ) { }
 
-    async ngOnInit() {
-        await new Promise((resolve, reject) => {
+    ngOnInit() {
+        new Promise((resolve, reject) => {
             this.api.getAccountInfo(localStorage.getItem('token')).subscribe(res => {
                 this.Data = res;
                 resolve(res);
@@ -45,6 +47,7 @@ export class SettingsComponent implements OnInit {
             this.Name = this.Data.base.Name;
             this.UsernameField = this.Data.base.Username;
             this.Email = this.Data.base.Email;
+            this.loaded = true;
         }).catch(err => {
             console.log(err)
         });

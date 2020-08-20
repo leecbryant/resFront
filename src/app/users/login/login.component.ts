@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     Access: number
   };
   error_message = '';
-  loading = false;
+  loaded = false;
   returnUrl: string;  
 
   constructor(private loginService: UserService,
@@ -38,15 +38,26 @@ export class LoginComponent implements OnInit {
               
   ngOnInit() {
     localStorage.clear();
-    this.route.queryParams
-      .subscribe(params => this.returnUrl = params['returnUrl'] || '/dashboard');
-
-    this.api.getHalls().subscribe(res => {
-      this.Halls = res.data.filter(e => {
-        return e.id > 1;
-      });
+    this.route.queryParams.subscribe(params => this.returnUrl = params['returnUrl'] || '/dashboard');
+    this.loadHalls().then(result => {
+      this.loaded = true;
     }, err => {
-      console.log(err)
+      console.log(err);
+    });
+  }
+
+  async loadHalls() {
+    new Promise((resolve, reject) => {
+      this.api.getHalls().subscribe(res => {
+        this.Halls = res.data.filter(e => {
+          return e.id > 1;
+        });
+        resolve()
+      }, err => {
+        console.log(err);
+        this._snackbar.sendError("Error loading login page: " + err);
+        reject();
+      });
     });
   }
 

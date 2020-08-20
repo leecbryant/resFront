@@ -20,18 +20,25 @@ export class CurrencyComponent implements OnInit {
      userSelected = false;
      userLoaded = true;
      displayData = false;
+
+    loaded = false;
     ngOnInit(): void {
-        this.api.getAllBalanceS().subscribe(res => {
-            this.BalanceArray = res.data.filter(key => {
-                return key.HallID == this.user.getTokenData()['SessionHall'];
+        new Promise((resolve, reject) => {
+            this.api.getAllBalanceS().subscribe(res => {
+                this.BalanceArray = res.data.filter(key => {
+                    return key.HallID == this.user.getTokenData()['SessionHall'];
+                });
+                resolve();
+            }, 
+            err => {
+                this.snack.sendError("Error grabbing balances: " + err);
+                reject()
             });
-
-            this.BalanceArray = this.BalanceArray.filter((v, i, a) => a.indexOf(v) === i); 
-
-        }, 
-        err => {
-            this.snack.sendError("Error grabbing balances");
-        })
+        }).then(result => {
+            this.loaded = true;
+        }, err => {
+            console.log(err)
+        });
     }
 
     _filter() {
