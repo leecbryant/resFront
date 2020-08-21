@@ -69,6 +69,7 @@ import { Page404Component } from './_helpers/404/404.component';
 import { TokenInterceptor } from './_interceptors/http-token.interceptor';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
     imports: [
@@ -117,12 +118,12 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ],
     providers: [
         UserService,
-        {
+        { // Catches errors
             provide: HTTP_INTERCEPTORS,
             useClass: HttpErrorInterceptor,
             multi: true
           },
-          {
+          { // Forces Bearer token into header
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true,
