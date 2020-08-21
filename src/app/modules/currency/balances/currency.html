@@ -23,7 +23,13 @@
     </div>
 
     <div *ngIf="displayData">
-        <h4>Overview</h4>
+        
+        <h4>
+            <button (click)="refreshComponent()" mat-button aria-label="Example icon-button with a heart icon">
+                <mat-icon>navigate_before</mat-icon>
+                Back
+            </button>
+        </h4>
         <div class="card">
             <div class="card-block">   
                 <h2>{{getName()}} has {{getBalance()}} {{getHallCurrency()}} from {{getTransactTotal()}} transactions</h2>

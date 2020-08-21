@@ -24,10 +24,11 @@ export class CurrencyComponent implements OnInit {
     loaded = false;
     ngOnInit(): void {
         new Promise((resolve, reject) => {
-            this.api.getAllBalanceS().subscribe(res => {
+            this.api.getAllBalancesUnique().subscribe(res => {
                 this.BalanceArray = res.data.filter(key => {
                     return key.HallID == this.user.getTokenData()['SessionHall'];
                 });
+                console.log(this.BalanceArray)
                 resolve();
             }, 
             err => {
@@ -51,7 +52,7 @@ export class CurrencyComponent implements OnInit {
         this.userSelected = true;
         this.userLoaded = false;
 
-        this.api.getAllBalanceS().subscribe(res => {
+        this.api.getAllBalances().subscribe(res => {
             this.BalanceArray = res.data.filter(e => {
                 return e.StudentID === form && e.Time != null
             });
@@ -83,5 +84,32 @@ export class CurrencyComponent implements OnInit {
 
     getTransactTotal() {
         return this.BalanceArray.length;
+    }
+
+    refreshComponent() {
+        this.Student = '';
+         // Loaders
+        this.userSelected = false;
+        this.userLoaded = true;
+        this.displayData = false;
+
+        this.loaded = false;
+        new Promise((resolve, reject) => {
+            this.api.getAllBalancesUnique().subscribe(res => {
+                this.BalanceArray = res.data.filter(key => {
+                    return key.HallID == this.user.getTokenData()['SessionHall'];
+                });
+                console.log(this.BalanceArray)
+                resolve();
+            }, 
+            err => {
+                this.snack.sendError("Error grabbing balances: " + err);
+                reject()
+            });
+        }).then(result => {
+            this.loaded = true;
+        }, err => {
+            console.log(err)
+        });
     }
 }

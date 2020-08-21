@@ -86,7 +86,11 @@ export class APIService {
     return this.http.get<Resident>(environment.serverName + 'api/base/students', httpOptions);
   }
 
-  getAllBalanceS(): Observable<AllBalances> {
+  getAllBalances(): Observable<AllBalances> {
     return this.http.get<AllBalances>(environment.serverName + 'api/currency/balances/all', httpOptions);
+  }
+
+  getAllBalancesUnique(): Observable<AllBalances> {
+    return this.http.get<AllBalances>(environment.serverName + 'api/currency/balances/all/unique', httpOptions);
   }
 }

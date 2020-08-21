@@ -16,6 +16,8 @@ import { NgSelectizeModule } from 'ng-selectize';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatAutocomplete, MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         NgSelectizeModule,
         FormsModule,
         MatAutocompleteModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatButtonModule,
+        MatIconModule
     ],
     declarations: [
         CurrencyComponent
