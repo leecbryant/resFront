@@ -126,11 +126,11 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true,
-          },
-          { // Fix for 404 error out on refresh
-              provide: LocationStrategy, 
-              useClass: HashLocationStrategy
           }
+        //   { // Fix for 404 error out on refresh
+        //       provide: LocationStrategy, 
+        //       useClass: HashLocationStrategy
+        //   }
 
     ],
     entryComponents: [CardSwipeDialog, StudyCheckinDialog, StudyCheckoutDialog, ConfirmDialog, AddCurrencyDialog, AddResidentDialog],
