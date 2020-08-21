@@ -25,10 +25,10 @@ export class DashboardComponent implements OnInit {
         this.api.getCards().subscribe(res => {
             this.Cards = res;
             this.api.getCurrencyLoggable().subscribe(cur => {
+                console.log(this.user.getTokenData())
                 this.LoggableCurrency = cur.data.filter(key => {
                     return key.Hall == this.user.getTokenData()['SessionHall'];
                 });
-                console.log(this.LoggableCurrency);
                 this.api.getResidents().subscribe(resi => {
                     this.Residents = resi.data.filter(key => {
                         return key.HallID == this.user.getTokenData()['SessionHall'];
