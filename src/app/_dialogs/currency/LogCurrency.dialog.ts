@@ -56,7 +56,7 @@ export class AddCurrencyDialog {
       let Balance = 0;
       console.log(this.SelectedResident)
       new Promise((resolve, reject) => {
-        this.api.getAllBalanceS().subscribe(res => {
+        this.api.getAllBalances().subscribe(res => {
           res.data.filter(key => {
             return key.StudentID == this.SelectedResident
           }).forEach(key => {
