@@ -39,7 +39,7 @@
         <div *ngFor="let option of BalanceArray">
             <div class="card">
                 <div class="card-block">   
-                    <h4>Transaction on {{option.Time | date}}</h4>
+                    <h4>Transaction on {{option.Time | date : 'short'}}</h4>
                     <span>
                         <strong>{{option.LogType == 'E' ? 'Earned Reason' : 'Item Purchased'}}: </strong> {{option.Name}}
                     </span>
