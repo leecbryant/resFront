@@ -38,12 +38,12 @@
                           <div class="col-md-12">
                               <div class="form-group">
                                   <label for="Hall">Hall</label>
-                                  <select [(ngModel)]="SelectedHall" #hall="ngModel" class="form-control" id="hall" placeholder="Hall" name="hall" required [ngClass]="{'error': !hall.valid && (hall.dirty || hall.touched)}">
-                                    <option *ngFor="let hall of Halls"
+                                  <ng-select [(ngModel)]="SelectedHall" #hall="ngModel" id="hall" placeholder="Hall" name="hall" required [ngClass]="{'error': !hall.valid && (hall.dirty || hall.touched)}">
+                                    <ng-option *ngFor="let hall of Halls"
                                         [value]=hall.id>
                                       {{hall.Name}}
-                                    </option>
-                                  </select>
+                                    </ng-option>
+                                  </ng-select>
                                   <label *ngIf="!hall.valid && (hall.dirty || hall.touched)" class="error" >Hall is required</label>
                               </div>
                           </div>
