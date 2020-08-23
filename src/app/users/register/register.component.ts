@@ -42,12 +42,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.loadRegistration().then(result => {
-        console.log(result)
         this.loaded = true
     }).catch(err => {
         console.log("Error in loading page: " + err)
     });
-    console.log(this.Hall)
   }
 
   async loadRegistration() {

@@ -6,8 +6,9 @@ import { CommonLayoutComponent } from './common/common-layout.component';
 import { AuthGuard } from './_guards';
 import { LoginComponent } from './users/login/login.component';
 import { RegisterComponent } from './users/register/register.component';
-import { PageNotFoundComponent } from './_helpers/page-not-found/page-not-found.component';
 import { StudyHoursLogComponent } from './modules/studyhours/study-log.component';
+import { Page404Component } from './_helpers/404/404.component';
+import { Page500Component } from './_helpers/500/500.component';
 
 export const AppRoutes: Routes = [
     {
@@ -61,7 +62,11 @@ export const AppRoutes: Routes = [
     },
     {
         path: '**',
-        component: PageNotFoundComponent
+        component: Page404Component
+    },
+    {
+        path: '*',
+        component: Page500Component
     }
 ];
 

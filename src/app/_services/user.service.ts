@@ -8,6 +8,10 @@ import { User } from '../_interfaces/user.interface';
 // Custom
 import { environment } from '../../environments/environment';
 import { Profile } from '../_interfaces/profile.interface';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+
+const helper = new JwtHelperService();
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,7 +28,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(data): Observable<User> {
-    return this.http.post<User>(environment.serverName + 'api/users/login', data);
+    return this.http.post<User>(environment.serverName + 'api/users/login', data, httpOptions);
   }
 
   validate(data): Observable<any> {
@@ -38,8 +42,15 @@ export class UserService {
     });
   }
 
+  resetPassword(data): Observable<any> {
+    return this.http.post<any>(environment.serverName + 'api/users/password', data, {
+      reportProgress: true,
+      observe: 'response'
+    });
+  }
+
   updateAccessibility(data):Observable<any> {
-    return this.http.put<any>(environment.serverName + 'api/users/accessibility', data);
+    return this.http.put<any>(environment.serverName + 'api/users/accessibility', data, httpOptions);
   }
 
   getRegistration(data: string): Observable<Registration> {
@@ -51,6 +62,10 @@ export class UserService {
   }
 
   updateAccountInfo(data): Observable<any> {
-    return this.http.put<any>(environment.serverName + 'api/users/userinfo', data);
+    return this.http.put<any>(environment.serverName + 'api/users/userinfo', data, httpOptions);
+  }
+
+  getTokenData(): Observable<any> {
+      return helper.decodeToken(localStorage.getItem('token'));
   }
 }

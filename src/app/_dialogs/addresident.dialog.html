@@ -1,0 +1,33 @@
+<!-- <mat-dialog-content style="margin-bottom:-10px;">
+    {{message}}
+</mat-dialog-content> -->
+<h2>Add Resident</h2>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" name="form"> 
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="FirstName">First Name</label>
+                <input [(ngModel)]="FirstName" #firstname="ngModel" type="text" class="form-control" placeholder="First Name" name="firstname" id="firstname" required [ngClass]="{'error': !firstname.valid && (firstname.dirty || firstname.touched)}">
+                <label class="error" *ngIf="!firstname.valid && (firstname.dirty || firstname.touched)">First Name is required</label>
+            </div>
+        
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="LastName">Last Name</label>
+                <input [(ngModel)]="LastName" #lastname="ngModel" type="text" class="form-control" placeholder="Last Name" name="lastname" id="lastname" required [ngClass]="{'error': !lastname.valid && (lastname.dirty || lastname.touched)}">
+                <label class="error" *ngIf="!lastname.valid && (lastname.dirty || lastname.touched)">Last Name is required</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="Room">Room Number</label>
+                <input [(ngModel)]="RoomNumber" #room="ngModel" type="text" class="form-control" placeholder="Room Number" name="room" id="room">
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn tf-btn btn-success" name="submit" [disabled]="!form.valid || loading">Submit</button>
+    <mat-spinner [diameter]="20" *ngIf="loading"></mat-spinner>
+</form>

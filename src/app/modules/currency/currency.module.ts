@@ -14,6 +14,10 @@ import { HttpModule } from '@angular/http';
 import { ArchwizardModule } from 'angular-archwizard';
 import { NgSelectizeModule } from 'ng-selectize';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatAutocomplete, MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -22,7 +26,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         DataTablesModule,
         CommonModule,
         NgSelectizeModule,
-        FormsModule
+        FormsModule,
+        MatAutocompleteModule,
+        MatProgressBarModule,
+        MatButtonModule,
+        MatIconModule
     ],
     declarations: [
         CurrencyComponent

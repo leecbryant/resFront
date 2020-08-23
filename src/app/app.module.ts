@@ -52,7 +52,6 @@ import { AppComponent } from './app.component';
 // Components
 import { LoginComponent } from './users/login/login.component';
 import { RegisterComponent } from './users/register/register.component';
-import { PageNotFoundComponent } from './_helpers/page-not-found/page-not-found.component';
 
 // Directives
 import { Sidebar_Directives } from './shared/directives/side-nav.directive';
@@ -62,6 +61,16 @@ import { StudyCheckinDialog } from './_dialogs/trackers/study-checkin.dialog';
 import { StudyCheckoutDialog } from './_dialogs/trackers/study-checkout-dialog';
 import { ConfirmDialog } from './_dialogs/confirm.dialog';
 import { StudyHoursLogComponent } from './modules/studyhours/study-log.component';
+import { AddCurrencyDialog } from './_dialogs/currency/LogCurrency.dialog';
+import { AddResidentDialog } from './_dialogs/addresident.dialog';
+import { HttpErrorInterceptor } from './_interceptors/http-error.interceptor';
+import { Page500Component } from './_helpers/500/500.component';
+import { Page404Component } from './_helpers/404/404.component';
+import { TokenInterceptor } from './_interceptors/http-token.interceptor';
+
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { environment } from 'src/environments/environment';
+import { PasswordResetDialog } from './_dialogs/passwordreset.dialog';
 
 @NgModule({
     imports: [
@@ -95,19 +104,43 @@ import { StudyHoursLogComponent } from './modules/studyhours/study-log.component
         // Components
         LoginComponent,
         RegisterComponent,
-        PageNotFoundComponent,
+        // PageNotFoundComponent,
+        Page500Component,
+        Page404Component,
         // Remgoves Animations
         // NoopAnimationsModule,
         CardSwipeDialog,
         StudyCheckinDialog,
         StudyCheckoutDialog,
         ConfirmDialog,
-        StudyHoursLogComponent
+        StudyHoursLogComponent,
+        AddCurrencyDialog,
+        AddResidentDialog,
+        PasswordResetDialog
     ],
     providers: [
-        UserService
+        UserService,
+        { // Catches errors
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptor,
+            multi: true
+          },
+          { // Forces Bearer token into header
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true,
+          },
+          { // Fix for 404 error out on refresh
+              provide: LocationStrategy, 
+              useClass: HashLocationStrategy
+          }
+
     ],
-    entryComponents: [CardSwipeDialog, StudyCheckinDialog, StudyCheckoutDialog, ConfirmDialog],
+    entryComponents: 
+        [
+            CardSwipeDialog, StudyCheckinDialog, StudyCheckoutDialog, ConfirmDialog, 
+            AddCurrencyDialog, AddResidentDialog, PasswordResetDialog
+        ],
     bootstrap: [AppComponent]
 })
 
