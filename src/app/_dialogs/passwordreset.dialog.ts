@@ -31,8 +31,11 @@ export class PasswordResetDialog {
   }
 
   onSubmit(form) {
-    this.user.resetPassword(form.value).subscribe();
-    this.snackbar.sendSuccess("If the email exists, an email has been sent to reset your password.");
-    this.dialogRef.close(true);
+    this.user.resetPassword(form.value).subscribe(res => {
+      this.snackbar.sendSuccess("If the email exists, an email has been sent to reset your password.");
+      this.dialogRef.close(true);
+    },  err => {
+      this.snackbar.sendError("Unable to submit password request: Error - " + err)
+    });
   }
 }
