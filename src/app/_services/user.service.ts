@@ -42,6 +42,13 @@ export class UserService {
     });
   }
 
+  resetPassword(data): Observable<any> {
+    return this.http.post<any>(environment.serverName + 'api/users/password', data, {
+      reportProgress: true,
+      observe: 'response'
+    });
+  }
+
   updateAccessibility(data):Observable<any> {
     return this.http.put<any>(environment.serverName + 'api/users/accessibility', data, httpOptions);
   }
