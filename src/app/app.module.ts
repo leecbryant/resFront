@@ -70,6 +70,7 @@ import { TokenInterceptor } from './_interceptors/http-token.interceptor';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { environment } from 'src/environments/environment';
+import { PasswordResetDialog } from './_dialogs/passwordreset.dialog';
 
 @NgModule({
     imports: [
@@ -114,7 +115,8 @@ import { environment } from 'src/environments/environment';
         ConfirmDialog,
         StudyHoursLogComponent,
         AddCurrencyDialog,
-        AddResidentDialog
+        AddResidentDialog,
+        PasswordResetDialog
     ],
     providers: [
         UserService,
@@ -134,7 +136,11 @@ import { environment } from 'src/environments/environment';
           }
 
     ],
-    entryComponents: [CardSwipeDialog, StudyCheckinDialog, StudyCheckoutDialog, ConfirmDialog, AddCurrencyDialog, AddResidentDialog],
+    entryComponents: 
+        [
+            CardSwipeDialog, StudyCheckinDialog, StudyCheckoutDialog, ConfirmDialog, 
+            AddCurrencyDialog, AddResidentDialog, PasswordResetDialog
+        ],
     bootstrap: [AppComponent]
 })
 
