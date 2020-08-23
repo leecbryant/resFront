@@ -6,6 +6,8 @@ import { resolve } from 'q';
 import { SnackBar } from '../../_services/notification.service';
 import { APIService } from 'src/app/_services/api.service';
 import { Datum } from 'src/app/_interfaces/hall.interface';
+import { PasswordResetDialog } from 'src/app/_dialogs/passwordreset.dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -34,7 +36,8 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private _snackbar: SnackBar,
-              private api: APIService) { }
+              private api: APIService,
+              public dialog: MatDialog) { }
               
   ngOnInit() {
     localStorage.clear();
@@ -87,5 +90,20 @@ export class LoginComponent implements OnInit {
       if(form.valid) this.login(form);
     }
   }
+
+  ForgotPassword() {
+    const dialogRef = this.dialog.open(PasswordResetDialog, {
+        width: '600px',
+        autoFocus: false,
+        data: {
+        message: 'HelloWorld',
+        buttonText: {
+            cancel: 'Done'
+            }
+        },
+    }).afterClosed().subscribe(res => {
+        // console.log(res)
+    });
+}
 }
 

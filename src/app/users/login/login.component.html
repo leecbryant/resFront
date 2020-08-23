@@ -58,48 +58,10 @@
             </div>
             <div class="login-footer">
               <img class="img-responsive inline-block" src="assets/images/logo/logo.png" width="100" alt="">
-              <span class="font-size-13 pull-right pdd-top-10">Forgot your password?  <a href="#" role="button" data-toggle="modal" data-target="#modal-forgot">Reset</a></span>
+              <span class="font-size-13 pull-right pdd-top-10">Forgot your password?  <a href="#" (click)="ForgotPassword()" role="button" data-toggle="modal" data-target="#modal-forgot">Reset</a></span>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- <ng-template #forminfo>
-    <div class="form-container">
-      <div class="row columns">
-          <p>{{index_signin }}</p>
-          <p>{{ password_signin }}</p>
-      </div>
-    </div>
-  </ng-template> -->
-  <div class="modal" id="modal-forgot">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content scrollable">
-              <div class="side-modal-wrapper">
-                  <div class="vertical-align">
-                      <div class="table-cell">
-                          <div class="pdd-horizon-15">
-                              <div class="modal-header">
-                                 <h1>Reset Password</h1>
-                                 <button type="button" class="close" data-dismiss="modal" style="margin-bottom:-10px;">&times;</button>
-                              </div>
-                              <form autocomplete="off" method='POST' type="processorForms" class="js-forgot-form">
-                                  <br/>
-                                  <b>Email</b>
-                                  <input type="text" class="form-control" name="email">
-                                  <br/>
-                                    <button class="btn btn-success btn-sm" name="submitForogt">Submit</button>
-                                    <div class="ajax-loader"></div>
-                                    <div class="ajax-result">
-                                        <div class="success"></div>
-                                        <div class="error"></div>
-                                    </div>
-                                </form>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
   </div>
