@@ -1,0 +1,86 @@
+<div class="container-fluid" *ngIf="loaded">
+    <br/>
+    <div class="row">
+      <div class="col-lg-12">
+          <div class="card">
+              <div class="card-heading border bottom">
+                  <h4 class="card-title">Password Reset</h4>
+              </div>
+              <div class="card-block">
+                  <div class="row">
+                      <div class="col-md-12 ml-auto mr-auto">
+                          <form #resetForm="ngForm" (ngSubmit)="reset(resetForm)">
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="Password" style="display: flex">
+                                              New Password
+                                          </label>
+                                          <input [(ngModel)]="Password" #password="ngModel"
+                                                minlength="6" type="password"
+                                                class="form-control" placeholder="Password" name="password" required password
+                                                [ngClass]="(!password.valid && (password.dirty || password.touched)) ? 'error' : Password != VerifyPassword && password.valid && vpassword.touched ? 'error' : password.valid  && (password.dirty || password.touched) ? 'valid' : ''">
+                                          <label *ngIf="password.invalid && (password.dirty || password.touched)"
+                                              class="error">
+                                            <div *ngIf="password?.errors?.required">
+                                                Password is required.
+                                            </div>
+                                            <div *ngIf="password?.errors.password">
+                                              Please provide a valid email.
+                                            </div>
+                                            <div *ngIf="password?.errors.minlength">
+                                              Password must be atleast 6 characters.
+                                            </div>
+                                          </label>
+                                        <div *ngIf="password.valid">
+                                            <label *ngIf="Password != VerifyPassword && vpassword.touched" class="error">
+                                                Passwords must match.
+                                            </label>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="VerifyPassword" style="display: flex">
+                                          Verify New Password
+                                        </label>
+                                        <input [(ngModel)]="VerifyPassword" #vpassword="ngModel"
+                                              minlength="6" type="password"
+                                              class="form-control" placeholder="Verify Password" name="vpassword" required password
+                                              [ngClass]="(!vpassword.valid && (vpassword.dirty || vpassword.touched)) ? 'error' : Password != VerifyPassword && vpassword.valid && password.touched ? 'error' : vpassword.valid  && (vpassword.dirty || vpassword.touched) ? 'valid' : ''">
+                                        <label *ngIf="vpassword.invalid && (vpassword.dirty || vpassword.touched)"
+                                            class="error">
+                                          <div *ngIf="vpassword?.errors.required">
+                                              Password verification is required.
+                                          </div>
+                                          <div *ngIf="vpassword?.errors.minlength">
+                                            Password must be atleast 6 characters.
+                                          </div>
+                                        </label>
+                                      <div *ngIf="vpassword.valid">
+                                          <label *ngIf="Password != VerifyPassword && vpassword.touched" class="error">
+                                              Passwords must match.
+                                          </label>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                              <button class="btn btn-primary" type="submit" [disabled]="!resetForm.valid || Password != VerifyPassword">Reset Password</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="content-footer" *ngIf="loaded">
+      <div class="footer">
+          <div class="copyright">
+              <span>
+                <img class="img-responsive inline-block" src="assets/images/logo/logo.png" height="60" alt="">
+              </span>
+          </div>
+      </div>
+  </footer>

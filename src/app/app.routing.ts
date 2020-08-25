@@ -9,6 +9,7 @@ import { RegisterComponent } from './users/register/register.component';
 import { StudyHoursLogComponent } from './modules/studyhours/study-log.component';
 import { Page404Component } from './_helpers/404/404.component';
 import { Page500Component } from './_helpers/500/500.component';
+import { ResetComponent } from './users/reset/reset.component';
 
 export const AppRoutes: Routes = [
     {
@@ -54,6 +55,13 @@ export const AppRoutes: Routes = [
         component: RegisterComponent,
         data : {
             title : 'Reslife Registration'
+        }
+    },
+    {
+        path: 'reset/:hash',
+        component: ResetComponent,
+        data : {
+            title : 'Password Reset'
         }
     },
     {

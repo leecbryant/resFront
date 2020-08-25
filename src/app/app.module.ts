@@ -71,6 +71,7 @@ import { TokenInterceptor } from './_interceptors/http-token.interceptor';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { PasswordResetDialog } from './_dialogs/passwordreset.dialog';
+import { ResetComponent } from './users/reset/reset.component';
 
 @NgModule({
     imports: [
@@ -116,7 +117,8 @@ import { PasswordResetDialog } from './_dialogs/passwordreset.dialog';
         StudyHoursLogComponent,
         AddCurrencyDialog,
         AddResidentDialog,
-        PasswordResetDialog
+        PasswordResetDialog,
+        ResetComponent
     ],
     providers: [
         UserService,
