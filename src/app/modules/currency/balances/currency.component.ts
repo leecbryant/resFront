@@ -112,4 +112,8 @@ export class CurrencyComponent implements OnInit {
             console.log(err)
         });
     }
+
+    doNothing() {
+        return false;
+    }
 }
