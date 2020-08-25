@@ -24,7 +24,8 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="Room">Room Number</label>
-                <input [(ngModel)]="RoomNumber" #room="ngModel" type="text" class="form-control" placeholder="Room Number" name="room" id="room">
+                <input [(ngModel)]="RoomNumber" #room="ngModel" type="text" class="form-control" placeholder="Room Number" name="room" id="room" required [ngClass]="{'error': !room.valid && (room.dirty || room.touched)}">
+                <label class="error" *ngIf="!room.valid && (room.dirty || room.touched)">Room is required</label>
             </div>
         </div>
     </div>

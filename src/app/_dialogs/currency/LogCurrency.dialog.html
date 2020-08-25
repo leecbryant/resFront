@@ -13,7 +13,7 @@
                 </select> -->
                 <ng-select [(ngModel)]="SelectedResidents" [multiple]="Type == 'E' ? true : false" #residents="ngModel" id="residents" placeholder="Select a resident{{Type == 'E' ? ' or multiple residents' : ''}}..." 
                             name="residents" required [ngClass]="{'error': !residents.valid && (residents.dirty || residents.touched)}">
-                    <ng-option *ngFor="let resident of Residents" [value]="resident.id">{{resident.FirstName}} {{resident.LastName}}</ng-option>
+                    <ng-option *ngFor="let resident of Residents" [value]="resident.id">{{resident.FirstName}} {{resident.LastName}} {{resident.Room ? '('+resident.Room+')' : ''}}</ng-option>
                 </ng-select>
                 <label *ngIf="!residents.valid && (residents.dirty || residents.touched)" class="error" >Atleast one selection is required</label>
                 <a *ngIf="Type == 'E'" style="cursor:pointer;color:gray;margin-left:10px;" (click)=AddResi()> Add Resident..</a>
@@ -29,7 +29,7 @@
                 </select> -->
                 <ng-select [(ngModel)]="SelectedResident" [multiple]="Type == 'E' ? true : false" #residents="ngModel" id="residents" placeholder="Select a resident{{Type == 'E' ? ' or multiple residents' : ''}}..." 
                             name="residents" required [ngClass]="{'error': !residents.valid && (residents.dirty || residents.touched)}">
-                    <ng-option *ngFor="let resident of Residents" [value]="resident.id">{{resident.FirstName}} {{resident.LastName}}</ng-option>
+                    <ng-option *ngFor="let resident of Residents" [value]="resident.id">{{resident.FirstName}} {{resident.LastName}} {{resident.Room ? '('+resident.Room+')' : ''}}</ng-option>
                 </ng-select>
                 <label *ngIf="!residents.valid && (residents.dirty || residents.touched)" class="error" >Atleast one selection is required</label>
                 <a *ngIf="Type == 'E'" style="cursor:pointer;color:gray;margin-left:10px;" (click)=AddResi()> Add Resident..</a>
