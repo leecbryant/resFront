@@ -11,7 +11,7 @@
                             <input [(ngModel)]="Student" [matAutocomplete]="auto" #name="ngModel" type="text" class="form-control" placeholder="Resident Name" name="name" id="name" required [ngClass]="{'error': !name.valid && (name.dirty || name.touched)}" (keydown)="_filter()">
                             <mat-autocomplete #auto="matAutocomplete">
                                 <mat-option *ngFor="let option of BalanceArray" [value]="option.StudentID" (onSelectionChange)="submit(option.StudentID)">
-                                    {{option.FirstName | titlecase}} {{option.LastName | titlecase}}
+                                    {{option.FirstName | titlecase}} {{option.LastName | titlecase}} {{option.Room ? '('+option.Room+')' : ''}}
                                 </mat-option>
                             </mat-autocomplete>
                             <label class="error" *ngIf="!name.valid && (name.dirty || name.touched)">Resident Name is required</label>

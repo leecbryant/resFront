@@ -6,10 +6,11 @@ export interface AllBalances {
 
 export interface AllBalanceData {
     BalanceID: number;
-    Time:      number;
+    Time:      string;
     StudentID: number;
     FirstName: string;
     LastName:  string;
+    Room:      string;
     Amount:    number;
     Name:      string;
     LogType:   string;
