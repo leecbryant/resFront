@@ -15,7 +15,7 @@ export class PasswordResetDialog {
   Email = '';
   message: string = ""
   cancelButtonText = "Cancel"
-  loading = true;
+  loading = false;
   submit = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
@@ -31,9 +31,11 @@ export class PasswordResetDialog {
   }
 
   onSubmit(form) {
+    this.loading = true;
     this.user.resetPassword(form.value).subscribe(res => {
       this.snackbar.sendSuccess("If the email exists, an email has been sent to reset your password.");
       this.dialogRef.close(true);
+      this.loading = false;
     },  err => {
       this.snackbar.sendError("Unable to submit password request: Error - " + err)
     });
