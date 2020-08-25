@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
                 return true;
             }).catch(err => {
                 console.log(err);
-                this.snackbar.sendError("Session error. Please login to continue");
+                this.snackbar.sendError("Session error. Please log in to continue");
                 this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
                 return false;
             });
