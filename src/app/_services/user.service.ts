@@ -49,6 +49,10 @@ export class UserService {
     });
   }
 
+  resetPasswordUpdate(data): Observable<any> {
+    return this.http.put<any>(environment.serverName + 'api/users/password', data, httpOptions);
+  }
+
   getPasswordReset(data): Observable<any> {
     return this.http.get<any>(environment.serverName + 'api/users/password/' + data, httpOptions);
   }

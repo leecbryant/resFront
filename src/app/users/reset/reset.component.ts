@@ -40,7 +40,6 @@ export class ResetComponent implements OnInit {
   async loadPasswordReset() {
     return new Promise((resolve, reject) => {
       this.userService.getPasswordReset(this._route.snapshot.paramMap.get('hash')).subscribe(res => {
-        console.log(res)
         resolve();
       },
       err => {
@@ -52,14 +51,13 @@ export class ResetComponent implements OnInit {
   }
 
   reset(form) {
-    console.log(form.value);
-    // this.userService.register(PostData).subscribe(res => {
-    //   this._snackbar.sendSuccess('Registration successful!');
-    //   this._router.navigateByUrl('/');
-    // },
-    // err => {
-    //   this._snackbar.sendError('Unable to register.');
-    // });
+    this.userService.resetPasswordUpdate({ form: form.value, hash: this._route.snapshot.paramMap.get('hash')}).subscribe(res => {
+      this._snackbar.sendSuccess('Password reset');
+      this._router.navigateByUrl('/');
+    },
+    err => {
+      this._snackbar.sendError('Unable to register.');
+    });
   }
 }
 
