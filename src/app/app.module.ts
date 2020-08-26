@@ -132,11 +132,11 @@ import { ResetComponent } from './users/reset/reset.component';
             useClass: TokenInterceptor,
             multi: true,
           }
-          ,
-          { // Fix for 404 error out on refresh
-              provide: LocationStrategy, 
-              useClass: PathLocationStrategy
-          }
+        //   ,
+        //   { // Fix for 404 error out on refresh
+        //       provide: LocationStrategy, 
+        //       useClass: PathLocationStrategy
+        //   }
 
     ],
     entryComponents: 
