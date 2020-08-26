@@ -68,7 +68,7 @@ import { Page500Component } from './_helpers/500/500.component';
 import { Page404Component } from './_helpers/404/404.component';
 import { TokenInterceptor } from './_interceptors/http-token.interceptor';
 
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { PasswordResetDialog } from './_dialogs/passwordreset.dialog';
 import { ResetComponent } from './users/reset/reset.component';
@@ -131,10 +131,11 @@ import { ResetComponent } from './users/reset/reset.component';
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true,
-          },
+          }
+          ,
           { // Fix for 404 error out on refresh
               provide: LocationStrategy, 
-              useClass: HashLocationStrategy
+              useClass: PathLocationStrategy
           }
 
     ],
