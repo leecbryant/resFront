@@ -159,6 +159,12 @@
                                             <span>Edit Theme</span>
                                         </a>
                                     </li> -->
+                                    <li *ngIf="Access == 3 || Access >= 999">
+                                        <a href="" [routerLink]="['/users/settings']">
+                                            <i class="ti-settings pdd-right-10"></i>
+                                            <span>Currency</span>
+                                        </a>
+                                    </li>
                                     <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="" [routerLink]="['/logout']">
