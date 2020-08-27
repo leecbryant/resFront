@@ -6,6 +6,7 @@ import { Student } from '../../_interfaces/student.interface';
 import { LoggableCurrencyData } from 'src/app/_interfaces/loggable.interface';
 import { ResidentData } from 'src/app/_interfaces/resident.interface';
 import { AddResidentDialog } from '../addresident.dialog';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-alert-dialog',
@@ -15,11 +16,7 @@ export class AddEditLoggableDialog {
   Data: Student;
 
 
-  SelectedReason: Number;
-  SelectedResidents: Number[];
-  SelectedResident: Number;
-  CardGrabber: string;
-  CardReady = true;
+  Title = '';
   message: string = ""
   cancelButtonText = "Cancel"
   loading = true;
@@ -33,12 +30,11 @@ export class AddEditLoggableDialog {
     private dialogRef: MatDialogRef<AddEditLoggableDialog>,
     private snackbar: SnackBar,
     private api: APIService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private user: UserService) {
     if (data) {
-      this.Loggable = data.Loggable;
-      this.Residents = data.Residents;
       this.Type = data.Type;
-      console.log(this.Loggable);
+      console.log(data.Type);
       this.message = data.message || this.message;
       if (data.buttonText) {
         this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
@@ -47,87 +43,16 @@ export class AddEditLoggableDialog {
   }
 
   async onSubmit(form) {
-    if(this.Type == "S") {
-      let submitObj = {
-        StudentID: this.SelectedResident,
-        Type: 'E',
-        TypeID: this.SelectedReason
-      }
-      let Balance = 0;
-      console.log(this.SelectedResident)
-      new Promise((resolve, reject) => {
-        this.api.getAllBalances().subscribe(res => {
-          res.data.filter(key => {
-            return key.StudentID == this.SelectedResident
-          }).forEach(key => {
-            if(key.LogType == "E")
-              Balance += key.Amount
-            else  
-              Balance -= key.Amount
-          });
-          resolve();
-        },
-        err => {
-          reject();
-        });
-      }).then(obj => {
-        console.log(Balance)
-        if(this.Loggable.find(key => {
-          return key.id == this.SelectedReason
-        }).Amount > Balance) {
-          this.snackbar.sendError("Balance must be greater than item purchase price")
-        } else {
-          new Promise((resolve, reject) => {
-            this.api.newCurrencyLoggable(submitObj).subscribe(res => {
-              resolve();
-            }, err => {
-              reject();
-              console.log(err);
-            })
-          });
-          this.snackbar.sendSuccess("Item sold to student");
-          this.dialogRef.close();
-        }
+    await new Promise((resolve, reject) => {
+      this.api.newLoggableCurrency({form: form.value, type: this.Type}).subscribe(res => {
+        this.snackbar.sendSuccess(this.Type == "E" ? "Earnable method added" : "Sellable item added");
+        console.log(res)
+        this.dialogRef.close({id: res.data.insertId, Type: this.Type, Hall: this.user.getTokenData()['SessionHall'], Title: form.value.title, Amount: form.value.cost, Hash: res.hash});
+        resolve();
+      }, err => {
+        this.snackbar.sendError(err);
+        reject();
       });
-    } else {
-      await this.SelectedResidents.forEach(resi => {
-        let submitObj = {
-          StudentID: resi,
-          Type: 'E',
-          TypeID: this.SelectedReason
-        }
-        
-        new Promise((resolve, reject) => {
-            this.api.newCurrencyLoggable(submitObj).subscribe(res => {
-              resolve();
-            }, err => {
-              reject();
-              console.log(err);
-            })
-          });
-        this.snackbar.sendSuccess("Currency added to student(s)");
-        this.dialogRef.close();
-      });
-    }
-  }
-
-  AddResi() {
-    const dialogRef = this.dialog.open(AddResidentDialog, {
-        panelClass: 'custom-dialog-container',
-        width: '800px',
-        autoFocus: false,
-        data: {
-        message: 'HelloWorld',
-        buttonText: {
-            cancel: 'Done'
-            }
-        },
-    }).afterClosed().subscribe(res => {
-      if(res) {
-        let newResident:  ResidentData = {id: res.id, FirstName: res.firstname, LastName: res.lastname, CardNumber: '', HallID: res.hall, Room: res.room};
-        this.Residents.push(newResident);
-        this.SelectedResidents = [...this.SelectedResidents, res.id];     
-      }
-    });
+    })
   }
 }

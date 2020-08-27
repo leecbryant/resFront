@@ -1,52 +1,20 @@
-<h2>{{Type == "E" ? "Add Currency" : "Sell Items"}}</h2>
+<h2>{{Type == "E" ? "Add Earnable Method" : "Add Sellable Items"}}</h2>
 <form #addEarnable="ngForm" (ngSubmit)="onSubmit(addEarnable)" name="addEarnable"> 
     <div class="row">
         <div class="col-md-12">
-            <div class="form-group" *ngIf="Type == 'E'">
-                <label for="Reason">Resident</label>
-                <!-- <select [(ngModel)]="SelectedReason" #reason="ngModel" class="form-control" id="reason" placeholder="Reason" name="reason" required [ngClass]="{'error': !reason.valid && (reason.dirty || reason.touched)}">
-                    <option disabled selected>Select a reason</option>
-                    <option *ngFor="let earn of Earnable"
-                        [value]=earn.id>
-                        {{earn.Name}}
-                    </option>
-                </select> -->
-                <ng-select [(ngModel)]="SelectedResidents" [multiple]="Type == 'E' ? true : false" #residents="ngModel" id="residents" placeholder="Select a resident{{Type == 'E' ? ' or multiple residents' : ''}}..." 
-                            name="residents" required [ngClass]="{'error': !residents.valid && (residents.dirty || residents.touched)}">
-                    <ng-option *ngFor="let resident of Residents" [value]="resident.id">{{resident.FirstName}} {{resident.LastName}} {{resident.Room ? '('+resident.Room+')' : ''}}</ng-option>
-                </ng-select>
-                <label *ngIf="!residents.valid && (residents.dirty || residents.touched)" class="error" >Atleast one selection is required</label>
-                <a *ngIf="Type == 'E'" style="cursor:pointer;color:gray;margin-left:10px;" (click)=AddResi()> Add Resident..</a>
-            </div>
-            <div class="form-group" *ngIf="Type == 'S'">
-                <label for="Reason">Resident</label>
-                <!-- <select [(ngModel)]="SelectedReason" #reason="ngModel" class="form-control" id="reason" placeholder="Reason" name="reason" required [ngClass]="{'error': !reason.valid && (reason.dirty || reason.touched)}">
-                    <option disabled selected>Select a reason</option>
-                    <option *ngFor="let earn of Earnable"
-                        [value]=earn.id>
-                        {{earn.Name}}
-                    </option>
-                </select> -->
-                <ng-select [(ngModel)]="SelectedResident" [multiple]="Type == 'E' ? true : false" #residents="ngModel" id="residents" placeholder="Select a resident{{Type == 'E' ? ' or multiple residents' : ''}}..." 
-                            name="residents" required [ngClass]="{'error': !residents.valid && (residents.dirty || residents.touched)}">
-                    <ng-option *ngFor="let resident of Residents" [value]="resident.id">{{resident.FirstName}} {{resident.LastName}} {{resident.Room ? '('+resident.Room+')' : ''}}</ng-option>
-                </ng-select>
-                <label *ngIf="!residents.valid && (residents.dirty || residents.touched)" class="error" >Atleast one selection is required</label>
-                <a *ngIf="Type == 'E'" style="cursor:pointer;color:gray;margin-left:10px;" (click)=AddResi()> Add Resident..</a>
+            <div class="form-group">
+                <label for="Title">{{Type == "E" ? "Earnable Method Title" : "Sellable  Item Name"}}</label>
+                <input [(ngModel)]="Title" #title="ngModel" type="text" class="form-control" placeholder='{{Type == "E" ? "Earnable Method Title" : "Sellable  Item Name"}}' name="title" id="title" required [ngClass]="{'error': !title.valid && (title.dirty || title.touched)}">
+                <label class="error" *ngIf="!title.valid && (title.dirty || title.touched)">{{Type == "E" ? "Earnable Method Title" : "Sellable  Item Name"}} is required</label>
             </div>
         </div>
-    </div> 
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="Reason">Reason</label>
-                <ng-select  [(ngModel)]="SelectedReason" #reason="ngModel" id="reason" placeholder="Select a reason..." name="reason" required [ngClass]="{'error': !reason.valid && (reason.dirty || reason.touched)}">
-                    <ng-option *ngFor="let earn of Loggable"
-                        [value]=earn.id>
-                        {{earn.Name}} (<strong>{{Type == "E" ? '+' : '-'}}{{earn.Amount}}</strong>)
-                    </ng-option>
-                </ng-select >
-                <label *ngIf="!reason.valid && (reason.dirty || reason.touched)" class="error" >Reason is required</label>
+                <label for="Cost">{{Type == "E" ? "Earnable Amount" : "Cost"}}</label>
+                <input [(ngModel)]="Cost" type="number" #cost="ngModel" class="form-control" placeholder='{{Type == "E" ? "Earnable Amount" : "Cost"}}' name="cost" id="cost" required [ngClass]="{'error': !cost.valid && (cost.dirty || cost.touched)}">
+                <label class="error" *ngIf="!cost.valid && (cost.dirty || cost.touched)">{{Type == "E" ? "Earnable Amount" : "Cost"}} is required</label>
             </div>
         </div>
     </div>

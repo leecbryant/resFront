@@ -10,6 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialog } from 'src/app/_dialogs/confirm.dialog';
 import { LoggableCurrency, LoggableCurrencyData } from 'src/app/_interfaces/loggable.interface';
+import { AddEditLoggableDialog } from 'src/app/_dialogs/currency/AddEditLoggable.dialog';
 
 @Component ({
     templateUrl: 'settings.html'
@@ -74,12 +75,12 @@ export class CurrencySettingsComponent implements OnInit {
         }
       }
     
-    checkout(row) {
+    checkout(row, type) {
         this.dialog.open(ConfirmDialog, {
             width: '300px',
             autoFocus: false,
             data: {
-            message: 'Are you sure you want to delete the item?',
+            message: type == 'E' ? 'Are you sure you want to delete the earnable method?' : 'Are you sure you want to delete the sellable item?',
             buttonText: {
                 cancel: 'Cancel',
                 submit: 'Submit'
@@ -106,6 +107,33 @@ export class CurrencySettingsComponent implements OnInit {
             } else {
                 // User elected to not delete item
             }
+        });
+    }
+
+    AddItem(type: String) {
+        const dialogRef = this.dialog.open(AddEditLoggableDialog, {
+            panelClass: 'custom-dialog-container',
+            width: '800px',
+            autoFocus: false,
+            data: {
+            message: 'HelloWorld',
+            Type: type,
+            buttonText: {
+                cancel: 'Done'
+                }
+            },
+        }).afterClosed().subscribe(res => {
+          if(res) {
+            let newItem: LoggableCurrencyData  = {id: res.id, Hall: res.Hall, Type: res.Type, Name: res.Title, Hash: res.Hash, Amount: res.Amount, Shortened: res.Title};
+            this.LoggableArray.push(newItem);
+            if(type == "E") {
+                this.dataSourceEarnable = new MatTableDataSource(this.LoggableArray.filter(ele => {
+                    return ele.Hall == this.user.getTokenData()['SessionHall'] && ele.Type == "E";
+                }));
+            } else if(type == "S") {
+                this.dataSourceSellable.data.push(newItem)
+            }
+          }
         });
     }
     doNothing() {

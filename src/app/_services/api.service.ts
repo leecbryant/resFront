@@ -79,6 +79,10 @@ export class APIService {
     return this.http.delete<any>(environment.serverName + 'api/currency/loggable/' + data, httpOptions);
   }
 
+  newLoggableCurrency(data): Observable<any> {
+    return this.http.post<any>(environment.serverName + 'api/currency/loggable/', data, httpOptions);
+  }
+
   newCurrencyLoggable(data): Observable<any> {
     return this.http.post<any>(environment.serverName + 'api/currency/balances', data, {
       reportProgress: true,
