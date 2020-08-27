@@ -72,6 +72,7 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import { environment } from 'src/environments/environment';
 import { PasswordResetDialog } from './_dialogs/passwordreset.dialog';
 import { ResetComponent } from './users/reset/reset.component';
+import { AddEditLoggableDialog } from './_dialogs/currency/AddEditLoggable.dialog';
 
 @NgModule({
     imports: [
@@ -118,7 +119,8 @@ import { ResetComponent } from './users/reset/reset.component';
         AddCurrencyDialog,
         AddResidentDialog,
         PasswordResetDialog,
-        ResetComponent
+        ResetComponent,
+        AddEditLoggableDialog
     ],
     providers: [
         UserService,
@@ -142,7 +144,7 @@ import { ResetComponent } from './users/reset/reset.component';
     entryComponents: 
         [
             CardSwipeDialog, StudyCheckinDialog, StudyCheckoutDialog, ConfirmDialog, 
-            AddCurrencyDialog, AddResidentDialog, PasswordResetDialog
+            AddCurrencyDialog, AddResidentDialog, PasswordResetDialog, AddEditLoggableDialog
         ],
     bootstrap: [AppComponent]
 })

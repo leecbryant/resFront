@@ -1,0 +1,98 @@
+
+    <h3>Currency Settings</h3>
+    <div class="card" *ngIf="loaded">
+        <div class="tab-info">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a href="#tab-info-1" class="nav-link active" role="tab" data-toggle="tab">Earnable Methods</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tab-info-2" class="nav-link" role="tab" data-toggle="tab">Sellable Items</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="tab-info-1">
+                    <div class="pdd-horizon-15 pdd-vertical-20">
+                        <div class="mat-elevation-z2">
+                            <table mat-table [dataSource]="dataSourceEarnable" matSort style="width:100%">
+                              <!-- Name Column -->
+                              <ng-container matColumnDef="Name">
+                                <th mat-header-cell *matHeaderCellDef> Name </th>
+                                <td mat-cell *matCellDef="let row"> {{row.Name}}</td>
+                              </ng-container>
+                          
+                              <!-- Checkin Column -->
+                              <ng-container matColumnDef="Amount">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount Gained </th>
+                                <td mat-cell *matCellDef="let row"> {{row.Amount}} </td>
+                              </ng-container>
+                          
+                              <!-- Checkout Column -->
+                              <ng-container matColumnDef="checkout">
+                                <th mat-header-cell *matHeaderCellDef> Options </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <button mat-icon-button matTooltip="Delete" aria-label="Example icon-button with a heart icon" (click)="checkout(row)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                    <button mat-icon-button matTooltip="Edit" aria-label="Example icon-button with a heart icon" (click)="checkout(row)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="noRecord">
+                                    <td mat-footer-cell *matFooterCellDef>No records found.</td>
+                              </ng-container>
+                              <tr mat-header-row *matHeaderRowDef="displayedColumnsEarnable"></tr>
+                              <tr mat-row *matRowDef="let row; columns: displayedColumnsEarnable;">
+                              </tr>
+                            </table>
+                          
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                        </div> 
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="tab-info-2">
+                    <div class="pdd-horizon-15 pdd-vertical-20">
+                        <div class="mat-elevation-z2">
+                            <table mat-table [dataSource]="dataSourceSellable" matSort style="width:100%">
+                              <!-- Name Column -->
+                              <ng-container matColumnDef="Name">
+                                <th mat-header-cell *matHeaderCellDef> Name </th>
+                                <td mat-cell *matCellDef="let row"> {{row.Name}}</td>
+                              </ng-container>
+                          
+                              <!-- Checkin Column -->
+                              <ng-container matColumnDef="Amount">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost </th>
+                                <td mat-cell *matCellDef="let row"> {{row.Amount}} </td>
+                              </ng-container>
+                          
+                              <!-- Checkout Column -->
+                              <ng-container matColumnDef="checkout">
+                                <th mat-header-cell *matHeaderCellDef> Options </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <button mat-icon-button matTooltip="Delete" aria-label="Example icon-button with a heart icon" (click)="checkout(row)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                    <button mat-icon-button matTooltip="Edit" aria-label="Example icon-button with a heart icon" (click)="checkout(row)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                </td>
+                              </ng-container>
+                  
+                              <ng-container matColumnDef="noRecord">
+                                    <td mat-footer-cell *matFooterCellDef>No records found.</td>
+                              </ng-container>
+                              <tr mat-header-row *matHeaderRowDef="displayedColumnsSellable"></tr>
+                              <tr mat-row *matRowDef="let row; columns: displayedColumnsSellable;">
+                              </tr>
+                            </table>
+                          
+                            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

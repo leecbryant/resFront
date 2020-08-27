@@ -1,0 +1,54 @@
+<h2>{{Type == "E" ? "Add Currency" : "Sell Items"}}</h2>
+<form #addEarnable="ngForm" (ngSubmit)="onSubmit(addEarnable)" name="addEarnable"> 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group" *ngIf="Type == 'E'">
+                <label for="Reason">Resident</label>
+                <!-- <select [(ngModel)]="SelectedReason" #reason="ngModel" class="form-control" id="reason" placeholder="Reason" name="reason" required [ngClass]="{'error': !reason.valid && (reason.dirty || reason.touched)}">
+                    <option disabled selected>Select a reason</option>
+                    <option *ngFor="let earn of Earnable"
+                        [value]=earn.id>
+                        {{earn.Name}}
+                    </option>
+                </select> -->
+                <ng-select [(ngModel)]="SelectedResidents" [multiple]="Type == 'E' ? true : false" #residents="ngModel" id="residents" placeholder="Select a resident{{Type == 'E' ? ' or multiple residents' : ''}}..." 
+                            name="residents" required [ngClass]="{'error': !residents.valid && (residents.dirty || residents.touched)}">
+                    <ng-option *ngFor="let resident of Residents" [value]="resident.id">{{resident.FirstName}} {{resident.LastName}} {{resident.Room ? '('+resident.Room+')' : ''}}</ng-option>
+                </ng-select>
+                <label *ngIf="!residents.valid && (residents.dirty || residents.touched)" class="error" >Atleast one selection is required</label>
+                <a *ngIf="Type == 'E'" style="cursor:pointer;color:gray;margin-left:10px;" (click)=AddResi()> Add Resident..</a>
+            </div>
+            <div class="form-group" *ngIf="Type == 'S'">
+                <label for="Reason">Resident</label>
+                <!-- <select [(ngModel)]="SelectedReason" #reason="ngModel" class="form-control" id="reason" placeholder="Reason" name="reason" required [ngClass]="{'error': !reason.valid && (reason.dirty || reason.touched)}">
+                    <option disabled selected>Select a reason</option>
+                    <option *ngFor="let earn of Earnable"
+                        [value]=earn.id>
+                        {{earn.Name}}
+                    </option>
+                </select> -->
+                <ng-select [(ngModel)]="SelectedResident" [multiple]="Type == 'E' ? true : false" #residents="ngModel" id="residents" placeholder="Select a resident{{Type == 'E' ? ' or multiple residents' : ''}}..." 
+                            name="residents" required [ngClass]="{'error': !residents.valid && (residents.dirty || residents.touched)}">
+                    <ng-option *ngFor="let resident of Residents" [value]="resident.id">{{resident.FirstName}} {{resident.LastName}} {{resident.Room ? '('+resident.Room+')' : ''}}</ng-option>
+                </ng-select>
+                <label *ngIf="!residents.valid && (residents.dirty || residents.touched)" class="error" >Atleast one selection is required</label>
+                <a *ngIf="Type == 'E'" style="cursor:pointer;color:gray;margin-left:10px;" (click)=AddResi()> Add Resident..</a>
+            </div>
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="Reason">Reason</label>
+                <ng-select  [(ngModel)]="SelectedReason" #reason="ngModel" id="reason" placeholder="Select a reason..." name="reason" required [ngClass]="{'error': !reason.valid && (reason.dirty || reason.touched)}">
+                    <ng-option *ngFor="let earn of Loggable"
+                        [value]=earn.id>
+                        {{earn.Name}} (<strong>{{Type == "E" ? '+' : '-'}}{{earn.Amount}}</strong>)
+                    </ng-option>
+                </ng-select >
+                <label *ngIf="!reason.valid && (reason.dirty || reason.touched)" class="error" >Reason is required</label>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn tf-btn btn-success" name="submit_signin" [disabled]="!addEarnable.valid">Submit</button>
+</form>
