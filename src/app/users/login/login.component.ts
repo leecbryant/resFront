@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit {
       err => {
         this.error = true;
         this.error_message = 'Invalid username or password';
+        this._snackbar.sendError('Invalid username or password');
         reject(err);
       });
     }).then(result => {

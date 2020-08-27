@@ -51,6 +51,7 @@ export class RegisterComponent implements OnInit {
   async loadRegistration() {
     return new Promise((resolve, reject) => {
       this.userService.getRegistration(this._route.snapshot.paramMap.get('hash')).subscribe(res => {
+        console.log(res)
         this.FormData = res;
         this.Hall = res.data.base[0].HallName;
         this.Position = res.data.base[0].AccessName; 
@@ -68,7 +69,7 @@ export class RegisterComponent implements OnInit {
     const PostData = {
       form: form.value,
       HallId: this.FormData.data.base[0].HallId,
-      AccessLevel: this.FormData.data.base[0].HallId
+      AccessLevel: this.FormData.data.base[0].AccessLevel
     };
     this.userService.register(PostData).subscribe(res => {
       this._snackbar.sendSuccess('Registration successful!');
