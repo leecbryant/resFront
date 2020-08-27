@@ -9,5 +9,6 @@ export interface BalanceData {
     StudentID: number;
     Type:      string;
     TypeID:    number;
+    Amount:    number;
     Time:      number;
 }

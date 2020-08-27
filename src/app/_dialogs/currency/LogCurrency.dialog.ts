@@ -50,7 +50,7 @@ export class AddCurrencyDialog {
     if(this.Type == "S") {
       let submitObj = {
         StudentID: this.SelectedResident,
-        Type: 'E',
+        Type: 'S',
         TypeID: this.SelectedReason
       }
       let Balance = 0;
