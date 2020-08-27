@@ -1,4 +1,4 @@
-<h2>{{Type == "E" ? "Add Earnable Method" : "Add Sellable Items"}}</h2>
+<h2>{{Edit ? 'Edit' : 'Add'}} {{Type == "E" ? "Earnable Method" : "Sellable Items"}}</h2>
 <form #addEarnable="ngForm" (ngSubmit)="onSubmit(addEarnable)" name="addEarnable"> 
     <div class="row">
         <div class="col-md-12">

@@ -17,6 +17,10 @@ export class AddEditLoggableDialog {
 
 
   Title = '';
+  Cost = 0;
+  Hash = '';
+  Edit = false;
+
   message: string = ""
   cancelButtonText = "Cancel"
   loading = true;
@@ -34,25 +38,43 @@ export class AddEditLoggableDialog {
     private user: UserService) {
     if (data) {
       this.Type = data.Type;
-      console.log(data.Type);
       this.message = data.message || this.message;
       if (data.buttonText) {
         this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
+      }
+      if(data.Row) {
+        this.Cost = data.Row.Amount
+        this.Title = data.Row.Name
+        this.Hash = data.Row.Hash
+        this.Edit = true
       }
     }
   }
 
   async onSubmit(form) {
-    await new Promise((resolve, reject) => {
-      this.api.newLoggableCurrency({form: form.value, type: this.Type}).subscribe(res => {
-        this.snackbar.sendSuccess(this.Type == "E" ? "Earnable method added" : "Sellable item added");
-        console.log(res)
-        this.dialogRef.close({id: res.data.insertId, Type: this.Type, Hall: this.user.getTokenData()['SessionHall'], Title: form.value.title, Amount: form.value.cost, Hash: res.hash});
-        resolve();
-      }, err => {
-        this.snackbar.sendError(err);
-        reject();
+    if(!this.Edit) {
+      await new Promise((resolve, reject) => {
+        this.api.newLoggableCurrency({form: form.value, type: this.Type}).subscribe(res => {
+          this.snackbar.sendSuccess(this.Type == "E" ? "Earnable method added" : "Sellable item added");
+          this.dialogRef.close({id: res.data.insertId, Type: this.Type, Hall: this.user.getTokenData()['SessionHall'], Title: form.value.title, Amount: form.value.cost, Hash: res.hash});
+          resolve();
+        }, err => {
+          this.snackbar.sendError(err);
+          reject();
+        });
+      })
+    } else {
+      await new Promise((resolve, reject) => {
+        this.api.editLoggableCurrency({form: form.value, hash: this.Hash}).subscribe(res => {
+          this.snackbar.sendSuccess(this.Type == "E" ? "Earnable method editted" : "Sellable item editted");
+          console.log(res)
+          this.dialogRef.close({Type: this.Type, Hall: this.user.getTokenData()['SessionHall'], Title: form.value.title, Amount: form.value.cost, Hash: res.hash});
+          resolve();
+        }, err => {
+          this.snackbar.sendError(err);
+          reject();
+        });
       });
-    })
+    }
   }
 }

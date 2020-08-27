@@ -75,7 +75,7 @@ export class CurrencySettingsComponent implements OnInit {
         }
       }
     
-    checkout(row, type) {
+    DeleteItem(row, type) {
         this.dialog.open(ConfirmDialog, {
             width: '300px',
             autoFocus: false,
@@ -98,7 +98,6 @@ export class CurrencySettingsComponent implements OnInit {
                     this.dataSourceSellable.data = this.LoggableArray.filter(e => {
                         return e.Hall == this.user.getTokenData()['SessionHall'] && e.Type == "S";
                     });
-
                     this.snack.sendSuccess("Item successfully deleted");
                 }, err => {
                     this.snack.sendError("Error deleting item - " + err)
@@ -138,6 +137,43 @@ export class CurrencySettingsComponent implements OnInit {
           }
         });
     }
+
+    EditItem(row, type: String) {
+        const dialogRef = this.dialog.open(AddEditLoggableDialog, {
+            panelClass: 'custom-dialog-container',
+            width: '800px',
+            autoFocus: false,
+            data: {
+                message: 'HelloWorld',
+                Type: type,
+                Row: row,
+                buttonText: {
+                    cancel: 'Done'
+                }
+            },
+        }).afterClosed().subscribe(res => {
+          if(res) {
+            if(type == "E") {
+                this.dataSourceEarnable.data = this.LoggableArray.filter((value, key) => {
+                    if(value.id == row.id){
+                      value.Name = res.Title;
+                      value.Amount = res.Amount;
+                    }
+                    return value.Hall == this.user.getTokenData()['SessionHall'] && value.Type == "E";
+                });
+            } else if(type == "S") {
+                this.dataSourceSellable.data = this.LoggableArray.filter((value, key) => {
+                    if(value.id == row.id){
+                      value.Name = res.Title;
+                      value.Amount = res.Amount;
+                    }
+                    return value.Hall == this.user.getTokenData()['SessionHall'] && value.Type == "S";
+                });
+            }
+          }
+        });
+    }
+
     doNothing() {
         return false;
     }

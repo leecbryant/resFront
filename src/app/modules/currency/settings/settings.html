@@ -31,10 +31,10 @@
                               <ng-container matColumnDef="checkout">
                                 <th mat-header-cell *matHeaderCellDef style="text-align: center"> Options </th>
                                 <td mat-cell *matCellDef="let row" style="text-align: center">
-                                    <button mat-icon-button matTooltip="Delete" aria-label="Example icon-button with a heart icon" (click)="checkout(row, 'E')">
+                                    <button mat-icon-button matTooltip="Delete" aria-label="Example icon-button with a heart icon" (click)="DeleteItem(row, 'E')">
                                         <mat-icon>delete</mat-icon>
                                     </button>
-                                    <button mat-icon-button matTooltip="Edit" aria-label="Example icon-button with a heart icon" (click)="checkout(row)">
+                                    <button mat-icon-button matTooltip="Edit" aria-label="Example icon-button with a heart icon" (click)="EditItem(row, 'E')">
                                         <mat-icon>edit</mat-icon>
                                     </button>
                                 </td>
@@ -73,10 +73,10 @@
                               <ng-container matColumnDef="checkout">
                                 <th mat-header-cell *matHeaderCellDef style="text-align: center"> Options </th>
                                 <td mat-cell *matCellDef="let row" style="text-align: center">
-                                    <button mat-icon-button matTooltip="Delete" aria-label="Example icon-button with a heart icon" (click)="checkout(row, 'S')">
+                                    <button mat-icon-button matTooltip="Delete" aria-label="Example icon-button with a heart icon" (click)="DeleteItem(row, 'S')">
                                         <mat-icon>delete</mat-icon>
                                     </button>
-                                    <button mat-icon-button matTooltip="Edit" aria-label="Example icon-button with a heart icon" (click)="checkout(row)">
+                                    <button mat-icon-button matTooltip="Edit" aria-label="Example icon-button with a heart icon" (click)="EditItem(row, 'S')">
                                         <mat-icon>edit</mat-icon>
                                     </button>
                                 </td>
