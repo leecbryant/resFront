@@ -30,7 +30,7 @@
                                 <span class="title">Dashboard</span>
                             </a>
                         </li>
-                        <li clas="nav-item">
+                        <li *ngIf="Access != 3 && Access != 999" clas="nav-item">
                             <a href="" [routerLink]="['/currency']">
                                 <span class="icon-holder">
                                     <i class="ti-money"></i>
@@ -38,33 +38,25 @@
                                 <span class="title">Hall Currency</span>
                             </a>
                         </li>
-                        <!-- <li clas="nav-item">
-                            <a href="" [routerLink]="['/currency/balances']">
+                        <li class="nav-item dropdown" [style.visibility]="Access == 3 || Access >= 999 ? 'visible' : 'hidden'">
+                            <a class="dropdown-toggle" href="javascript:void(0);" >
                                 <span class="icon-holder">
                                     <i class="ti-money"></i>
                                 </span>
-                                <span class="title">Currency</span>
-                            </a>
-                        </li> -->
-                        <!-- <li class="nav-item dropdown" >
-                            <a class="dropdown-toggle" href="javascript:void(0);" >
-                                <span class="icon-holder">
-                                    <i class="ti-layout-media-overlay"></i>
-                                </span>
-                                <span class="title">Dropdown</span>
+                                <span class="title">Hall Currency</span>
                                 <span class="arrow">
                                     <i class="ti-angle-right"></i>
                                 </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="">item 1</a>
+                                    <a [routerLink]="['/currency']">Balances</a>
                                 </li>
                                 <li>
-                                    <a href="">item 2</a>
+                                    <a [routerLink]="['/currency/settings']">Settings</a>
                                 </li>                  
                             </ul>
-                        </li>  -->
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -159,12 +151,12 @@
                                             <span>Edit Theme</span>
                                         </a>
                                     </li> -->
-                                    <li *ngIf="Access == 3 || Access >= 999">
+                                    <!-- <li *ngIf="Access == 3 || Access >= 999">
                                         <a href="" [routerLink]="['/currency/settings']">
                                             <i class="ti-settings pdd-right-10"></i>
                                             <span>Currency</span>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="" [routerLink]="['/logout']">
