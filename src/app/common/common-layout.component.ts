@@ -24,6 +24,7 @@ export class CommonLayoutComponent implements OnInit {
     public searchActived : any;
     public searchModel: any;
     public Name: string;
+    public Access: number;
 
     decodedToken:string = helper.decodeToken(localStorage.getItem('token'));
 
@@ -69,10 +70,11 @@ export class CommonLayoutComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.Name = this.decodedToken['Name']
+        this.Name = this.decodedToken['Name'];
         this.headerSelected = this.decodedToken['Header'];
         this.sidenavSelected =this.decodedToken['SideNav'];
         this.app.layout.rtlActived = this.decodedToken['RTL'];
+        this.Access = this.decodedToken['Access'];
     }
 
     updateDB() {
