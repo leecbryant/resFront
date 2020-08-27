@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="Title">{{Type == "E" ? "Earnable Method Title" : "Sellable  Item Name"}}</label>
+                <label for="Title">{{Type == "E" ? "Earnable Method Title" : "Sellable Item Name"}}</label>
                 <input [(ngModel)]="Title" #title="ngModel" type="text" class="form-control" placeholder='{{Type == "E" ? "Earnable Method Title" : "Sellable  Item Name"}}' name="title" id="title" required [ngClass]="{'error': !title.valid && (title.dirty || title.touched)}">
                 <label class="error" *ngIf="!title.valid && (title.dirty || title.touched)">{{Type == "E" ? "Earnable Method Title" : "Sellable  Item Name"}} is required</label>
             </div>
