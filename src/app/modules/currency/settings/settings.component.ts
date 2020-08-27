@@ -131,7 +131,9 @@ export class CurrencySettingsComponent implements OnInit {
                     return ele.Hall == this.user.getTokenData()['SessionHall'] && ele.Type == "E";
                 }));
             } else if(type == "S") {
-                this.dataSourceSellable.data.push(newItem)
+                this.dataSourceSellable = new MatTableDataSource(this.LoggableArray.filter(ele => {
+                    return ele.Hall == this.user.getTokenData()['SessionHall'] && ele.Type == "S";
+                }));
             }
           }
         });
