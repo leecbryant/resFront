@@ -87,17 +87,20 @@ export class CurrencySettingsComponent implements OnInit {
             },
         }).afterClosed().subscribe(res => {
             if(res) {
-                let submitObj = {
-                row
-                }
-                this.api.updateStudy(submitObj).subscribe(studyres => {
-                this.dataSourceEarnable.data = this.LoggableArray = this.dataSourceEarnable.data.filter(e => {
-                    return e.id != row.id
-                })
-                this.dataSourceSellable.data = this.LoggableArray = this.dataSourceEarnable.data.filter(e => {
-                    return e.id != row.id
-                })
+                this.api.deleteCurrencyLoggable(row.Hash).subscribe(res => {
+                    this.LoggableArray = this.LoggableArray.filter(e => {
+                        return e.id != row.id
+                    })
+                    this.dataSourceEarnable.data = this.LoggableArray.filter(e => {
+                        return e.Hall == this.user.getTokenData()['SessionHall'] && e.Type == "E";
+                    });
+                    this.dataSourceSellable.data = this.LoggableArray.filter(e => {
+                        return e.Hall == this.user.getTokenData()['SessionHall'] && e.Type == "S";
+                    });
+
+                    this.snack.sendSuccess("Item successfully deleted");
                 }, err => {
+                    this.snack.sendError("Error deleting item - " + err)
                     console.log(err)
                 })
             } else {
